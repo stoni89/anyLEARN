@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+#toolbarMenu {
+  cursor: pointer;
+  margin-right: 20px;
+}
+#mainToolbar .toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+#mainToolbar .toolbar-icon {
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+#sidenavContainer {
+  margin-top: 64px;
+}
+
+#sidenav {
+  width: 70px;
+}
+
+#sidenav .avatar {
+  background-image: url('http://i.pravatar.cc/300');
+  background-size: cover;
+}
+
+#sidenav .mat-list-item-content {
+  padding: 0;
+}
+
+#sidenav .menu-item {
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+  padding: 10px;
+}
+
+#sidenav .menu-item:hover {
+background: #eee;
+}
+
+.active-list-item {
+  color: #3F51B5 !important; /* Note: You could also use a custom theme */
+}
+
+#sidenav .menu-item mat-icon {
+  margin-right: 20px;
+  margin-left: 12px;
+}
