@@ -1,6 +1,6 @@
-import { User } from './../Interfaces/user';
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,4 +13,5 @@ export class UserService {
   getAllusers() {
     return this.firestore.collection('user').valueChanges();
   }
+
 }

@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from './../../Shared/Interfaces/user';
 import { UserService } from './../../Shared/Services/user.service';
-import {Observable} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { AngularFirestore} from '@angular/fire/firestore';
 import { MatPaginator } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-benutzerverwaltung-list',
@@ -15,13 +14,13 @@ import { MatPaginator } from '@angular/material/paginator';
 export class BenutzerverwaltungListComponent implements OnInit {
 
   datasource: MatTableDataSource<any>;
-  displayedColumns = ['mail', 'nachname', 'name', 'vorname', 'actions'];
+  displayedColumns = ['istAktiv', 'kuerzel' , 'vorname', 'nachname', 'name', 'mail', 'zugehoerigkeit', 'rolle', 'actions'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(public fs: AngularFirestore, public service: UserService) {
+  constructor(private fs: AngularFirestore, private service: UserService) {
   }
 
   ngOnInit() {
