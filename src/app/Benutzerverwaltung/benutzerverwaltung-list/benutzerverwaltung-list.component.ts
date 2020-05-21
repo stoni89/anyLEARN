@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { User } from './../../Shared/Interfaces/user';
+import { UserService } from './../../Shared/Services/user.service';
+import {Observable} from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-benutzerverwaltung-list',
@@ -7,9 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BenutzerverwaltungListComponent implements OnInit {
 
-  constructor() { }
+  datasource: MatTableDataSource<any>;
+  displayedColumns = ['mail', 'nachname', 'name', 'vorname'];
 
-  ngOnInit(): void {
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  constructor(public fs: AngularFirestore, public service: UserService) {
   }
 
+  ngOnInit() {
+    this.service.getAllusers().subscribe(data => {
+      this.datasource = new MatTableDataSource(data);
+      this.datasource.sort = this.sort;
+    })
+  };
 }
