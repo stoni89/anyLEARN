@@ -26,13 +26,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/dashboard-skill-list.component';
 import { BenutzerverwaltungComponent } from './Benutzerverwaltung/benutzerverwaltung/benutzerverwaltung.component';
 import { SkillverwaltungComponent } from './Skillverwaltung/skillverwaltung/skillverwaltung.component';
 import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerverwaltung-list/benutzerverwaltung-list.component';
+import { BenutzerverwaltungNewUserComponent } from './Benutzerverwaltung/benutzerverwaltung-new-user/benutzerverwaltung-new-user.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerve
     DashboardSkillListComponent,
     BenutzerverwaltungComponent,
     SkillverwaltungComponent,
-    BenutzerverwaltungListComponent
+    BenutzerverwaltungListComponent,
+    BenutzerverwaltungNewUserComponent
   ],
   imports: [
     HttpClientModule,
@@ -58,8 +62,11 @@ import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerve
     MatTooltipModule,
     MatTableModule,
     MatSortModule,
+    MatSelectModule,
+    MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatPaginatorModule,
     ReactiveFormsModule,
     MatDialogModule,
@@ -69,6 +76,7 @@ import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerve
     AngularFireDatabaseModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [BenutzerverwaltungNewUserComponent]
 })
 export class AppModule { }

@@ -4,6 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { AngularFirestore} from '@angular/fire/firestore';
 import { MatPaginator } from '@angular/material/paginator';
+import { User } from 'src/app/Shared/Interfaces/user';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { BenutzerverwaltungNewUserComponent } from '../benutzerverwaltung-new-user/benutzerverwaltung-new-user.component';
 
 
 @Component({
@@ -13,6 +16,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class BenutzerverwaltungListComponent implements OnInit {
 
+  users: User[];
+  currentData: any;
   datasource: MatTableDataSource<any>;
   displayedColumns = ['istAktiv', 'kuerzel' , 'vorname', 'nachname', 'name', 'mail', 'zugehoerigkeit', 'rolle', 'actions'];
 
@@ -20,7 +25,7 @@ export class BenutzerverwaltungListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private fs: AngularFirestore, private service: UserService) {
+  constructor(private fs: AngularFirestore, private service: UserService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -40,4 +45,17 @@ export class BenutzerverwaltungListComponent implements OnInit {
     this.datasource.filter = this.searchKey.trim().toLowerCase();
   }
 
+  cellClicked(row) {
+    console.log(row);
+  }
+
+  onEdit(row) {
+    this.service.populateForm(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    console.log(row);
+    this.dialog.open(BenutzerverwaltungNewUserComponent,dialogConfig);
+  }
 }

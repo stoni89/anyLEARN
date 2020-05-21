@@ -1,6 +1,10 @@
 export interface User {
+  name: string;
   mail: string;
   nachname: string;
-  name: string;
   vorname: string;
+  istAktiv: boolean;
+  kuerzel: string;
+  rolle: string;
+  zugehoerigkeit: string;
 }
