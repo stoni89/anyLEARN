@@ -1,4 +1,3 @@
-import { AngularFireDatabase } from '@angular/fire/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,17 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-=======
->>>>>>> 54c55a3... UserTable
-=======
-import { AngularFirestoreModule } from '@angular/fire/firestore';
->>>>>>> 33fddf559615a4351ea64db348650dcd43425692
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { MatSliderModule } from '@angular/material/slider';
@@ -28,13 +21,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import { MatSortModule } from '@angular/material/sort';
->>>>>>> 54c55a3... UserTable
-=======
->>>>>>> 33fddf559615a4351ea64db348650dcd43425692
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/dashboard-skill-list.component';
@@ -65,24 +55,16 @@ import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerve
     MatCardModule,
     MatTooltipModule,
     MatTableModule,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 33fddf559615a4351ea64db348650dcd43425692
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
-<<<<<<< HEAD
-=======
-    MatSortModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
-  ],
-  exports: [MatSortModule],
->>>>>>> 54c55a3... UserTable
-=======
->>>>>>> 33fddf559615a4351ea64db348650dcd43425692
   providers: [],
   bootstrap: [AppComponent]
 })
