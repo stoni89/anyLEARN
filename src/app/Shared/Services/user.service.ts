@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore} from '@angular/fire/firestore';
-import { DatePipe } from '@angular/common';
-import { User } from '../Interfaces/user';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Injectable({
@@ -9,31 +7,42 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class UserService {
 
-  constructor(public firestore: AngularFirestore) {
+  constructor(private httpClient: HttpClient) {
   }
 
   form: FormGroup = new FormGroup({
+    user_id: new FormControl(0),
     istAktiv: new FormControl(false),
     kuerzel: new FormControl('', Validators.required),
     mail: new FormControl('', Validators.email),
     nachname: new FormControl('', Validators.required),
     vorname: new FormControl('', Validators.required),
-    rolle: new FormControl(0),
+    rollen_id: new FormControl(0),
     name: new FormControl('', Validators.required),
-    zugehoerigkeit: new FormControl(0)
+    kategorie_id: new FormControl(0)
   });
 
   initializeFormGroup() {
     this.form.setValue({
-      name: ''
+      name: '',
+      nachname: '',
+      vorname: '',
+      mail: '',
+      kuerzel: '',
+      user_id: 0,
+      rollen_id: 0,
+      kategorie_id: 0,
+      istAktiv: true
     });
   }
 
-  getAllusers() {
-    return this.firestore.collection('user').valueChanges();
-  }
 
   populateForm(user) {
     this.form.setValue(user);
+  }
+
+
+  getAllUsers() {
+    return this.httpClient.get(`http://localhost:3000/user`);
   }
 }

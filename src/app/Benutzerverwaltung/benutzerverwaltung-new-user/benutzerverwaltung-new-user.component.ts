@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../Shared/Services/user.service';
+import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
 
 @Component({
   selector: 'app-benutzerverwaltung-new-user',
@@ -9,20 +10,20 @@ import { UserService } from '../../Shared/Services/user.service';
 })
 export class BenutzerverwaltungNewUserComponent implements OnInit {
 
-  category: Array<any> = [
-    {value: '0', viewValue: 'Technik'},
-    {value: '1', viewValue: 'Kaufmännischer Mitarbeiter'},
-    {value: '2', viewValue: 'Geschäftsführer'}
-  ]
+  category: any;
 
-  constructor(public service: UserService, public dialogRef: MatDialogRef<BenutzerverwaltungNewUserComponent>) { }
+  constructor(public userService: UserService, public kategorieService: KategorieService, public dialogRef: MatDialogRef<BenutzerverwaltungNewUserComponent>) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {
+    this.kategorieService.getAllKategorie().subscribe(data => {
+      console.log(data);
+      this.category = data;
+    })
+  };
 
   onClose() {
-    this.service.form.reset();
-    this.service.initializeFormGroup();
+    this.userService.form.reset();
+    this.userService.initializeFormGroup();
     this.dialogRef.close();
   }
 

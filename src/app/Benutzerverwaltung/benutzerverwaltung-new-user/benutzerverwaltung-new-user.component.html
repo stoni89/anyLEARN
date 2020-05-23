@@ -3,7 +3,7 @@
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-<form [formGroup]="service.form" class="normal-form">
+<form [formGroup]="userService.form" class="normal-form">
   <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile>
       <div class="controles-container">
@@ -33,9 +33,8 @@
       <div class="controles-container">
         <div class="add-bottom-padding">
           <mat-form-field>
-          <mat-select formControlName="zugehoerigkeit" placeholder="Kategorie">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let cat of category" [value]="cat.value">{{cat.viewValue}}</mat-option>
+          <mat-select formControlName="kategorie_id" placeholder="Kategorie">
+            <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id">{{cat.kategorie}}</mat-option>
           </mat-select>
         </mat-form-field>
         </div>
@@ -47,14 +46,14 @@
           </select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="rolle" placeholder="Kategorie">
+          <mat-select formControlName="rollen_id" placeholder="Kategorie">
             <mat-option>1</mat-option>
             <mat-option>2</mat-option>
             <mat-option>3</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
         </div>
       </div>
     </mat-grid-tile>
