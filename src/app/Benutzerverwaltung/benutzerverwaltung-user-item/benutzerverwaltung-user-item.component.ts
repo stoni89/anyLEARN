@@ -36,6 +36,14 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
     this.userService.form.reset();
     this.userService.initializeFormGroup();
     this.dialogRef.close();
-  }
+  };
 
+  onSubmit() {
+    console.log("button gedrückt");
+    if (this.userService.form.valid) {
+      if (!this.userService.form.get('user_id').value) {
+        this.userService.setUser(this.userService.form.value).subscribe();
+      }
+    }
+  };
 }

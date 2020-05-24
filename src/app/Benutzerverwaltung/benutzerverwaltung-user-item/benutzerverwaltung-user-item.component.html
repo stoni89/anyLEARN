@@ -34,6 +34,7 @@
     <mat-grid-tile>
 
       <div class="controles-container">
+
         <mat-form-field>
           <mat-select formControlName="kategorie_id" placeholder="Kategorie">
             <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id">{{cat.kategorie}}</mat-option>
@@ -51,7 +52,7 @@
           </mat-select>
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()">Submit</button>
         </div>
       </div>
     </mat-grid-tile>

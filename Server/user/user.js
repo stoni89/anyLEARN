@@ -11,6 +11,11 @@ var user = {
     {
         return db.query('SELECT * FROM users WHERE user_id = ' + id, callback);
     },
+    newUser: function(postdata, callback)
+    {
+      return db.query('INSERT INTO users (vorname, nachname, name, kategorie_id, rollen_id, kuerzel, mail, istAktiv) ' +
+                      'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.vorname, postdata.nachname, postdata.name, postdata.kategorie_id, postdata.rollen_id, postdata.kuerzel, postdata.mail, postdata.istAktiv], callback)
+    }
 }
 
 module.exports = user;

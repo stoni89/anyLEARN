@@ -17,11 +17,11 @@ export class UserService {
     mail: new FormControl('', [Validators.email, Validators.required]),
     nachname: new FormControl('', Validators.required),
     vorname: new FormControl('', Validators.required),
-    rollen_id: new FormControl(0, Validators.required),
+    rollen_id: new FormControl(1, Validators.required),
     name: new FormControl('', Validators.required),
     rolle: new FormControl(''),
     kategorie: new FormControl(''),
-    kategorie_id: new FormControl(0, Validators.required)
+    kategorie_id: new FormControl(1, Validators.required)
   });
 
   initializeFormGroup() {
@@ -32,8 +32,8 @@ export class UserService {
       mail: '',
       kuerzel: '',
       user_id: null,
-      rollen_id: 0,
-      kategorie_id: 0,
+      rollen_id: 1,
+      kategorie_id: 1,
       rolle: '',
       kategorie: '',
       istAktiv: 1
@@ -52,5 +52,9 @@ export class UserService {
 
   getSpezificUsers(id: number) {
     return this.httpClient.get(`http://localhost:3000/user/` + id);
+  }
+
+  setUser(newUser: any) {
+    return this.httpClient.post(`http://localhost:3000/user`, newUser);
   }
 }
