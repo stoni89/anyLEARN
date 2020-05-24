@@ -1,5 +1,5 @@
 <div class="search-div">
-  <button mat-raised-button [ngStyle]="{'background-color': 'darkgreen', 'color': 'white'}">
+  <button mat-raised-button [ngStyle]="{'background-color': 'darkgreen', 'color': 'white'}" (click)="onNew()">
     <mat-icon>add</mat-icon>Create
   </button>
   <mat-form-field class="search-form-field" floatLabel="never">
@@ -43,14 +43,14 @@
     <td mat-cell *matCellDef="let element"> {{element.kuerzel}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="rollen_id">
+  <ng-container matColumnDef="rolle">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Rolle </th>
-    <td mat-cell *matCellDef="let element"> {{element.rollen_id}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.rolle}} </td>
   </ng-container>
 
   <ng-container matColumnDef="kategorie">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Kategorie </th>
-    <td mat-cell *matCellDef="let element"> {{element.kategorie_id} </td>
+    <td mat-cell *matCellDef="let element"> {{element.kategorie}} </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">

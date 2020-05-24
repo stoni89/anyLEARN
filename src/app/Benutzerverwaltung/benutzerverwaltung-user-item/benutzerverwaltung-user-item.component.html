@@ -1,5 +1,6 @@
 <mat-toolbar>
-  <span>Test</span>
+  <span *ngIf="selectedItemName">{{selectedItemName}}</span>
+  <span *ngIf="!selectedItemName">Neuer Benutzer</span>
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
@@ -9,7 +10,8 @@
       <div class="controles-container">
         <mat-form-field>
           <input formControlName="kuerzel" matInput placeholder="Kürzel*">
-          <mat-error>This field is mandatory.</mat-error>
+          <mat-error *ngIf="userService.form.controls['kuerzel'].errors?.required">Pflichtfeld.</mat-error>
+          <mat-error *ngIf="userService.form.controls['kuerzel'].errors?.maxlength">Maximal 3 Zeichen.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input formControlName="vorname" matInput placeholder="Vorname*">
@@ -30,26 +32,22 @@
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
+
       <div class="controles-container">
-        <div class="add-bottom-padding">
-          <mat-form-field>
+        <mat-form-field>
           <mat-select formControlName="kategorie_id" placeholder="Kategorie">
             <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id">{{cat.kategorie}}</mat-option>
           </mat-select>
-        </mat-form-field>
-        </div>
+          </mat-form-field>
         <mat-form-field>
-          <mat-label>Aktiv</mat-label>
-          <select matNativeControl required>
-            <option value="true">true</option>
-            <option value="false">false</option>
-          </select>
+          <mat-select formControlName="istAktiv" placeholder="Aktiv">
+            <mat-option [value]="1">Aktiv</mat-option>
+            <mat-option [value]="2">Inaktiv</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="rollen_id" placeholder="Kategorie">
-            <mat-option>1</mat-option>
-            <mat-option>2</mat-option>
-            <mat-option>3</mat-option>
+          <mat-select formControlName="rollen_id" placeholder="Rollen">
+            <mat-option *ngFor="let rol of rollen" [value]="rol.rollen_id">{{rol.rolle}}</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="button-row">

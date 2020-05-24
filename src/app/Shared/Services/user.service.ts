@@ -12,14 +12,16 @@ export class UserService {
 
   form: FormGroup = new FormGroup({
     user_id: new FormControl(0),
-    istAktiv: new FormControl(false),
-    kuerzel: new FormControl('', Validators.required),
-    mail: new FormControl('', Validators.email),
+    istAktiv: new FormControl(1,Validators.required),
+    kuerzel: new FormControl('', [Validators.required, Validators.maxLength(3)]),
+    mail: new FormControl('', [Validators.email, Validators.required]),
     nachname: new FormControl('', Validators.required),
     vorname: new FormControl('', Validators.required),
-    rollen_id: new FormControl(0),
+    rollen_id: new FormControl(0, Validators.required),
     name: new FormControl('', Validators.required),
-    kategorie_id: new FormControl(0)
+    rolle: new FormControl(''),
+    kategorie: new FormControl(''),
+    kategorie_id: new FormControl(0, Validators.required)
   });
 
   initializeFormGroup() {
@@ -29,10 +31,12 @@ export class UserService {
       vorname: '',
       mail: '',
       kuerzel: '',
-      user_id: 0,
+      user_id: null,
       rollen_id: 0,
       kategorie_id: 0,
-      istAktiv: true
+      rolle: '',
+      kategorie: '',
+      istAktiv: 1
     });
   }
 
@@ -44,5 +48,9 @@ export class UserService {
 
   getAllUsers() {
     return this.httpClient.get(`http://localhost:3000/user`);
+  }
+
+  getSpezificUsers(id: number) {
+    return this.httpClient.get(`http://localhost:3000/user/` + id);
   }
 }

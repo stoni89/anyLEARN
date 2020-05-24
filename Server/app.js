@@ -5,8 +5,10 @@ app.use(cors());
 
 var userController = require('./user/userController');
 var kategorieController = require('./kategorie/kategorieController');
+var rollenController = require('./rollen/rollenController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
+app.use('/rollen', rollenController);
 
 module.exports = app;
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BenutzerverwaltungNewUserComponent } from './benutzerverwaltung-new-user.component';
+import { BenutzerverwaltungUserItemComponent } from './benutzerverwaltung-user-item.component';
 
 describe('BenutzerverwaltungNewUserComponent', () => {
-  let component: BenutzerverwaltungNewUserComponent;
-  let fixture: ComponentFixture<BenutzerverwaltungNewUserComponent>;
+  let component: BenutzerverwaltungUserItemComponent;
+  let fixture: ComponentFixture<BenutzerverwaltungUserItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BenutzerverwaltungNewUserComponent ]
+      declarations: [ BenutzerverwaltungUserItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BenutzerverwaltungNewUserComponent);
+    fixture = TestBed.createComponent(BenutzerverwaltungUserItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

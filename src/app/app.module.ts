@@ -35,7 +35,7 @@ import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/da
 import { BenutzerverwaltungComponent } from './Benutzerverwaltung/benutzerverwaltung/benutzerverwaltung.component';
 import { SkillverwaltungComponent } from './Skillverwaltung/skillverwaltung/skillverwaltung.component';
 import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerverwaltung-list/benutzerverwaltung-list.component';
-import { BenutzerverwaltungNewUserComponent } from './Benutzerverwaltung/benutzerverwaltung-new-user/benutzerverwaltung-new-user.component';
+import { BenutzerverwaltungUserItemComponent } from './Benutzerverwaltung/benutzerverwaltung-user-item/benutzerverwaltung-user-item.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { BenutzerverwaltungNewUserComponent } from './Benutzerverwaltung/benutze
     BenutzerverwaltungComponent,
     SkillverwaltungComponent,
     BenutzerverwaltungListComponent,
-    BenutzerverwaltungNewUserComponent
+    BenutzerverwaltungUserItemComponent
   ],
   imports: [
     HttpClientModule,
@@ -77,6 +77,6 @@ import { BenutzerverwaltungNewUserComponent } from './Benutzerverwaltung/benutze
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [BenutzerverwaltungNewUserComponent]
+  entryComponents: [BenutzerverwaltungUserItemComponent]
 })
 export class AppModule { }
