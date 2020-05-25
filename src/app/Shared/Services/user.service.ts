@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private listners = new Subject<any>();
 
   constructor(private httpClient: HttpClient) {
   }
@@ -14,11 +16,11 @@ export class UserService {
     user_id: new FormControl(0),
     istAktiv: new FormControl(1,Validators.required),
     kuerzel: new FormControl('', [Validators.required, Validators.maxLength(3)]),
-    mail: new FormControl('', [Validators.email, Validators.required]),
+    mail: new FormControl(''),
     nachname: new FormControl('', Validators.required),
     vorname: new FormControl('', Validators.required),
     rollen_id: new FormControl(1, Validators.required),
-    name: new FormControl('', Validators.required),
+    name: new FormControl(''),
     rolle: new FormControl(''),
     kategorie: new FormControl(''),
     kategorie_id: new FormControl(1, Validators.required)
@@ -56,5 +58,17 @@ export class UserService {
 
   setUser(newUser: any) {
     return this.httpClient.post(`http://localhost:3000/user`, newUser);
+  }
+
+  updateUser(editUser: any) {
+    return this.httpClient.put(`http://localhost:3000/user`, editUser);
+  }
+
+
+  listen(): Observable<any>{
+    return this.listners.asObservable();
+  }
+  filter(filterBy: string) {
+    this.listners.next(filterBy);
   }
 }

@@ -15,6 +15,11 @@ var user = {
     {
       return db.query('INSERT INTO users (vorname, nachname, name, kategorie_id, rollen_id, kuerzel, mail, istAktiv) ' +
                       'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.vorname, postdata.nachname, postdata.name, postdata.kategorie_id, postdata.rollen_id, postdata.kuerzel, postdata.mail, postdata.istAktiv], callback)
+    },
+    updateUser: function(postdata, callback)
+    {
+      return db.query('UPDATE users SET vorname=?, nachname=?, name=?, kategorie_id=?, rollen_id=?, kuerzel=?, mail=?, istAktiv=? ' +
+                      'WHERE user_id=?', [postdata.vorname, postdata.nachname, postdata.name, postdata.kategorie_id, postdata.rollen_id, postdata.kuerzel, postdata.mail, postdata.istAktiv, postdata.user_id], callback)
     }
 }
 

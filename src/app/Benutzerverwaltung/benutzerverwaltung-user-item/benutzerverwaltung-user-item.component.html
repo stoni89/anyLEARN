@@ -15,44 +15,42 @@
         </mat-form-field>
         <mat-form-field>
           <input formControlName="vorname" matInput placeholder="Vorname*">
-          <mat-error>This field is mandatory.</mat-error>
+          <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input formControlName="nachname" matInput placeholder="Nachname*">
-          <mat-error>This field is mandatory.</mat-error>
+          <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="name" matInput placeholder="Name">
-          <mat-error>This field is mandatory.</mat-error>
+          <input formControlName="name" matInput placeholder="Name*" [readonly]="!editable" value="{{userService.form.controls['nachname'].value}} {{userService.form.controls['vorname'].value}}">
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="mail" matInput placeholder="Email">
-          <mat-error>Invalid email address.</mat-error>
+          <input formControlName="mail" matInput placeholder="Email*" [readonly]="!editable" value="{{userService.form.controls['kuerzel'].value}}@anyware.ag">
+          <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
 
       <div class="controles-container">
-
         <mat-form-field>
-          <mat-select formControlName="kategorie_id" placeholder="Kategorie">
+          <mat-select formControlName="kategorie_id" placeholder="Kategorie*">
             <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id">{{cat.kategorie}}</mat-option>
           </mat-select>
           </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="istAktiv" placeholder="Aktiv">
+          <mat-select formControlName="istAktiv" placeholder="Aktiv*">
             <mat-option [value]="1">Aktiv</mat-option>
             <mat-option [value]="2">Inaktiv</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="rollen_id" placeholder="Rollen">
+          <mat-select formControlName="rollen_id" placeholder="Rolle*">
             <mat-option *ngFor="let rol of rollen" [value]="rol.rollen_id">{{rol.rolle}}</mat-option>
           </mat-select>
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" [ngStyle]="{'float': 'right', 'margin-top': '75px'}">Submit</button>
         </div>
       </div>
     </mat-grid-tile>

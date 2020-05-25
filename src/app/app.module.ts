@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/dashboard-skill-list.component';
@@ -70,6 +71,7 @@ import { BenutzerverwaltungUserItemComponent } from './Benutzerverwaltung/benutz
     MatPaginatorModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatSnackBarModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
