@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../Shared/Services/user.service';
 import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
 import { RollenService } from 'src/app/Shared/Services/rollen.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-benutzerverwaltung-user-item',

@@ -1,0 +1,74 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SkillService } from '../../Shared/Services/skill.service';
+import { SkillverwaltungSkillItemComponent } from '../skillverwaltung-skill-item/skillverwaltung-skill-item.component';
+
+@Component({
+  selector: 'app-skillverwaltung-list',
+  templateUrl: './skillverwaltung-list.component.html',
+  styleUrls: ['./skillverwaltung-list.component.css']
+})
+export class SkillverwaltungListComponent implements OnInit {
+  currentData: any;
+  datasource;
+  displayedColumns = ['bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'nachname', 'kategorie', 'actions'];
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  searchKey: string;
+
+
+  constructor(private service: SkillService, private dialog: MatDialog) { }
+
+  ngOnInit() {
+    this.service.getAllSkills().subscribe(data => {
+      this.datasource = new MatTableDataSource(data as any);
+      this.datasource.sort = this.sort;
+      this.datasource.paginator = this.paginator;
+    });
+  }
+
+  refreshSkillList() {
+    this.service.getAllSkills().subscribe(data => {
+      this.datasource = new MatTableDataSource(data as any);
+      this.datasource.sort = this.sort;
+      this.datasource.paginator = this.paginator;
+    });
+  }
+
+  onSearchClear() {
+    this.searchKey = '';
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.datasource.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  onEdit(row) {
+    console.log(row);
+    this.service.populateForm(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '70%';
+    dialogConfig.height = '75%';
+    this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
+  }
+
+  onNew() {
+    this.service.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '70%';
+    dialogConfig.height = '75%';
+    this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
+  }
+
+
+
+}

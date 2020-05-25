@@ -6,9 +6,15 @@ app.use(cors());
 var userController = require('./user/userController');
 var kategorieController = require('./kategorie/kategorieController');
 var rollenController = require('./rollen/rollenController');
+var skillController = require('./skill/skillController');
+var bereichController = require('./bereich/bereichController');
+var skillKategorieController = require('./skillkategorie/skillkategorieController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
+app.use('/skill', skillController);
+app.use('/bereich', bereichController);
+app.use('/skillkategorie', skillKategorieController);
 
 module.exports = app;
 

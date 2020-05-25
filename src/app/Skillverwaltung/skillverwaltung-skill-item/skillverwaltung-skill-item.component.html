@@ -1,0 +1,56 @@
+<mat-toolbar>
+  <span *ngIf="selectedItemName">{{selectedItemName}}</span>
+  <span *ngIf="!selectedItemName">Neuer Skill</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="skillService.form" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="550px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <input formControlName="skill" matInput placeholder="Skill*">
+          <mat-error>Pflichtfeld.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="zeitaufwand" matInput placeholder="Zeitaufwand*">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="zeitpunkt" matInput placeholder="Zeitpunkt*">
+          <mat-error>Pflichtfeld.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="bereich_id" placeholder="Bereich*">
+            <mat-option *ngFor="let ber of bereich" [value]="ber.bereich_id">{{ber.bereich}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="vermittler_id" placeholder="Vermittler*">
+            <mat-option *ngFor="let ver of vermittler" [value]="ver.user_id">{{ver.nachname}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="height: 100%;">
+          <textarea formControlName="lernziel" matInput matInput rows="5"  placeholder="Lernziel*"></textarea>
+          <mat-error>Pflichtfeld.</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+
+      <div class="controles-container">
+        <mat-form-field>
+          <textarea style="height:auto" formControlName="inhalt" matInput rows="17" placeholder="Inhalt*"></textarea>
+          <mat-error>Pflichtfeld.</mat-error>
+        </mat-form-field>
+        <mat-form-field style="height: 100%;">
+          <textarea formControlName="nachweis" matInput rows="5" placeholder="Nachweis*"></textarea>
+          <mat-error>Pflichtfeld.</mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="skillService.form.invalid" (click)="onSubmit()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Submit</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
