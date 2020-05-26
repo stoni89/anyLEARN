@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkillService } from '../../Shared/Services/skill.service';
 import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
@@ -6,6 +6,8 @@ import { BereichService } from 'src/app/Shared/Services/bereich.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
+import { map, tap } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/database/database';
 
 @Component({
   selector: 'app-skillverwaltung-skill-item',
@@ -13,14 +15,13 @@ import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.se
   styleUrls: ['./skillverwaltung-skill-item.component.css']
 })
 export class SkillverwaltungSkillItemComponent implements OnInit {
-
   category: any;
   arr: any;
   bereich: any;
   vermittler: any;
   skillkategorie: any;
   selectedItemName: string;
-  selectedSkillKategorie: any;
+  selectedSkillKategorie: any[];
 
   constructor(private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
@@ -48,7 +49,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     });
 
     this.selectedItemName = this.skillService.form.value.skill;
-    this.selectedSkillKategorie = this.skillService.form.value.kategorie_id;
+
 
   }
 
@@ -57,6 +58,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     this.skillService.initializeFormGroup();
     this.dialogRef.close();
     this.skillService.filter('Register click');
+    this.selectedSkillKategorie = [1]
   }
 
   onSubmit() {

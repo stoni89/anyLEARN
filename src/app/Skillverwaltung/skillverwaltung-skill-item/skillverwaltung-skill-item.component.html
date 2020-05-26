@@ -21,7 +21,7 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select ([ngModel])="selectedSkillKategorie" formControlName="kategorie_id" placeholder="Kategorie*" multiple>
+          <mat-select [(ngModel)]="selectedSkillKategorie" placeholder="Kategorie*" multiple [ngModelOptions]="{standalone: true}">
             <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id"> {{cat.kategorie}} </mat-option>
           </mat-select>
         </mat-form-field>

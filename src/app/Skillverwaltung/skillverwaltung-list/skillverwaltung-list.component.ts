@@ -57,7 +57,6 @@ export class SkillverwaltungListComponent implements OnInit {
 
   onEdit(row) {
     this.service.populateForm(row);
-    console.log(this.service.form.value.kategorie_id);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
