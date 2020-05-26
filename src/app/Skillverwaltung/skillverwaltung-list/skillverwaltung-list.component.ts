@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -12,7 +12,7 @@ import { SkillverwaltungSkillItemComponent } from '../skillverwaltung-skill-item
   styleUrls: ['./skillverwaltung-list.component.css']
 })
 export class SkillverwaltungListComponent implements OnInit {
-  test: any;
+  selectedKatIDS: string;
   currentData: any;
   datasource;
   displayedColumns = ['bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'nachname', 'kategorie', 'actions'];
@@ -56,6 +56,7 @@ export class SkillverwaltungListComponent implements OnInit {
   }
 
   onEdit(row) {
+    this.selectedKatIDS = row.kategorie_id;
     this.service.populateForm(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

@@ -21,7 +21,7 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select [(ngModel)]="selectedSkillKategorie" placeholder="Kategorie*" multiple [ngModelOptions]="{standalone: true}">
+          <mat-select [(ngModel)]="selected" multiple placeholder="Kategorie*" [ngModelOptions]="{standalone: true}">
             <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id"> {{cat.kategorie}} </mat-option>
           </mat-select>
         </mat-form-field>
@@ -53,7 +53,7 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="skillService.form.invalid" (click)="onSubmit()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Submit</button>
         </div>
       </div>
     </mat-grid-tile>

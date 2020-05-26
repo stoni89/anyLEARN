@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkillService } from '../../Shared/Services/skill.service';
 import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
@@ -8,6 +8,7 @@ import { UserService } from 'src/app/Shared/Services/user.service';
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
 import { map, tap } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database/database';
+import { kategoryID } from 'src/app/Shared/Interfaces/kategorieID';
 
 @Component({
   selector: 'app-skillverwaltung-skill-item',
@@ -16,12 +17,12 @@ import { AngularFireDatabase } from '@angular/fire/database/database';
 })
 export class SkillverwaltungSkillItemComponent implements OnInit {
   category: any;
-  arr: any;
   bereich: any;
   vermittler: any;
   skillkategorie: any;
   selectedItemName: string;
-  selectedSkillKategorie: any[];
+  selectedSkillKategorie = new Array<any>();
+  selected = new Array<Number>();
 
   constructor(private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
@@ -50,7 +51,26 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
     this.selectedItemName = this.skillService.form.value.skill;
 
+    this.skillkategorieService.getSpezificSkillKategorie(this.skillService.form.value.skill_id).subscribe(data => {
+      var selectString: string;
+      var stringConvert: any[];
+      selectString = data[0]['kategorie_id']
+      stringConvert = selectString.split(', ')
 
+      for (var i in stringConvert) {
+        var obj = {ID: stringConvert[i]}
+        this.selectedSkillKategorie.push(obj)
+      }
+
+      var arr = [];
+      this.selectedSkillKategorie.forEach(element => {
+          var convert = parseInt(element['ID'])
+          console.log(convert)
+          arr.push(convert)
+      });
+
+      this.selected = arr;
+    })
   }
 
   onClose() {
@@ -58,7 +78,8 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     this.skillService.initializeFormGroup();
     this.dialogRef.close();
     this.skillService.filter('Register click');
-    this.selectedSkillKategorie = [1]
+    console.log(this.selected)
+
   }
 
   onSubmit() {
@@ -91,5 +112,4 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   openRedSnackBar(message, action) {
     this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
   }
-
 }
