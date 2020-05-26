@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkillService } from '../../Shared/Services/skill.service';
 import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
@@ -16,11 +16,11 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
   category: any;
   arr: any;
-  category_id: any;
   bereich: any;
   vermittler: any;
   skillkategorie: any;
   selectedItemName: string;
+  selectedSkillKategorie: any;
 
   constructor(private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
@@ -28,10 +28,13 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               public userService: UserService,
               public kategorieService: KategorieService,
               public skillkategorieService: SkillkategorieService,
-              public skillService: SkillService) { }
+              public skillService: SkillService) {}
 
 
   ngOnInit() {
+
+    console.log('OnInit wird gestartet');
+
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
     });
@@ -44,14 +47,9 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
       this.category = data;
     });
 
-    this.skillkategorieService.getSpezificSkillKategorie(this.skillService.form.value.skill_id).subscribe(data => {
-      this.skillkategorie = data;
-      console.log(this.skillkategorie);
-    });
-
-    console.log(this.skillService.form.value);
-
     this.selectedItemName = this.skillService.form.value.skill;
+    this.selectedSkillKategorie = this.skillService.form.value.kategorie_id;
+
   }
 
   onClose() {

@@ -12,6 +12,7 @@ import { SkillverwaltungSkillItemComponent } from '../skillverwaltung-skill-item
   styleUrls: ['./skillverwaltung-list.component.css']
 })
 export class SkillverwaltungListComponent implements OnInit {
+  test: any;
   currentData: any;
   datasource;
   displayedColumns = ['bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'nachname', 'kategorie', 'actions'];
@@ -21,7 +22,12 @@ export class SkillverwaltungListComponent implements OnInit {
   searchKey: string;
 
 
-  constructor(private service: SkillService, private dialog: MatDialog) { }
+  constructor(private service: SkillService, private dialog: MatDialog) {
+    this.service.listen().subscribe(async data => {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      this.refreshSkillList();
+    });
+  }
 
   ngOnInit() {
     this.service.getAllSkills().subscribe(data => {
@@ -29,6 +35,7 @@ export class SkillverwaltungListComponent implements OnInit {
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
     });
+
   }
 
   refreshSkillList() {
@@ -49,8 +56,8 @@ export class SkillverwaltungListComponent implements OnInit {
   }
 
   onEdit(row) {
-    console.log(row);
     this.service.populateForm(row);
+    console.log(this.service.form.value.kategorie_id);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;

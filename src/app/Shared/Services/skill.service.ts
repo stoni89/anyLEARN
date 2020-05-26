@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, pipe } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
   private listners = new Subject<any>();
+  currentData: any;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,7 +25,8 @@ export class SkillService {
     nachweis: new FormControl('', Validators.required),
     nachname: new FormControl(''),
     bereich: new FormControl(''),
-    kategorie: new FormControl('')
+    kategorie: new FormControl(''),
+    kategorie_id: new FormControl('')
   });
 
   initializeFormGroup() {
@@ -33,18 +36,23 @@ export class SkillService {
       lernziel: '',
       inhalt: '',
       zeitaufwand: '',
-      zeitpunkt: 1.0,
+      zeitpunkt: null,
       vermittler_id: 1,
       bereich_id: 1,
       nachweis: '',
       nachname: '',
       bereich: '',
-      kategorie: ''
+      kategorie: '',
+      kategorie_id: ''
     });
   }
 
   populateForm(skill) {
     this.form.setValue(skill);
+    this.form.patchValue({
+      kategorie_id: this.form.value.kategorie_id.split(',').map(function(item) {return parseInt(item, 10)})
+    });
+
   }
 
   getAllSkills() {
@@ -52,7 +60,7 @@ export class SkillService {
   }
 
   getSpezificSkill(id: number) {
-    return this.httpClient.get(`http://localhost:3000/skill/` + id);
+    this.httpClient.get(`http://localhost:3000/skill/` + id);
   }
 
   setSkill(newUser: any) {
