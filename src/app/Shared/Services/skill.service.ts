@@ -14,13 +14,13 @@ export class SkillService {
   constructor(private httpClient: HttpClient) { }
 
   form: FormGroup = new FormGroup({
-    skill_id: new FormControl(0),
+    skill_id: new FormControl(null),
     skill: new FormControl('', Validators.required),
     lernziel: new FormControl('', Validators.required),
     inhalt: new FormControl('', Validators.required),
     zeitaufwand: new FormControl('', Validators.required),
-    zeitpunkt: new FormControl(1.0, Validators.required),
-    vermittler_id: new FormControl(1, Validators.required),
+    zeitpunkt: new FormControl(null, Validators.required),
+    vermittler_id: new FormControl(null, Validators.required),
     bereich_id: new FormControl(1, Validators.required),
     nachweis: new FormControl('', Validators.required),
     nachname: new FormControl(''),
@@ -69,6 +69,10 @@ export class SkillService {
 
   updateSkill(editUser: any) {
     return this.httpClient.put(`http://localhost:3000/skill`, editUser);
+  }
+
+  getLastSkillID(name: string) {
+    return this.httpClient.get(`http://localhost:3000/skillID/` + name);
   }
 
 

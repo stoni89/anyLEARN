@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
 import { map, tap } from 'rxjs/operators';
-import { AngularFireDatabase } from '@angular/fire/database/database';
 import { kategoryID } from 'src/app/Shared/Interfaces/kategorieID';
 
 @Component({
@@ -22,7 +21,9 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   skillkategorie: any;
   selectedItemName: string;
   selectedSkillKategorie = new Array<any>();
-  selected = new Array<Number>();
+  selected = new Array<number>();
+  public tempSkillID;
+  public tempID;
 
   constructor(private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
@@ -34,9 +35,6 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
 
   ngOnInit() {
-
-    console.log('OnInit wird gestartet');
-
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
     });
@@ -51,26 +49,30 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
     this.selectedItemName = this.skillService.form.value.skill;
 
-    this.skillkategorieService.getSpezificSkillKategorie(this.skillService.form.value.skill_id).subscribe(data => {
-      var selectString: string;
-      var stringConvert: any[];
-      selectString = data[0]['kategorie_id']
-      stringConvert = selectString.split(', ')
+    if (this.skillService.form.get('skill_id').value)
+    {
+      this.skillkategorieService.getSpezificSkillKategorie(this.skillService.form.value.skill_id).subscribe(data => {
+        let selectString: string;
+        let stringConvert: any[];
+        selectString = data[0].kategorie_id;
+        stringConvert = selectString.split(', ');
 
-      for (var i in stringConvert) {
-        var obj = {ID: stringConvert[i]}
-        this.selectedSkillKategorie.push(obj)
-      }
+        // tslint:disable-next-line: forin
+        for (const i in stringConvert) {
+          const obj = {ID: stringConvert[i]};
+          this.selectedSkillKategorie.push(obj);
+        }
 
-      var arr = [];
-      this.selectedSkillKategorie.forEach(element => {
-          var convert = parseInt(element['ID'])
-          console.log(convert)
-          arr.push(convert)
+        const arr = [];
+        this.selectedSkillKategorie.forEach(element => {
+            // tslint:disable-next-line: radix
+            const convert = parseInt(element.ID);
+            arr.push(convert);
+        });
+
+        this.selected = arr;
       });
-
-      this.selected = arr;
-    })
+    }
   }
 
   onClose() {
@@ -78,8 +80,6 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     this.skillService.initializeFormGroup();
     this.dialogRef.close();
     this.skillService.filter('Register click');
-    console.log(this.selected)
-
   }
 
   onSubmit() {
@@ -91,16 +91,39 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
           this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
         });
 
-        this.onClose();
+        setTimeout(() => {
+          this.skillService.getLastSkillID(this.skillService.form.value.skill).subscribe(da => {
+            this.selected.forEach(element => {
+              const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: da[0].skill_id, kategorie_id: element}];
+
+              this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
+            });
+          });
+
+          this.onClose();
+       },
+       500);
       }
       else {
         this.skillService.updateSkill(this.skillService.form.value).subscribe(data => {
           this.openGreenSnackBar('Erfolgreich angepasst!', 'Schließen');
         }, error => {
+          console.log(error);
           this.openRedSnackBar('Fehler beim anpassen!', 'Schließen');
         });
 
-        this.onClose();
+        this.skillkategorieService.removeSkillKategorie(this.skillService.form.value.skill_id).subscribe();
+
+        setTimeout(() => {
+          this.selected.forEach(element => {
+            // tslint:disable-next-line: max-line-length
+            const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: this.skillService.form.value.skill_id, kategorie_id: element}];
+            this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
+          });
+
+          this.onClose();
+        },
+        500);
       }
     }
   }
@@ -111,5 +134,12 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
   openRedSnackBar(message, action) {
     this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
+  }
+
+  getTempID() {
+    this.skillService.getLastSkillID(this.skillService.form.value.skill).subscribe(data => {
+      this.tempSkillID = data;
+      return this.tempSkillID;
+    });
   }
 }

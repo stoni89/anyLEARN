@@ -36,32 +36,8 @@ var skill = {
     {
       return db.query('UPDATE skills SET skill=?, lernziel=?, inhalt=?, zeitaufwand=?, zeitpunkt=?, vermittler_id=?, bereich_id=?, nachweis=? ' +
                       'WHERE skill_id=?', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
-                                                         postdata.vermittler_id, postdata.bereich_id, postdata.nachweis], callback)
+                                                         postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.skill_id], callback)
     }
 }
 
 module.exports = skill;
-
-
-
-
-'SELECT CONCAT("[", GROUP_CONCAT(json_records.json), "]")  AS json ' +
-'FROM (SELECT CONCAT( "{" ' +
-'	 ,     ""skill_id"" , ":" , " , skills.skill_id , " "," "," ' +
-'  ,     ""skill"" , ":" , " , skills.skill , " , "," ' +
-'	 ,     ""lernziel"" , ":" , " , skills.lernziel , " , "," ' +
-'  ,     ""inhalt"" , ":" , " , skills.inhalt , " , "," ' +
-'  ,     ""zeitaufwand"" , ":" , " , skills.zeitaufwand , " , "," ' +
-'  ,     ""zeitpunkt"" , ":" , " , skills.zeitpunkt , " , "," ' +
-'	 ,     ""vermittler_id"" , ":" , " , skills.vermittler_id , " , "," ' +
-'  ,     ""bereich_id"" , ":" , " , skills.bereich_id , " , "," ' +
-'  ,     ""nachweis"" , ":" , " , skills.nachweis , " , "," ' +
-'  ,     ""nachname"" , ":" , " , users.nachname , " , "," ' +
-'	 ,     ""bereich"" , ":" , " , bereich.bereich , " , "," ' +
-'  ,     ""kategorie_id"" , ":" , "[", GROUP_CONCAT(", skillkategorie.kategorie_id, "), "]", "}") AS json ' +
-'  FROM skills ' +
-'  INNER JOIN bereich ON bereich.bereich_id = skills.bereich_id ' +
-'  INNER JOIN users ON users.user_id = skills.vermittler_id ' +
-'  INNER JOIN skillkategorie ON skillkategorie.skill_id = skills.skill_id ' +
-'  WHERE skills.skill_id IN(SELECT skill_id FROM skillkategorie) ' +
-' GROUP BY skills.skill_id) AS json_records'
