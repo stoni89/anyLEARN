@@ -15,7 +15,16 @@
 
   <ng-container matColumnDef="bereich">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Bereich </th>
-    <td mat-cell *matCellDef="let element"> {{element.bereich}} </td>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon *ngIf="element.bereich == 'Allgemeines Wissen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+                 matTooltip="Allgemeines Wissen" matTooltipPosition="right"> public </mat-icon>
+      <mat-icon *ngIf="element.bereich == 'anyWARE-interne Themen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+                 matTooltip="anyWARE-interne Themen" matTooltipPosition="right"> wb_auto </mat-icon>
+      <mat-icon *ngIf="element.bereich == 'Technische Themen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+                 matTooltip="Technische Themen" matTooltipPosition="right"> text_fields </mat-icon>
+      <mat-icon *ngIf="element.bereich == 'Kaufmännische Themen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+                 matTooltip="Kaufmännische Themen" matTooltipPosition="right"> local_grocery_store </mat-icon>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="skill">
@@ -45,7 +54,7 @@
 
   <ng-container matColumnDef="kategorie">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Kategorie </th>
-    <td mat-cell *matCellDef="let element"> {{element.kategorie}} </td>
+    <td mat-cell *matCellDef="let element" [ngStyle]="{'font-size': '12px'}"> {{element.kategorie}} </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
