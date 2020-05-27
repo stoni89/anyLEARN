@@ -19,7 +19,7 @@ export class SkillService {
     lernziel: new FormControl('', Validators.required),
     inhalt: new FormControl('', Validators.required),
     zeitaufwand: new FormControl('', Validators.required),
-    zeitpunkt: new FormControl(null, Validators.required),
+    zeitpunkt: new FormControl(null, [Validators.required]),
     vermittler_id: new FormControl(null, Validators.required),
     bereich_id: new FormControl(1, Validators.required),
     nachweis: new FormControl('', Validators.required),

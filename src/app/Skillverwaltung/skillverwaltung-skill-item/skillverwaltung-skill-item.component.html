@@ -14,11 +14,12 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="zeitaufwand" matInput placeholder="Zeitaufwand*">
+          <input formControlName="zeitaufwand" matInput placeholder="Zeitaufwand* (z.B. 1 Stunde)">
+          <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="zeitpunkt" matInput placeholder="Zeitpunkt*">
-          <mat-error>Pflichtfeld.</mat-error>
+          <input formControlName="zeitpunkt" matInput placeholder="Zeitpunkt* (Jahr.Halbjahr)" type="number">
+          <mat-error *ngIf="skillService.form.controls['zeitpunkt'].errors?.required">Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-select [(ngModel)]="selected" multiple placeholder="Kategorie*" [ngModelOptions]="{standalone: true}">

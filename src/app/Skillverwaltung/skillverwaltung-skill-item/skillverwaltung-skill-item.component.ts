@@ -8,6 +8,7 @@ import { UserService } from 'src/app/Shared/Services/user.service';
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
 import { map, tap } from 'rxjs/operators';
 import { kategoryID } from 'src/app/Shared/Interfaces/kategorieID';
+import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 
 @Component({
   selector: 'app-skillverwaltung-skill-item',
@@ -18,18 +19,24 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   category: any;
   bereich: any;
   vermittler: any;
+  zeitpunkt: any;
   skillkategorie: any;
   selectedItemName: string;
   selectedSkillKategorie = new Array<any>();
   selected = new Array<number>();
   public tempSkillID;
   public tempID;
+  myArray: Array<any> = [
+    {id: 1.0, text: '1.0'},
+    {id: 1.1, text: '1.1'}
+  ]
 
   constructor(private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
               public bereichService: BereichService,
               public userService: UserService,
               public kategorieService: KategorieService,
+              public skillstatusService: SkillstatusService,
               public skillkategorieService: SkillkategorieService,
               public skillService: SkillService) {}
 
@@ -46,6 +53,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     this.kategorieService.getAllKategorie().subscribe(data => {
       this.category = data;
     });
+
 
     this.selectedItemName = this.skillService.form.value.skill;
 
@@ -95,9 +103,25 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
           this.skillService.getLastSkillID(this.skillService.form.value.skill).subscribe(da => {
             this.selected.forEach(element => {
               const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: da[0].skill_id, kategorie_id: element}];
-
               this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
             });
+
+
+            this.userService.getAllUsers().subscribe(data => {
+              const arr = [];
+              for(let i in data)
+              {
+                arr.push(i);
+              }
+
+              arr.forEach(element => {
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number}> = [{ skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1}];
+                console.log(statusitem[0]);
+                this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
+              })
+
+
+            })
           });
 
           this.onClose();
