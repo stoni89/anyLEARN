@@ -12,7 +12,7 @@ var skill = {
                         'INNER JOIN kategorie k ON (k.kategorie_id = sk.kategorie_id) ' +
                         'INNER JOIN users u ON (u.user_id = s.vermittler_id) ' +
                         'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
-                        'GROUP BY s.skill_ID', callback);
+                        'GROUP BY s.skill_ID ORDER BY s.zeitpunkt, s.skill', callback);
     },
     getSpezificSkill: function(id, callback)
     {
