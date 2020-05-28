@@ -40,6 +40,7 @@ import { BenutzerverwaltungListComponent } from './Benutzerverwaltung/benutzerve
 import { BenutzerverwaltungUserItemComponent } from './Benutzerverwaltung/benutzerverwaltung-user-item/benutzerverwaltung-user-item.component';
 import { SkillverwaltungListComponent } from './Skillverwaltung/skillverwaltung-list/skillverwaltung-list.component';
 import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwaltung-skill-item/skillverwaltung-skill-item.component';
+import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dashboard-list-item.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwal
     BenutzerverwaltungListComponent,
     BenutzerverwaltungUserItemComponent,
     SkillverwaltungListComponent,
-    SkillverwaltungSkillItemComponent
+    SkillverwaltungSkillItemComponent,
+    DashboardListItemComponent
   ],
   imports: [
     HttpClientModule,
@@ -84,6 +86,6 @@ import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwal
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent]
+  entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent]
 })
 export class AppModule { }

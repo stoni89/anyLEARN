@@ -25,7 +25,7 @@
                  matTooltip="Offen" matTooltipPosition="right"> brightness_1 </mat-icon>
       <mat-icon *ngIf="element.status_id == 2" [ngStyle]="{'color': 'orange', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="In Bearbeitung" matTooltipPosition="right"> brightness_1 </mat-icon>
-      <mat-icon *ngIf="element.statis_id == 3" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
+      <mat-icon *ngIf="element.status_id == 3" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="In Bearbeitung (Genehmigung ausstehend)" matTooltipPosition="right"> brightness_1 </mat-icon>
       <mat-icon *ngIf="element.status_id == 4" [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="Erledigt" matTooltipPosition="right"> ldone </mat-icon>
@@ -69,7 +69,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let row">
-      <button mat-icon-button matTooltip="Details" matTooltipPosition="left"><mat-icon>launch</mat-icon></button>
+      <button mat-icon-button (click)="onEdit(row)" matTooltip="Details" matTooltipPosition="left"><mat-icon>launch</mat-icon></button>
     </td>
   </ng-container>
 

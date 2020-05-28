@@ -19,6 +19,10 @@ export class SkillstatusService {
     return this.httpClient.get(`http://localhost:3000/skillstatus/` + id);
   }
 
+  updateSkillStatus(skillstatus: any) {
+    return this.httpClient.put(`http://localhost:3000/skillstatus`, skillstatus);
+  }
+
 
   listen(): Observable<any>{
     return this.listners.asObservable();

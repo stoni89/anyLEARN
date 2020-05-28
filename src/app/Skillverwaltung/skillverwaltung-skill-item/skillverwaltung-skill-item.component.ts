@@ -24,10 +24,6 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   selected = new Array<number>();
   public tempSkillID;
   public tempID;
-  myArray: Array<any> = [
-    {id: 1.0, text: '1.0'},
-    {id: 1.1, text: '1.1'}
-  ]
 
   constructor(private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
@@ -121,7 +117,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               });
 
 
-            })
+            });
           });
 
           this.onClose();

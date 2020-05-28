@@ -1,3 +1,5 @@
+import { DashboardService } from './../../Shared/Services/dashboard.service';
+import { DashboardListItemComponent } from './../dashboard-list-item/dashboard-list-item.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -22,8 +24,9 @@ export class DashboardSkillListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private skillstatusService: SkillstatusService,
-              private userService: UserService,
+  constructor(public skillstatusService: SkillstatusService,
+              public userService: UserService,
+              private dashboardService: DashboardService,
               private dialog: MatDialog) {
     this.skillstatusService.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
@@ -34,14 +37,12 @@ export class DashboardSkillListComponent implements OnInit {
   ngOnInit() {
     if (!localStorage.getItem('key'))
     {
-      console.log('1');
       localStorage.setItem('key', '1');
       // tslint:disable-next-line: radix
       this.selectUser = parseInt(localStorage.getItem('key'));
     }
     else
     {
-      console.log('2');
       // tslint:disable-next-line: radix
       this.selectUser = parseInt(localStorage.getItem('key'));
     }
@@ -87,6 +88,17 @@ export class DashboardSkillListComponent implements OnInit {
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
     });
+  }
+
+  onEdit(row) {
+    this.dashboardService.populateForm(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '70%';
+    dialogConfig.height = '77%';
+    this.dialog.open(DashboardListItemComponent, dialogConfig);
+    console.log(row);
   }
 
 }

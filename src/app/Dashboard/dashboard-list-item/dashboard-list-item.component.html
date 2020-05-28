@@ -1,0 +1,47 @@
+<mat-toolbar color='primary'>
+  <span>{{'Status: ' + dashboardService.form.value.status}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<form [formGroup]="dashboardService.form" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="550px">
+    <mat-grid-tile>
+      <div class="controles-container" >
+        <mat-form-field>
+          <input formControlName="skill" readonly matInput placeholder="Skill">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="zeitaufwand" readonly matInput placeholder="Zeitaufwand">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="zeitpunkt" readonly matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="bereich" readonly matInput placeholder="Bereich">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="vermittler" readonly matInput placeholder="Vermittler">
+        </mat-form-field>
+        <mat-form-field style="height: 100%;">
+          <textarea formControlName="lernziel" readonly matInput matInput rows="5"  placeholder="Lernziel"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field style="padding-top: 25px;">
+          <textarea style="height:auto" formControlName="inhalt" readonly matInput rows="17" placeholder="Inhalt"></textarea>
+        </mat-form-field>
+        <mat-form-field style="height: 100%;">
+          <textarea formControlName="nachweis" matInput rows="5" readonly placeholder="Nachweis"></textarea>
+        </mat-form-field>
+        <div class="button-row">
+          <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung'" mat-raised-button color="primary" (click)="onErledigt()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
+          <button *ngIf="this.dashboardService.form.value.status == 'Offen'" mat-raised-button color="primary" (click)="onBearbeitung()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
