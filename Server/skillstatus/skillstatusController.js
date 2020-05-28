@@ -17,5 +17,18 @@ router.post('/', function (req, res) {
   });
 });
 
+router.get('/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  sst.getSkillTableUser(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 
 module.exports = router;

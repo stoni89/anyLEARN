@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillstatusService {
+  private listners = new Subject<any>();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -12,4 +14,16 @@ export class SkillstatusService {
   setSkillStatus(newSkillStatus: any) {
     return this.httpClient.post(`http://localhost:3000/skillstatus`, newSkillStatus);
    }
+
+   getSkillTableUser(id: number) {
+    return this.httpClient.get(`http://localhost:3000/skillstatus/` + id);
+  }
+
+
+  listen(): Observable<any>{
+    return this.listners.asObservable();
+  }
+  filter(filterBy: string) {
+    this.listners.next(filterBy);
+  }
 }
