@@ -1,7 +1,7 @@
-<mat-toolbar color='primary'>
-  <span>{{'Status: ' + dashboardService.form.value.status}}</span>
+<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+  <span [ngStyle]="{'color': 'white'}">{{'Status: ' + dashboardService.form.value.status}}</span>
   <span class="fill-remaining-space"></span>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1" ><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
 </mat-toolbar>
 
 <form [formGroup]="dashboardService.form" class="normal-form">
