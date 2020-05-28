@@ -17,7 +17,8 @@ import { UserService } from 'src/app/Shared/Services/user.service';
 export class DashboardSkillListComponent implements OnInit {
   datasource;
   users: any;
-  selectUser = parseInt(localStorage.getItem('userid'));
+  userID = localStorage.getItem('userid');
+  selectUser;
   displayedColumns = ['status_id', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
 
   userRole: string = localStorage.getItem('role');
@@ -38,11 +39,10 @@ export class DashboardSkillListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.selectUser);
 
     if (!localStorage.getItem('key'))
     {
-      localStorage.setItem('key', '1');
+      localStorage.setItem('key', this.userID);
       // tslint:disable-next-line: radix
       this.selectUser = parseInt(localStorage.getItem('key'));
     }
