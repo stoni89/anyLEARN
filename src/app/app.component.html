@@ -1,7 +1,9 @@
 <mat-toolbar id="mainToolbar" [ngStyle]="{'background-color': 'DarkRed', 'color': 'white'}">
   {{navBarTitle}}
   <span class="toolbar-spacer"></span>
+
   <mat-icon
+    *ngIf="isAuthenticated"
     class="toolbar-icon"
     matBadge="8"
     matBadgePosition="after"
@@ -9,6 +11,17 @@
     matTooltip="Benachrichtigung"
     matTooltipPosition="left"
   >notifications</mat-icon>
+
+  <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+    <mat-icon>power_settings_new</mat-icon>
+    Login
+  </button>
+
+  <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button>
+
 </mat-toolbar>
 
 <mat-sidenav-container
@@ -23,6 +36,7 @@
     <mat-list id="menus">
       <mat-list-item>
         <button
+          *ngIf="isAuthenticated && (userRole == 'Administrator' || userRole == 'Vermittler' || userRole == 'User')"
           (click)="changeNavBarTitle('Dashboard')"
           routerLink="dashboard"
           routerLinkActive="active-list-item"
@@ -36,6 +50,7 @@
 
       <mat-list-item>
           <button
+            *ngIf="isAuthenticated && (userRole == 'Administrator' || userRole == 'Vermittler')"
             (click)="changeNavBarTitle('Skillverwaltung')"
             routerLink="skillverwaltung"
             routerLinkActive="active-list-item"
@@ -49,6 +64,7 @@
 
         <mat-list-item>
           <button
+            *ngIf="isAuthenticated && (userRole == 'Administrator')"
             (click)="changeNavBarTitle('Benutzerverwaltung')"
             routerLink="benutzerverwaltung"
             routerLinkActive="active-list-item"

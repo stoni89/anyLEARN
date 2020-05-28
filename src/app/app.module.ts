@@ -41,6 +41,7 @@ import { BenutzerverwaltungUserItemComponent } from './Benutzerverwaltung/benutz
 import { SkillverwaltungListComponent } from './Skillverwaltung/skillverwaltung-list/skillverwaltung-list.component';
 import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwaltung-skill-item/skillverwaltung-skill-item.component';
 import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dashboard-list-item.component';
+import { LoginComponent } from './Login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dash
     BenutzerverwaltungUserItemComponent,
     SkillverwaltungListComponent,
     SkillverwaltungSkillItemComponent,
-    DashboardListItemComponent
+    DashboardListItemComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,

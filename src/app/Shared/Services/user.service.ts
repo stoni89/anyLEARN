@@ -56,6 +56,10 @@ export class UserService {
     return this.httpClient.get(`http://localhost:3000/user/` + id);
   }
 
+  getSpezificUsersMail(mail: string) {
+    return this.httpClient.get(`http://localhost:3000/user/mail/` + mail);
+  }
+
   setUser(newUser: any) {
     return this.httpClient.post(`http://localhost:3000/user`, newUser);
   }
