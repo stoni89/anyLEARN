@@ -1,0 +1,8 @@
+Offene Punkte:
+- Skills anlegen, wenn ein neuer User erstellt wird
+- Dashboard erstellen
+- Nur User anzeigen, die Sichtbar sind
+ -> Combobox, um auch Unsichtbare User anzuzeigen (Default deaktiviert)
+- Defaul Sort in den Tables
+- Authentifizierung
+- Skill löschen

@@ -10,6 +10,7 @@ var skillController = require('./skill/skillController');
 var bereichController = require('./bereich/bereichController');
 var skillKategorieController = require('./skillkategorie/skillkategorieController');
 var skillIDController = require('./skillID/skillIDController');
+var userIDController = require('./userID/userIDController');
 var skillstatusController = require('./skillstatus/skillstatusController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
@@ -18,6 +19,7 @@ app.use('/skill', skillController);
 app.use('/bereich', bereichController);
 app.use('/skillkategorie', skillKategorieController);
 app.use('/skillID', skillIDController);
+app.use('/userID', userIDController);
 app.use('/skillstatus', skillstatusController);
 
 module.exports = app;

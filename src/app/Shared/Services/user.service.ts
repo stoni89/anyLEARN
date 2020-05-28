@@ -14,7 +14,7 @@ export class UserService {
 
   form: FormGroup = new FormGroup({
     user_id: new FormControl(0),
-    istAktiv: new FormControl(1,Validators.required),
+    istAktiv: new FormControl(1, Validators.required),
     kuerzel: new FormControl('', [Validators.required, Validators.maxLength(3)]),
     mail: new FormControl(''),
     nachname: new FormControl('', Validators.required),
@@ -62,6 +62,10 @@ export class UserService {
 
   updateUser(editUser: any) {
     return this.httpClient.put(`http://localhost:3000/user`, editUser);
+  }
+
+  getLastUserID(nachname: string) {
+    return this.httpClient.get(`http://localhost:3000/userID/` + nachname);
   }
 
 

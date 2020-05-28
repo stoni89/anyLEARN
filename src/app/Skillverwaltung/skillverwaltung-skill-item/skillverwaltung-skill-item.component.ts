@@ -6,8 +6,6 @@ import { BereichService } from 'src/app/Shared/Services/bereich.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
-import { map, tap } from 'rxjs/operators';
-import { kategoryID } from 'src/app/Shared/Interfaces/kategorieID';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 
 @Component({
@@ -109,16 +107,18 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
             this.userService.getAllUsers().subscribe(data => {
               const arr = [];
-              for(let i in data)
+              // tslint:disable-next-line: forin
+              for(const i in data)
               {
                 arr.push(i);
               }
 
               arr.forEach(element => {
-                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number}> = [{ skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1}];
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number}> = [
+                  { skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1}];
                 console.log(statusitem[0]);
                 this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
-              })
+              });
 
 
             })

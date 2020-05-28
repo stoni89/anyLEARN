@@ -4,6 +4,8 @@ import { UserService } from '../../Shared/Services/user.service';
 import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
 import { RollenService } from 'src/app/Shared/Services/rollen.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SkillService } from 'src/app/Shared/Services/skill.service';
+import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 
 @Component({
   selector: 'app-benutzerverwaltung-user-item',
@@ -20,6 +22,8 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
   constructor(public userService: UserService,
               public kategorieService: KategorieService,
               public rollenService: RollenService,
+              public skillService: SkillService,
+              public skillstatusService: SkillstatusService,
               public dialogRef: MatDialogRef<BenutzerverwaltungUserItemComponent>,
               private snackbar: MatSnackBar) { }
 
@@ -33,7 +37,7 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
     });
 
     this.selectedItemName = this.userService.form.value.name;
-  };
+  }
 
   onClose() {
     this.userService.form.reset();
@@ -43,6 +47,7 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
   };
 
   onSubmit() {
+    console.log(this.userService.form.value);
     if (this.userService.form.valid) {
       if (!this.userService.form.get('user_id').value) {
         this.userService.setUser(this.userService.form.value).subscribe(data => {
@@ -51,7 +56,28 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
           this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
         });
 
-        this.onClose();
+        setTimeout(() => {
+          this.userService.getLastUserID(this.userService.form.value.nachname).subscribe(da => {
+
+            this.skillService.getAllSkills().subscribe(data => {
+              const arr = [];
+              // tslint:disable-next-line: forin
+              for (const i in data)
+              {
+                arr.push(i);
+              }
+
+              arr.forEach(element => {
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number}> = [
+                  { skill_id: data[element].skill_id, user_id: da[0].user_id, status_id: 1}];
+                this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
+              });
+            });
+          });
+
+          this.onClose();
+       },
+       500);
       }
       else {
         this.userService.updateUser(this.userService.form.value).subscribe(data => {
