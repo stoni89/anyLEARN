@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import OktaAuth from '@okta/okta-auth-js';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthService {
 
   public isAuthenticated = new BehaviorSubject<boolean>(false);
 
-  constructor(private router: Router, public userService: UserService) { }
+  constructor(private router: Router, public userService: UserService, private snackbar: MatSnackBar) { }
 
   async checkAuthenticated() {
     const authenticated = await this.authClient.session.exists();
@@ -35,8 +36,13 @@ export class AuthService {
       if (data[0]['mail'] == username)
       {
         localStorage.setItem('role', data[0]['rolle']);
+        //this.openGreenSnackBar('Willkommen ' + data[0]['vorname'], 'Schließen');
         this.isAuthenticated.next(true);
         this.authClient.session.setCookieAndRedirect(transaction.sessionToken);
+      }
+      else
+      {
+
       }
     }, error => {
 
@@ -51,6 +57,14 @@ export class AuthService {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  openGreenSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 4000, panelClass: ['green-snackbar']});
+  }
+
+  openRedSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 4000, panelClass: ['red-snackbar']});
   }
 
 }

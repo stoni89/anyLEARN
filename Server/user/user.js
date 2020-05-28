@@ -14,7 +14,7 @@ var user = {
     },
     getSpezificUserMail: function(mail, callback)
     {
-        return db.query('SELECT u.mail, u.rollen_id, r.rolle FROM users u INNER JOIN rollen r ON (r.rollen_id = u.rollen_id) WHERE mail = ' + '"' + mail + '"', callback);
+        return db.query('SELECT u.mail, u.vorname, u.rollen_id, r.rolle FROM users u INNER JOIN rollen r ON (r.rollen_id = u.rollen_id) WHERE mail = ' + '"' + mail + '"', callback);
     },
     newUser: function(postdata, callback)
     {
