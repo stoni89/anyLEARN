@@ -68,8 +68,8 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
               }
 
               arr.forEach(element => {
-                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number}> = [
-                  { skill_id: data[element].skill_id, user_id: da[0].user_id, status_id: 1}];
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number, vermittler_id: number}> = [
+                  { skill_id: data[element].skill_id, user_id: da[0].user_id, status_id: 1, vermittler_id: data[element].vermittler_id}];
                 this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
               });
             });

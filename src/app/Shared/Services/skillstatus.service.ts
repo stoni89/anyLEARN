@@ -23,6 +23,10 @@ export class SkillstatusService {
     return this.httpClient.put(`http://localhost:3000/skillstatus`, skillstatus);
   }
 
+  updateVermittlerSkillStatus(vermittlerSkillStatus: any) {
+    return this.httpClient.put(`http://localhost:3000/vermittler`, vermittlerSkillStatus);
+  }
+
 
   listen(): Observable<any>{
     return this.listners.asObservable();

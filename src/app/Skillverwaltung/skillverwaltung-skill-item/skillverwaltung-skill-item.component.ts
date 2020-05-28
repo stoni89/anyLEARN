@@ -93,13 +93,14 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
           this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
         });
 
+        const vermitID = this.skillService.form.value.vermittler_id;
+
         setTimeout(() => {
           this.skillService.getLastSkillID(this.skillService.form.value.skill).subscribe(da => {
             this.selected.forEach(element => {
               const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: da[0].skill_id, kategorie_id: element}];
               this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
             });
-
 
             this.userService.getAllUsers().subscribe(data => {
               const arr = [];
@@ -110,9 +111,8 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               }
 
               arr.forEach(element => {
-                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number}> = [
-                  { skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1}];
-                console.log(statusitem[0]);
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number, vermittler_id: number}> = [
+                  { skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1, vermittler_id: vermitID}];
                 this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
               });
 
@@ -128,7 +128,6 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
         this.skillService.updateSkill(this.skillService.form.value).subscribe(data => {
           this.openGreenSnackBar('Erfolgreich angepasst!', 'Schließen');
         }, error => {
-          console.log(error);
           this.openRedSnackBar('Fehler beim anpassen!', 'Schließen');
         });
 
@@ -140,6 +139,9 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
             const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: this.skillService.form.value.skill_id, kategorie_id: element}];
             this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
           });
+
+          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
+          this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
 
           this.onClose();
         },

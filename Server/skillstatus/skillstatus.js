@@ -9,7 +9,7 @@ var sst = {
                     'FROM skillstatus sst ' +
                     'INNER JOIN skills s ON (s.skill_id = sst.skill_id) ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'INNER JOIN users uu ON (uu.user_id = s.vermittler_id) ' +
+                    'INNER JOIN users uu ON (uu.user_id = sst.vermittler_id) ' +
                     'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
                     'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
                     'INNER JOIN status sta ON (sta.status_id = sst.status_id) ' +
@@ -18,8 +18,8 @@ var sst = {
   },
   newSkillStatus: function(postdata, callback)
   {
-    return db.query('INSERT INTO skillstatus (skill_id, user_id, status_id) ' +
-                    'values(?,?,?)', [postdata.skill_id, postdata.user_id, postdata.status_id], callback)
+    return db.query('INSERT INTO skillstatus (skill_id, user_id, status_id, vermittler_id) ' +
+                    'values(?,?,?,?)', [postdata.skill_id, postdata.user_id, postdata.status_id, postdata.vermittler_id], callback)
   },
   updateSkillStatus: function(postdata, callback)
   {
