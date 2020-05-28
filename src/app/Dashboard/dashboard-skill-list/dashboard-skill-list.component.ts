@@ -17,8 +17,11 @@ import { UserService } from 'src/app/Shared/Services/user.service';
 export class DashboardSkillListComponent implements OnInit {
   datasource;
   users: any;
-  selectUser;
+  selectUser = parseInt(localStorage.getItem('userid'));
   displayedColumns = ['status_id', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
+
+  userRole: string = localStorage.getItem('role');
+  userName: string = localStorage.getItem('name');
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,6 +38,8 @@ export class DashboardSkillListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.selectUser);
+
     if (!localStorage.getItem('key'))
     {
       localStorage.setItem('key', '1');

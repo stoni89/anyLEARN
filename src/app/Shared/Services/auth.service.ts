@@ -36,6 +36,8 @@ export class AuthService {
       if (data[0]['mail'] == username)
       {
         localStorage.setItem('role', data[0]['rolle']);
+        localStorage.setItem('name', data[0]['name']);
+        localStorage.setItem('userid', data[0]['user_id']);
         //this.openGreenSnackBar('Willkommen ' + data[0]['vorname'], 'Schließen');
         this.isAuthenticated.next(true);
         this.authClient.session.setCookieAndRedirect(transaction.sessionToken);
