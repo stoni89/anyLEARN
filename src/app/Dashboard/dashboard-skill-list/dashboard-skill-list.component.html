@@ -1,5 +1,4 @@
 <div class="search-div">
-
   <mat-form-field *ngIf="(userRole == 'Administrator' || userRole == 'Vermittler')">
     <mat-label>User</mat-label>
     <mat-select (selectionChange)="onSelectUserChange()" [(ngModel)]="selectUser">

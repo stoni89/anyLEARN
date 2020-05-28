@@ -1,12 +1,12 @@
-<mat-toolbar color='primary'>
-  <span *ngIf="selectedItemName">{{selectedItemName}}</span>
-  <span *ngIf="!selectedItemName">Neuer Skill</span>
+<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+  <span [ngStyle]="{'color': 'white'}" *ngIf="selectedItemName">{{selectedItemName}}</span>
+  <span [ngStyle]="{'color': 'white'}" *ngIf="!selectedItemName">Neuer Skill</span>
   <span class="fill-remaining-space"></span>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
 </mat-toolbar>
 
 <form [formGroup]="skillService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="550px">
+  <mat-grid-list cols="2" rowHeight="480px">
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field>
@@ -45,11 +45,11 @@
     <mat-grid-tile>
 
       <div class="controles-container">
-        <mat-form-field>
-          <textarea style="height:auto" formControlName="inhalt" matInput rows="17" placeholder="Inhalt*"></textarea>
+        <mat-form-field >
+          <textarea style="height:auto;" formControlName="inhalt" matInput rows="17" placeholder="Inhalt*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
-        <mat-form-field style="height: 100%;">
+        <mat-form-field style="height: auto;">
           <textarea formControlName="nachweis" matInput rows="5" placeholder="Nachweis*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>

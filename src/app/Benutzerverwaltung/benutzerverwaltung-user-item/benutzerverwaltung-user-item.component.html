@@ -1,8 +1,8 @@
-<mat-toolbar color='primary'>
-  <span *ngIf="selectedItemName">{{selectedItemName}}</span>
-  <span *ngIf="!selectedItemName">Neuer Benutzer</span>
+<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+  <span [ngStyle]="{'color': 'white'}" *ngIf="selectedItemName">{{selectedItemName}}</span>
+  <span [ngStyle]="{'color': 'white'}" *ngIf="!selectedItemName">Neuer Benutzer</span>
   <span class="fill-remaining-space"></span>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
 </mat-toolbar>
 <form [formGroup]="userService.form" class="normal-form">
   <mat-grid-list cols="2" rowHeight="300px">
