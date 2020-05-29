@@ -92,7 +92,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Vermittler </th>
     <td mat-cell *matCellDef="let element">
         <mat-select (selectionChange)="onSelectVermittlerChange(element, $event.value)" [ngModel]="element.verID">
-          <mat-option *ngFor="let ver of users" [value]="ver.user_id">{{ver.nachname}}</mat-option>
+          <mat-option *ngFor="let ver of vermittler" [value]="ver.user_id">{{ver.nachname}}</mat-option>
         </mat-select>
     </td>
   </ng-container>

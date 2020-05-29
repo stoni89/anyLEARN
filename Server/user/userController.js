@@ -17,6 +17,18 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/user/aktiv', function (req, res) {
+  user.getAllUserAktiv(function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 // Alle User formatiert holen
 router.get('/:user_id', function (req, res) {
   const user_id = req.params.user_id;

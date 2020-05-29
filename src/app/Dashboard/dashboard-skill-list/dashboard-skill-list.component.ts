@@ -20,6 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DashboardSkillListComponent implements OnInit {
   datasource;
   users: any;
+  vermittler: any;
   userID = localStorage.getItem('userid');
   selectUser;
   displayedColumns = ['status_id', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
@@ -56,8 +57,12 @@ export class DashboardSkillListComponent implements OnInit {
       this.selectUser = parseInt(localStorage.getItem('key'));
     }
 
-    this.userService.getAllUsers().subscribe(data => {
+    this.userService.getAllUsersAktiv().subscribe(data => {
       this.users = data;
+    });
+
+    this.userService.getAllUsers().subscribe(data => {
+      this.vermittler = data;
     });
 
     this.skillstatusService.getSkillTableUser(this.selectUser).subscribe(data => {

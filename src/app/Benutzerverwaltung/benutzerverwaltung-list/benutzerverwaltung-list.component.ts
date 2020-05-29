@@ -74,4 +74,5 @@ export class BenutzerverwaltungListComponent implements OnInit {
     dialogConfig.width = '40%';
     this.dialog.open(BenutzerverwaltungUserItemComponent, dialogConfig);
   }
+
 }

@@ -27,6 +27,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/dashboard-skill-list.component';
@@ -74,6 +75,7 @@ import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-ite
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
