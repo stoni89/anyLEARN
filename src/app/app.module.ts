@@ -37,6 +37,7 @@ import { BenutzerverwaltungUserItemComponent } from './Benutzerverwaltung/benutz
 import { SkillverwaltungListComponent } from './Skillverwaltung/skillverwaltung-list/skillverwaltung-list.component';
 import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwaltung-skill-item/skillverwaltung-skill-item.component';
 import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dashboard-list-item.component';
+import { LogoutComponent } from './Logout/logout/logout.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dash
     BenutzerverwaltungUserItemComponent,
     SkillverwaltungListComponent,
     SkillverwaltungSkillItemComponent,
-    DashboardListItemComponent
+    DashboardListItemComponent,
+    LogoutComponent
   ],
   imports: [
     HttpClientModule,
@@ -86,7 +88,7 @@ import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dash
       },
       navigateToLoginRequestUrl: false,
       cacheLocation: 'localStorage',
-      postLogoutRedirectUri: 'http://localhost:4200/',
+      postLogoutRedirectUri: 'http://localhost:4200/logout',
     })
   ],
   providers: [AuthenticationGuard],

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'anyLEARN';
-  navBarTitle = 'Login';
+  navBarTitle = '';
   isMenuOpen = false;
   contentMargin = 200;
   isTooltipActive = true;
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
           this.isAuthenticated = this.adalService.isAuthenticated;
           if (!this.isAuthenticated)
           {
-            this.changeNavBarTitle('Login');
+            this.changeNavBarTitle('Logout');
           }
           else
           {
@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.adalService.logout();
-
   }
 
 
