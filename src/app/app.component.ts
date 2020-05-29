@@ -1,5 +1,7 @@
+import { UserService } from 'src/app/Shared/Services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './Shared/Services/auth.service';
+import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,29 +19,42 @@ export class AppComponent implements OnInit {
 
   isAuthenticated: boolean;
 
-  constructor(public authService: AuthService) {
-    this.authService.isAuthenticated.subscribe(
-      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
-    );
+  constructor(private adalService: MsAdalAngular6Service, public userService: UserService) {
+    // tslint:disable-next-line: no-shadowed-variable
   }
 
-  async ngOnInit() {
-    this.isAuthenticated = await this.authService.checkAuthenticated();
-
-    if (!this.isAuthenticated)
-    {
-      this.changeNavBarTitle('Login')
-    }
-    else
-    {
-      this.changeNavBarTitle('Dashboard')
-    }
+  ngOnInit() {
+    const token = this.adalService.acquireToken('https://graph.microsoft.com').subscribe((token: string) => {
+      this.userService.getSpezificUsersMail(this.adalService.LoggedInUserEmail).subscribe(data => {
+        if (data[0]['mail'] === this.adalService.LoggedInUserEmail)
+        {
+          localStorage.setItem('role', data[0]['rolle']);
+          localStorage.setItem('name', data[0]['name']);
+          localStorage.setItem('userid', data[0]['user_id']);
+          localStorage.setItem('key', data[0]['user_id']);
+          this.isAuthenticated = this.adalService.isAuthenticated;
+          if (!this.isAuthenticated)
+          {
+            this.changeNavBarTitle('Login');
+          }
+          else
+          {
+            this.changeNavBarTitle('Dashboard');
+          }
+        }
+      });
+    });
   }
 
-  logout() {
-    this.changeNavBarTitle('Login')
-    this.authService.logout('/login');
+  login(): void {
+    this.adalService.login();
   }
+
+  logout(): void {
+    this.adalService.logout();
+
+  }
+
 
   changeNavBarTitle(navBarTitle: string) {
     this.navBarTitle = navBarTitle;

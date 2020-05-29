@@ -3,16 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyBuj8a3OcvLn3KUXO1foirkfN-3NQ2E02A",
-    authDomain: "anylearn-28e71.firebaseapp.com",
-    databaseURL: "https://anylearn-28e71.firebaseio.com",
-    projectId: "anylearn-28e71",
-    storageBucket: "anylearn-28e71.appspot.com",
-    messagingSenderId: "678900058234",
-    appId: "1:678900058234:web:1de260481e7efb7ce013c3"
-  }
+  production: false
 };
 
 /*

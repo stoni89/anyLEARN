@@ -1,17 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import { MsAdalAngular6Module, MsAdalAngular6Service, AuthenticationGuard} from 'microsoft-adal-angular6';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -41,7 +37,7 @@ import { BenutzerverwaltungUserItemComponent } from './Benutzerverwaltung/benutz
 import { SkillverwaltungListComponent } from './Skillverwaltung/skillverwaltung-list/skillverwaltung-list.component';
 import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwaltung-skill-item/skillverwaltung-skill-item.component';
 import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dashboard-list-item.component';
-import { LoginComponent } from './Login/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -54,8 +50,7 @@ import { LoginComponent } from './Login/login/login.component';
     BenutzerverwaltungUserItemComponent,
     SkillverwaltungListComponent,
     SkillverwaltungSkillItemComponent,
-    DashboardListItemComponent,
-    LoginComponent
+    DashboardListItemComponent
   ],
   imports: [
     HttpClientModule,
@@ -82,12 +77,21 @@ import { LoginComponent } from './Login/login/login.component';
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireDatabaseModule
+    MsAdalAngular6Module.forRoot({
+      tenant: '0a9e2776-62d5-46c5-9650-ec0cc551babf',
+      clientId: 'df4e9ceb-596c-4ff5-b344-db62b0aab33d',
+      redirectUri: 'http://localhost:4200/',
+      endpoints: {
+        'https://graph.microsoft.com': 'df4e9ceb-596c-4ff5-b344-db62b0aab33d', // this is for feteching the access token
+      },
+      navigateToLoginRequestUrl: false,
+      cacheLocation: 'localStorage',
+      postLogoutRedirectUri: 'http://localhost:4200/',
+    })
   ],
-  providers: [],
+  providers: [AuthenticationGuard],
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { UserService } from 'src/app/Shared/Services/user.service';
+import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class DashboardSkillListComponent implements OnInit {
   searchKey: string;
 
   constructor(public skillstatusService: SkillstatusService,
+              private adalService: MsAdalAngular6Service,
               public userService: UserService,
               private dashboardService: DashboardService,
               private dialog: MatDialog) {
@@ -39,7 +41,6 @@ export class DashboardSkillListComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (!localStorage.getItem('key'))
     {
       localStorage.setItem('key', this.userID);
@@ -62,6 +63,7 @@ export class DashboardSkillListComponent implements OnInit {
       this.datasource.paginator = this.paginator;
     });
 
+    console.log(this.selectUser);
   }
 
 

@@ -12,12 +12,12 @@
     matTooltipPosition="left"
   >notifications</mat-icon>
 
-  <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+  <button mat-button (click)="login()" *ngIf="!isAuthenticated">
     <mat-icon>power_settings_new</mat-icon>
     Login
   </button>
 
-  <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+  <button mat-button (click)="logout()" *ngIf="isAuthenticated">
     <mat-icon>exit_to_app</mat-icon>
     Logout
   </button>
