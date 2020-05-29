@@ -2,6 +2,8 @@ import { UserService } from 'src/app/Shared/Services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 import { Observable } from 'rxjs';
+import { PostService } from './Shared/Services/post.service';
+import { GlobalApp } from './global';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit {
 
   isAuthenticated: boolean;
 
-  constructor(private adalService: MsAdalAngular6Service, public userService: UserService) {
+  constructor(private adalService: MsAdalAngular6Service, public userService: UserService, public postService: PostService) {
     // tslint:disable-next-line: no-shadowed-variable
   }
 
@@ -39,6 +41,10 @@ export class AppComponent implements OnInit {
           }
           else
           {
+            const tempUserID = parseInt(localStorage.getItem('userid'));
+            this.postService.getPostIDCount(tempUserID).subscribe(data => {
+              localStorage.setItem('anzahl', data[0].anzahl);
+            })
             this.changeNavBarTitle('Dashboard');
           }
         }

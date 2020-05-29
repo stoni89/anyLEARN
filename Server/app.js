@@ -14,6 +14,7 @@ var userIDController = require('./userID/userIDController');
 var skillstatusController = require('./skillstatus/skillstatusController');
 var vermittlerController = require('./vermittler/vermittlerController');
 var statusController = require('./status/statusController');
+var postController = require('./mitteilung/mitteilungController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -25,6 +26,7 @@ app.use('/userID', userIDController);
 app.use('/skillstatus', skillstatusController);
 app.use('/vermittler', vermittlerController);
 app.use('/status', statusController);
+app.use('/post', postController);
 
 module.exports = app;
 

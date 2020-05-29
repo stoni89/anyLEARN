@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from 'microsoft-adal-angular6';
 import { LogoutComponent } from './Logout/logout/logout.component';
+import { PostComponent } from './Mittelungen/post/post.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'benutzerverwaltung',
     component: BenutzerverwaltungComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'post',
+    component: PostComponent,
     canActivate: [AuthenticationGuard]
   },
   {

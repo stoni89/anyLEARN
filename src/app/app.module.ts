@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GlobalApp } from './global';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatBadgeModule } from '@angular/material/badge'
 
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/dashboard-skill-list.component';
@@ -41,6 +43,8 @@ import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dash
 import { LogoutComponent } from './Logout/logout/logout.component';
 import { StatusChangeItemComponent } from './Dashboard/status-change-item/status-change-item.component';
 import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-item/vermittler-change-item.component';
+import { PostListComponent } from './Mittelungen/post-list/post-list.component';
+import { PostComponent } from './Mittelungen/post/post.component';
 
 
 @NgModule({
@@ -57,7 +61,9 @@ import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-ite
     DashboardListItemComponent,
     LogoutComponent,
     StatusChangeItemComponent,
-    VermittlerChangeItemComponent
+    VermittlerChangeItemComponent,
+    PostListComponent,
+    PostComponent
   ],
   imports: [
     HttpClientModule,
@@ -77,6 +83,7 @@ import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-ite
     MatSelectModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatBadgeModule,
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
