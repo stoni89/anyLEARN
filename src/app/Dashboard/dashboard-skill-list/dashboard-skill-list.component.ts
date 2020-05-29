@@ -9,6 +9,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class DashboardSkillListComponent implements OnInit {
               private adalService: MsAdalAngular6Service,
               public userService: UserService,
               private dashboardService: DashboardService,
+              private snackbar: MatSnackBar,
               private dialog: MatDialog) {
     this.skillstatusService.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
@@ -64,7 +66,6 @@ export class DashboardSkillListComponent implements OnInit {
       this.datasource.paginator = this.paginator;
     });
 
-    console.log(this.selectUser);
   }
 
 
@@ -98,6 +99,14 @@ export class DashboardSkillListComponent implements OnInit {
     });
   }
 
+  onSelectVermittlerChange(element, event) {
+    const item: Array<{ skillstatus_id: number, vermittler_id: number}> = [{ skillstatus_id: element.skillstatus_id, vermittler_id: event}];
+    console.log(item)
+    this.skillstatusService.updateVermittlerSkillStatusSpecific(item[0]).subscribe();
+    this.openGreenSnackBar('Vermittler geändert', 'Schliessen');
+    this.skillstatusService.filter('Register click');
+  }
+
   onEdit(row) {
     this.dashboardService.populateForm(row);
     const dialogConfig = new MatDialogConfig();
@@ -116,5 +125,13 @@ export class DashboardSkillListComponent implements OnInit {
     dialogConfig.data = {skillstatus_id: element.skillstatus_id, status_id: element.status_id,
                          status: element.status, skill: element.skill, nachname: element.nachname};
     this.dialog.open(StatusChangeItemComponent, dialogConfig);
+  }
+
+  openGreenSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 2000, panelClass: ['green-snackbar']});
+  }
+
+  openRedSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
   }
 }

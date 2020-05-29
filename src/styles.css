@@ -75,7 +75,7 @@ background: #eee;
 }
 
 .active-list-item {
-  color: #3F51B5 !important; /* Note: You could also use a custom theme */
+  color: darkred !important; /* Note: You could also use a custom theme */
 }
 
 #sidenav .menu-item mat-icon {

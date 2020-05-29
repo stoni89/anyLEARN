@@ -83,9 +83,18 @@
     <td mat-cell *matCellDef="let element"> {{element.zeitaufwand}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="vermittler">
+  <ng-container matColumnDef="vermittler" *ngIf="userRole == 'User'">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Vermittler </th>
     <td mat-cell *matCellDef="let element"> {{element.vermittler}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="vermittler" *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Vermittler </th>
+    <td mat-cell *matCellDef="let element">
+        <mat-select (selectionChange)="onSelectVermittlerChange(element, $event.value)" [ngModel]="element.verID">
+          <mat-option *ngFor="let ver of users" [value]="ver.user_id">{{ver.nachname}}</mat-option>
+        </mat-select>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">

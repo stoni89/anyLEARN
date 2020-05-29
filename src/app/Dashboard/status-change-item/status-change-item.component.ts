@@ -29,7 +29,6 @@ export class StatusChangeItemComponent implements OnInit {
 
   onSetStatus() {
     const item: Array<{ skillstatus_id: number, status_id: number}> = [{ skillstatus_id: this.data.skillstatus_id, status_id: this.selectStatus}];
-    console.log(item[0]);
     this.skillstatusService.updateSkillStatus(item[0]).subscribe(data => {
       this.openGreenSnackBar('Status geändert!', 'Schließen');
     }, error => {

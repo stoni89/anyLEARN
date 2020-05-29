@@ -17,5 +17,17 @@ router.put('/', function (req, res) {
   });
 });
 
+router.put('/vermittler', function (req, res) {
+  vermittler.updateSkillStatusVermittler(req.body, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 
 module.exports = router;
