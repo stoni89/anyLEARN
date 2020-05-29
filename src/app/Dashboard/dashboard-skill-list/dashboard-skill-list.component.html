@@ -35,7 +35,8 @@
       <mat-icon *ngIf="element.status_id == 4 && userRole == 'User'" [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="Erledigt" matTooltipPosition="right"> ldone </mat-icon>
 
-      <button mat-icon-button  matTooltip="Offen" matTooltipPosition="right" *ngIf="element.status_id == 1 && (userRole == 'Administrator' || userRole == 'Vermittler')">
+      <button mat-icon-button  matTooltip="Offen" matTooltipPosition="right" 
+              *ngIf="element.status_id == 1 && (userRole == 'Administrator' || userRole == 'Vermittler')" (click)="onStatusChange(element)">
         <mat-icon [ngStyle]="{'color': 'darkred', 'justify-content': 'center', 'padding-top': '5px'}">brightness_1</mat-icon>
       </button>
       <button mat-icon-button  matTooltip="In Bearbeitung" matTooltipPosition="right" *ngIf="element.status_id == 2 && (userRole == 'Administrator' || userRole == 'Vermittler')">

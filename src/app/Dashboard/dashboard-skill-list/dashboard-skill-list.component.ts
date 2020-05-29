@@ -1,3 +1,4 @@
+import { StatusChangeItemComponent } from './../status-change-item/status-change-item.component';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { DashboardListItemComponent } from './../dashboard-list-item/dashboard-list-item.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -103,9 +104,20 @@ export class DashboardSkillListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
-    dialogConfig.height = '77%';
     this.dialog.open(DashboardListItemComponent, dialogConfig);
-    console.log(row);
   }
 
+  onStatusChange(element) {
+    console.log(element);
+    console.log(element.status_id)
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '18%';
+    dialogConfig.height = '36%';
+    dialogConfig.data = {skillstatus_is: element.skillstatus_id, status_id: element.status_id,
+                         status: element.status, skill: element.skill, nachname: element.nachname};
+    console.log(dialogConfig.data);
+    this.dialog.open(StatusChangeItemComponent, dialogConfig);
+  }
 }

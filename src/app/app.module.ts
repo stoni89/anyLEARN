@@ -38,6 +38,8 @@ import { SkillverwaltungListComponent } from './Skillverwaltung/skillverwaltung-
 import { SkillverwaltungSkillItemComponent } from './Skillverwaltung/skillverwaltung-skill-item/skillverwaltung-skill-item.component';
 import { DashboardListItemComponent } from './Dashboard/dashboard-list-item/dashboard-list-item.component';
 import { LogoutComponent } from './Logout/logout/logout.component';
+import { StatusChangeItemComponent } from './Dashboard/status-change-item/status-change-item.component';
+import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-item/vermittler-change-item.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { LogoutComponent } from './Logout/logout/logout.component';
     SkillverwaltungListComponent,
     SkillverwaltungSkillItemComponent,
     DashboardListItemComponent,
-    LogoutComponent
+    LogoutComponent,
+    StatusChangeItemComponent,
+    VermittlerChangeItemComponent
   ],
   imports: [
     HttpClientModule,
@@ -93,7 +97,8 @@ import { LogoutComponent } from './Logout/logout/logout.component';
   ],
   providers: [AuthenticationGuard],
   bootstrap: [AppComponent],
-  entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent]
+  entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
+                    StatusChangeItemComponent]
 })
 export class AppModule {
 }
