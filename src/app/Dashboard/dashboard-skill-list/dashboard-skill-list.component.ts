@@ -101,7 +101,6 @@ export class DashboardSkillListComponent implements OnInit {
 
   onSelectVermittlerChange(element, event) {
     const item: Array<{ skillstatus_id: number, vermittler_id: number}> = [{ skillstatus_id: element.skillstatus_id, vermittler_id: event}];
-    console.log(item)
     this.skillstatusService.updateVermittlerSkillStatusSpecific(item[0]).subscribe();
     this.openGreenSnackBar('Vermittler geändert', 'Schliessen');
     this.skillstatusService.filter('Register click');
