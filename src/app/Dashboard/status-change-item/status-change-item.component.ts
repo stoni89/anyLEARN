@@ -1,6 +1,8 @@
 import { StatusService } from './../../Shared/Services/status.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-status-change-item',
@@ -12,8 +14,9 @@ export class StatusChangeItemComponent implements OnInit {
   status: any;
   selectStatus;
 
-  constructor(public dialogRef: MatDialogRef<StatusChangeItemComponent>, @Inject(MAT_DIALOG_DATA) public data, 
-              public statusService: StatusService) { }
+  constructor(public dialogRef: MatDialogRef<StatusChangeItemComponent>, @Inject(MAT_DIALOG_DATA) public data,
+              public statusService: StatusService, public skillstatusService: SkillstatusService,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.statusService.getAllStatus().subscribe(data => {
@@ -21,6 +24,32 @@ export class StatusChangeItemComponent implements OnInit {
     });
 
     this.selectStatus = this.data.status_id;
+    console.log(this.data.skillstatus_id);
   }
 
+  onSetStatus() {
+    const item: Array<{ skillstatus_id: number, status_id: number}> = [{ skillstatus_id: this.data.skillstatus_id, status_id: this.selectStatus}];
+    console.log(item[0]);
+    this.skillstatusService.updateSkillStatus(item[0]).subscribe(data => {
+      this.openGreenSnackBar('Status geändert!', 'Schließen');
+    }, error => {
+      this.openRedSnackBar('Änderung fehlgeschlagen!', 'Schließen');
+    });
+
+    this.onClose();
+  }
+
+
+  onClose() {
+    this.dialogRef.close();
+    this.skillstatusService.filter('Register click');
+  }
+
+  openGreenSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 2000, panelClass: ['green-snackbar']});
+  }
+
+  openRedSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
+  }
 }

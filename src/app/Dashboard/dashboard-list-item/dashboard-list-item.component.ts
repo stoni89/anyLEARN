@@ -14,8 +14,7 @@ export class DashboardListItemComponent implements OnInit {
   constructor(public dashboardService: DashboardService,
               public skillstatusService: SkillstatusService,
               public dialogRef: MatDialogRef<DashboardListItemComponent>,
-              private snackbar: MatSnackBar) {
-              }
+              private snackbar: MatSnackBar) {}
 
   ngOnInit() {
   }

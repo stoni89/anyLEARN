@@ -113,9 +113,9 @@ export class DashboardSkillListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '18%';
+    dialogConfig.width = '30%';
     dialogConfig.height = '36%';
-    dialogConfig.data = {skillstatus_is: element.skillstatus_id, status_id: element.status_id,
+    dialogConfig.data = {skillstatus_id: element.skillstatus_id, status_id: element.status_id,
                          status: element.status, skill: element.skill, nachname: element.nachname};
     console.log(dialogConfig.data);
     this.dialog.open(StatusChangeItemComponent, dialogConfig);

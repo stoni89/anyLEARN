@@ -1,16 +1,16 @@
 <mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
   <span [ngStyle]="{'color': 'white'}">{{data.skill}}</span>
   <span class="fill-remaining-space"></span>
-  <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" ><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+  <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" (click)="onClose()"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
 </mat-toolbar>
 
 <mat-grid-list cols="1" rowHeight="220px">
   <mat-grid-tile>
-    <div class="controles-container">   
+    <div class="controles-container">
         <mat-label><b>User:</b> {{data.nachname}}</mat-label>
         <br>
         <br>
-      <mat-form-field style="width: 250px;">
+      <mat-form-field style="width: 300px;">
         <mat-label>Status ändern</mat-label>
         <mat-select [(ngModel)]="selectStatus">
           <mat-option *ngFor="let sta of status" [value]="sta.status_id">{{sta.status}}</mat-option>
@@ -18,7 +18,7 @@
       </mat-form-field>
         <br>
         <br>
-        <button mat-raised-button style="width: 120px; background-color: green; color: white;">Speichern</button>        
+        <button mat-raised-button style="width: 120px; background-color: green; color: white;" (click)="onSetStatus()">Speichern</button>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
