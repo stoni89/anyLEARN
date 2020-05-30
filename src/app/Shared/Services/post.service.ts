@@ -27,6 +27,12 @@ export class PostService {
     return this.httpClient.delete(`http://localhost:3000/post/` + id);
    }
 
+  newPost(newPost: any) {
+    return this.httpClient.post(`http://localhost:3000/post`, newPost);
+  }
+
+
+
   listen(): Observable<any>{
     return this.listners.asObservable();
   }

@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PostService } from 'src/app/Shared/Services/post.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-post-list-item',
@@ -12,7 +13,7 @@ import { PostService } from 'src/app/Shared/Services/post.service';
 export class PostListItemComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<PostListItemComponent>, @Inject(MAT_DIALOG_DATA) public data,
-              public postService: PostService, private snackbar: MatSnackBar) { }
+              public postService: PostService, private snackbar: MatSnackBar, public skillstatusService: SkillstatusService) { }
 
   ngOnInit(): void {
   }
@@ -23,12 +24,66 @@ export class PostListItemComponent implements OnInit {
     this.postService.filter('Register click');
   }
 
-  onAccept() {
+  onAccept(data) {
+    const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+    const skill = data.skill;
+    const Item: Array<{post_id: number}> = [{post_id: data.post_id}];
+    const statusItem: Array<{status_id: number, skillstatus_id: number}> = [
+      {
+        status_id: 4,
+        skillstatus_id: data.skillstatus_id
+      }
+    ];
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+      {
+        date: date,
+        text: 'Abschluss für den Skill "' + skill + '" wurde genehmigt',
+        user_id: data.fromuser_id,
+        fromuser_id: data.user_id,
+        skill_id: data.skill_id,
+        kategorie: 'Information',
+        bemerkung: data.bemerkung,
+        skillstatus_id: data.skillstatus_id
+      }
+    ];
 
+    this.postService.newPost(newItem[0]).subscribe();
+    this.postService.removePost(Item[0].post_id).subscribe();
+    this.skillstatusService.updateSkillStatus(statusItem[0]).subscribe();
+    this.openGreenSnackBar('Gesendet!', 'Schliessen');
+    this.postService.updateBadge();
+    this.onClose();
   }
 
-  onDecline() {
+  onDecline(data) {
+    const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+    const skill = data.skill;
+    const Item: Array<{post_id: number}> = [{post_id: data.post_id}];
+    const statusItem: Array<{status_id: number, skillstatus_id: number}> = [
+      {
+        status_id: 2,
+        skillstatus_id: data.skillstatus_id
+      }
+    ];
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+      {
+        date: date,
+        text: 'Abschluss für den Skill "' + skill + '" wurde abgelehnt',
+        user_id: data.fromuser_id,
+        fromuser_id: data.user_id,
+        skill_id: data.skill_id,
+        kategorie: 'Information',
+        bemerkung: data.bemerkung,
+        skillstatus_id: data.skillstatus_id
+      }
+    ];
 
+    this.postService.newPost(newItem[0]).subscribe();
+    this.postService.removePost(Item[0].post_id).subscribe();
+    this.skillstatusService.updateSkillStatus(statusItem[0]).subscribe();
+    this.openGreenSnackBar('Gesendet!', 'Schliessen');
+    this.postService.updateBadge();
+    this.onClose();
   }
 
   onRead(data) {

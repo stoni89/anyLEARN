@@ -3,6 +3,8 @@ import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PostService } from 'src/app/Shared/Services/post.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-list-item',
@@ -14,7 +16,8 @@ export class DashboardListItemComponent implements OnInit {
   constructor(public dashboardService: DashboardService,
               public skillstatusService: SkillstatusService,
               public dialogRef: MatDialogRef<DashboardListItemComponent>,
-              private snackbar: MatSnackBar) {}
+              private snackbar: MatSnackBar,
+              public postService: PostService) {}
 
   ngOnInit() {
   }
@@ -48,6 +51,24 @@ export class DashboardListItemComponent implements OnInit {
     }, error => {
       this.openRedSnackBar('Fehlgeschlagen!', 'Schließen');
     });
+
+    const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+    const skill = this.dashboardService.form.value.skill;
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+      {
+        date: date,
+        text: 'Abschluss für den Skill "' + skill + '" wurde beantragt',
+        user_id: this.dashboardService.form.value.verID,
+        fromuser_id: this.dashboardService.form.value.user_id,
+        skill_id: this.dashboardService.form.value.skill_id,
+        kategorie: 'Genehmigung',
+        bemerkung: null,
+        skillstatus_id: this.dashboardService.form.value.skillstatus_id
+      }
+    ];
+
+    this.postService.newPost(newItem[0]).subscribe();
+    this.postService.updateBadge();
 
     this.onClose();
   }

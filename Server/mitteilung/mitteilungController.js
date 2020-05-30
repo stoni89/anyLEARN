@@ -44,4 +44,16 @@ router.delete('/:post_id', function (req, res) {
     });
 });
 
+router.post('/', function (req, res) {
+  mit.newMit(req.body, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 module.exports = router;
