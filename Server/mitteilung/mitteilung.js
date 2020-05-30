@@ -22,7 +22,7 @@ var mit = {
     newMit: function(postdata, callback)
     {
       return db.query('INSERT INTO post (date, text, user_id, fromuser_id, skill_id, kategorie, bemerkung, skillstatus_id) ' +
-                      'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.date, postdata.text, postdata.user_id, postdata.fromuser_id, postdata.skill_id, postdata.kategorie, postdata.kategorie, postdata.skillstatus_id], callback)
+                      'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.date, postdata.text, postdata.user_id, postdata.fromuser_id, postdata.skill_id, postdata.kategorie, postdata.bemerkung, postdata.skillstatus_id], callback)
     },
 }
 

@@ -4,7 +4,7 @@
   <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" (click)="onClose()"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
 </mat-toolbar>
 
-<mat-grid-list cols="1" rowHeight="250px">
+<mat-grid-list cols="1" rowHeight="270px">
   <mat-grid-tile>
     <div class="controles-container">
         <br>
@@ -14,8 +14,8 @@
         <br>
         <br>
       <mat-form-field style="width: 300px;">
-        <textarea *ngIf="data.kategorie == 'Genehmigung'" style="height:auto;" matInput rows="4" placeholder="Bemerkung"></textarea>
-        <textarea *ngIf="data.kategorie == 'Information'" readonly style="height:auto;" matInput rows="4" placeholder="Bemerkung"></textarea>
+        <textarea *ngIf="data.kategorie == 'Genehmigung'" style="height:auto;" matInput rows="4" placeholder="Bemerkung" [(ngModel)]="data.bemerkung"></textarea>
+        <textarea *ngIf="data.kategorie == 'Information'" readonly style="height:auto;" matInput rows="4" placeholder="Bemerkung" [(ngModel)]="data.bemerkung"></textarea>
       </mat-form-field>
         <br>
         <br>

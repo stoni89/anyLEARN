@@ -12,10 +12,11 @@ import {formatDate} from '@angular/common';
 })
 export class PostListItemComponent implements OnInit {
 
+  bemerkung: string;
   constructor(public dialogRef: MatDialogRef<PostListItemComponent>, @Inject(MAT_DIALOG_DATA) public data,
               public postService: PostService, private snackbar: MatSnackBar, public skillstatusService: SkillstatusService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 
@@ -25,6 +26,7 @@ export class PostListItemComponent implements OnInit {
   }
 
   onAccept(data) {
+
     const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
     const skill = data.skill;
     const Item: Array<{post_id: number}> = [{post_id: data.post_id}];

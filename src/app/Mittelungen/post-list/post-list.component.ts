@@ -25,7 +25,7 @@ export class PostListComponent implements OnInit {
   constructor(private postService: PostService, private dialog: MatDialog) {
     this.postService.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
-      this.refreshUserList();
+      this.refreshPostList();
     });
    }
 
@@ -35,9 +35,12 @@ export class PostListComponent implements OnInit {
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
     });
+
+    this.postService.updateBadge();
+    this.postService.filter('Register Click');
   }
 
-  refreshUserList() {
+  refreshPostList() {
     this.postService.getPostID(this.loggedUserID).subscribe(data => {
       this.datasource = new MatTableDataSource(data as any);
       this.datasource.sort = this.sort;
@@ -58,7 +61,7 @@ export class PostListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '30%';
+    dialogConfig.width = '35%';
     dialogConfig.data = row;
     this.dialog.open(PostListItemComponent, dialogConfig);
   }
