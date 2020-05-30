@@ -8,7 +8,7 @@
     (click)="changeNavBarTitle('Mitteilungen')"
     class="toolbar-icon"
     matBadgePosition="above after"
-    matBadge="2"
+    [matBadge]="this.postService.badgeCount"
     matBadgeColor="warn"
     matBadgeOverlap="true"
   >notifications</mat-icon>

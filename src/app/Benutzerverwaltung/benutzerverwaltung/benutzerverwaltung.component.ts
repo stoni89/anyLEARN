@@ -14,10 +14,8 @@ export class BenutzerverwaltungComponent implements OnInit {
    }
 
   ngOnInit() {
-    const tempUserID = parseInt(localStorage.getItem('userid'));
-    this.postService.getPostIDCount(tempUserID).subscribe(data => {
-      localStorage.setItem('anzahl', data[0].anzahl);
-    })
+    this.postService.updateBadge();
+    this.postService.filter('Register Click');
   }
 
 }

@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { PostService } from '../../Shared/Services/post.service';
-import { GlobalApp } from 'src/app/global';
 
 @Component({
   selector: 'app-post-list',
@@ -21,7 +20,7 @@ export class PostListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private postService: PostService, public app: GlobalApp) {
+  constructor(private postService: PostService) {
     this.postService.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
       this.refreshUserList();

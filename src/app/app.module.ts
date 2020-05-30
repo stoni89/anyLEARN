@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { GlobalApp } from './global';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -45,6 +44,7 @@ import { StatusChangeItemComponent } from './Dashboard/status-change-item/status
 import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-item/vermittler-change-item.component';
 import { PostListComponent } from './Mittelungen/post-list/post-list.component';
 import { PostComponent } from './Mittelungen/post/post.component';
+import { PostService } from './Shared/Services/post.service';
 
 
 @NgModule({
@@ -104,7 +104,7 @@ import { PostComponent } from './Mittelungen/post/post.component';
       postLogoutRedirectUri: 'http://localhost:4200/logout',
     })
   ],
-  providers: [AuthenticationGuard],
+  providers: [AuthenticationGuard, PostService],
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
                     StatusChangeItemComponent]

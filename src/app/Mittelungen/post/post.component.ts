@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from 'src/app/Shared/Services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  constructor(public postService: PostService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.postService.updateBadge();
+    this.postService.filter('Register Click');
   }
 
 }

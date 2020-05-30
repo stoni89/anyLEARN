@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 import { Observable } from 'rxjs';
 import { PostService } from './Shared/Services/post.service';
-import { GlobalApp } from './global';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +15,7 @@ export class AppComponent implements OnInit {
   isMenuOpen = false;
   contentMargin = 200;
   isTooltipActive = true;
+  //badgePost = this.postService.badgeCount;
 
   userRole: string = localStorage.getItem('role');
 
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
             const tempUserID = parseInt(localStorage.getItem('userid'));
             this.postService.getPostIDCount(tempUserID).subscribe(data => {
               localStorage.setItem('anzahl', data[0].anzahl);
+              console.log(localStorage.getItem('anzahl'));
             })
             this.changeNavBarTitle('Dashboard');
           }

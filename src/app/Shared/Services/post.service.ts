@@ -8,8 +8,12 @@ import { Subject, Observable } from 'rxjs';
 })
 export class PostService {
   private listners = new Subject<any>();
+  badgeCount: Observable<number>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+   }
+
+
 
   getPostID(id: number) {
     return this.httpClient.get(`http://localhost:3000/post/` + id);
@@ -24,5 +28,12 @@ export class PostService {
   }
   filter(filterBy: string) {
     this.listners.next(filterBy);
+  }
+
+  updateBadge() {
+    const tempUserID = parseInt(localStorage.getItem('userid'));
+    this.getPostIDCount(tempUserID).subscribe(data => {
+      this.badgeCount = data[0].anzahl;
+    });
   }
 }
