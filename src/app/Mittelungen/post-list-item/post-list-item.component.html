@@ -1,0 +1,27 @@
+<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+  <span [ngStyle]="{'color': 'white'}">{{data.kategorie}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" (click)="onClose()"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+</mat-toolbar>
+
+<mat-grid-list cols="1" rowHeight="250px">
+  <mat-grid-tile>
+    <div class="controles-container">
+        <br>
+        <mat-label><b>Nachricht:</b> {{data.text}}</mat-label>
+        <br>
+        <mat-label><b>Gesendet:</b> {{data.von}}</mat-label>
+        <br>
+        <br>
+      <mat-form-field style="width: 300px;">
+        <textarea *ngIf="data.kategorie == 'Genehmigung'" style="height:auto;" matInput rows="4" placeholder="Bemerkung"></textarea>
+        <textarea *ngIf="data.kategorie == 'Information'" readonly style="height:auto;" matInput rows="4" placeholder="Bemerkung"></textarea>
+      </mat-form-field>
+        <br>
+        <br>
+        <button *ngIf="data.kategorie == 'Genehmigung'" mat-raised-button class="green" (click)="onAccept(data)">Genehmigen</button>
+        <button *ngIf="data.kategorie == 'Genehmigung'" mat-raised-button class="red" (click)="onDecline(data)">Ablehnen</button>
+        <button *ngIf="data.kategorie == 'Information'" mat-raised-button class="green" (click)="onRead(data)">Gelesen</button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

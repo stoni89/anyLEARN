@@ -45,6 +45,7 @@ import { VermittlerChangeItemComponent } from './Dashboard/vermittler-change-ite
 import { PostListComponent } from './Mittelungen/post-list/post-list.component';
 import { PostComponent } from './Mittelungen/post/post.component';
 import { PostService } from './Shared/Services/post.service';
+import { PostListItemComponent } from './Mittelungen/post-list-item/post-list-item.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { PostService } from './Shared/Services/post.service';
     StatusChangeItemComponent,
     VermittlerChangeItemComponent,
     PostListComponent,
-    PostComponent
+    PostComponent,
+    PostListItemComponent
   ],
   imports: [
     HttpClientModule,
@@ -107,7 +109,7 @@ import { PostService } from './Shared/Services/post.service';
   providers: [AuthenticationGuard, PostService],
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
-                    StatusChangeItemComponent]
+                    StatusChangeItemComponent, PostListItemComponent]
 })
 export class AppModule {
 }

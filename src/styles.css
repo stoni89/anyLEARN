@@ -133,3 +133,37 @@ mat-footer-row mat-footer-cell {
 }
 
 
+
+.green {
+  width: 120px;
+  background-color: darkgreen;
+  color: white;
+  width: 120px;
+}
+
+.green:hover {
+  background-color: green;
+}
+
+.green:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.red {
+  width: 120px;
+  background-color: darkred;
+  color: white;
+  width: 120px;
+}
+
+.red:hover {
+  background-color: red;
+}
+
+.red:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

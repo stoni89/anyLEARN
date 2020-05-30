@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { PostService } from '../../Shared/Services/post.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PostListItemComponent } from '../post-list-item/post-list-item.component';
 
 @Component({
   selector: 'app-post-list',
@@ -20,7 +22,7 @@ export class PostListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private dialog: MatDialog) {
     this.postService.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
       this.refreshUserList();
@@ -50,6 +52,15 @@ export class PostListComponent implements OnInit {
 
   applyFilter() {
     this.datasource.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  onClick(row) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    dialogConfig.data = row;
+    this.dialog.open(PostListItemComponent, dialogConfig);
   }
 
 }

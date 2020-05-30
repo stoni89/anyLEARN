@@ -31,4 +31,17 @@ router.get('/count/:user_Id', function (req, res) {
     });
 });
 
+router.delete('/:post_id', function (req, res) {
+  const post_id = req.params.post_id;
+  mit.removeMit(post_id, function(err,rows){
+        if(err) {
+            res.status(400).json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
+    });
+});
+
 module.exports = router;

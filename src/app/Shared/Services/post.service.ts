@@ -23,6 +23,10 @@ export class PostService {
     return this.httpClient.get(`http://localhost:3000/post/count/` + id);
   }
 
+  removePost(id: number) {
+    return this.httpClient.delete(`http://localhost:3000/post/` + id);
+   }
+
   listen(): Observable<any>{
     return this.listners.asObservable();
   }
