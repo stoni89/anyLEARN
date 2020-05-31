@@ -136,6 +136,16 @@ mat-footer-row mat-footer-cell {
   background-color: black !important;
 }
 
+
+.mat-option.mat-selected {
+  color: red !important;
+}
+
+.mat-pseudo-checkbox-checked{
+  background-color:red !important;
+}
+
+
 .green {
   width: 120px;
   background-color: darkgreen;

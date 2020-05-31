@@ -24,20 +24,20 @@
           <input formControlName="vermittler" readonly matInput placeholder="Vermittler">
         </mat-form-field>
         <mat-form-field style="height: 100%;">
-          <textarea formControlName="lernziel" readonly matInput matInput rows="5"  placeholder="Lernziel"></textarea>
+          <textarea formControlName="lernziel" readonly matInput matInput rows="7"  placeholder="Lernziel"></textarea>
         </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field style="padding-top: 25px;">
-          <textarea style="height:auto" formControlName="inhalt" readonly matInput rows="15" placeholder="Inhalt"></textarea>
+          <textarea style="height:auto" formControlName="inhalt" readonly matInput rows="12" placeholder="Inhalt"></textarea>
         </mat-form-field>
         <mat-form-field style="height: 100%;">
-          <textarea formControlName="nachweis" matInput rows="5" readonly placeholder="Nachweis"></textarea>
+          <textarea formControlName="nachweis" matInput rows="4" readonly placeholder="Nachweis"></textarea>
         </mat-form-field>
         <mat-form-field style="height: 100%;">
-          <textarea formControlName="links" matInput rows="4" readonly placeholder="Links"></textarea>
+          <textarea formControlName="links" matInput rows="5" readonly placeholder="Links"></textarea>
         </mat-form-field>
         <div class="button-row">
           <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung'" mat-raised-button (click)="onErledigt()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>

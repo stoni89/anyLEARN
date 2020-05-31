@@ -22,7 +22,7 @@
           <mat-error *ngIf="skillService.form.controls['zeitpunkt'].errors?.required">Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select [(ngModel)]="selected" multiple placeholder="Kategorie*" [ngModelOptions]="{standalone: true}">
+          <mat-select [(ngModel)]="selected" multiple placeholder="Kategorie*" [ngModelOptions]="{standalone: true}" style="font-size: small">
             <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id"> {{cat.kategorie}} </mat-option>
           </mat-select>
         </mat-form-field>
@@ -37,7 +37,7 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field style="height: 100%;">
-          <textarea formControlName="lernziel" matInput matInput rows="5"  placeholder="Lernziel*"></textarea>
+          <textarea formControlName="lernziel" matInput matInput rows="7"  placeholder="Lernziel*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
       </div>
@@ -46,7 +46,7 @@
 
       <div class="controles-container">
         <mat-form-field >
-          <textarea style="height:auto;" formControlName="inhalt" matInput rows="15" placeholder="Inhalt*"></textarea>
+          <textarea style="height:auto;" formControlName="inhalt" matInput rows="12" placeholder="Inhalt*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field style="height: auto;">
@@ -54,7 +54,7 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field style="height: auto;">
-          <textarea formControlName="links" matInput rows="4" placeholder="Links (1 Link pro Zeile)"></textarea>
+          <textarea formControlName="links" matInput rows="5" placeholder="Links (1 Link pro Zeile)"></textarea>
         </mat-form-field>
         <div class="button-row">
           <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
