@@ -23,6 +23,7 @@ export class SkillService {
     bereich_id: new FormControl(1, Validators.required),
     nachweis: new FormControl('', Validators.required),
     nachname: new FormControl(''),
+    links: new FormControl(''),
     bereich: new FormControl(''),
     kategorie: new FormControl(''),
     kategorie_id: new FormControl('')
@@ -40,6 +41,7 @@ export class SkillService {
       bereich_id: 1,
       nachweis: '',
       nachname: '',
+      links: '',
       bereich: '',
       kategorie: '',
       kategorie_id: ''

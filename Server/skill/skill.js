@@ -4,7 +4,7 @@ var skill = {
 
     getAllSkills: function(callback)
     {
-        return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt, s.vermittler_id, s.bereich_id, ' +
+        return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
                         's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
                         'group_concat(sk.kategorie_id separator ", ") kategorie_id ' +
                         'FROM skillkategorie sk ' +
@@ -16,7 +16,7 @@ var skill = {
     },
     getSpezificSkill: function(id, callback)
     {
-      return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt, s.vermittler_id, s.bereich_id, ' +
+      return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
                       's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
                       'group_concat(sk.kategorie_id separator ", ") kategorie_id ' +
                       'FROM skillkategorie sk ' +
@@ -28,15 +28,15 @@ var skill = {
     },
     newSkill: function(postdata, callback)
     {
-      return db.query('INSERT INTO skills (skill, lernziel, inhalt, zeitaufwand, zeitpunkt, vermittler_id, bereich_id, nachweis) ' +
-                      'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
-                                                         postdata.vermittler_id, postdata.bereich_id, postdata.nachweis], callback)
+      return db.query('INSERT INTO skills (skill, lernziel, inhalt, zeitaufwand, zeitpunkt, vermittler_id, bereich_id, nachweis, links) ' +
+                      'values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
+                                                         postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.links], callback)
     },
     updateSkill: function(postdata, callback)
     {
-      return db.query('UPDATE skills SET skill=?, lernziel=?, inhalt=?, zeitaufwand=?, zeitpunkt=?, vermittler_id=?, bereich_id=?, nachweis=? ' +
+      return db.query('UPDATE skills SET skill=?, lernziel=?, inhalt=?, zeitaufwand=?, zeitpunkt=?, vermittler_id=?, bereich_id=?, nachweis=?, links=? ' +
                       'WHERE skill_id=?', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
-                                                         postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.skill_id], callback)
+                                                         postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.links, postdata.skill_id], callback)
     }
 }
 
