@@ -77,6 +77,20 @@
           </button>
         </mat-list-item>
 
+        <mat-list-item>
+          <button
+            *ngIf="isAuthenticated && (userRole == 'Administrator')"
+            (click)="changeNavBarTitle('Logs')"
+            routerLink="logs"
+            routerLinkActive="active-list-item"
+            class="menu-item"
+            matTooltip="Logs"
+            matTooltipPosition="right"
+            mat-flat-button>
+              <mat-icon>wysiwyg</mat-icon>
+          </button>
+        </mat-list-item>
+
     </mat-list>
   </mat-sidenav>
 

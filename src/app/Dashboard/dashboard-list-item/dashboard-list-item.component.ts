@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PostService } from 'src/app/Shared/Services/post.service';
 import { formatDate } from '@angular/common';
+import { LogsService } from 'src/app/Shared/Services/logs.service';
 
 @Component({
   selector: 'app-dashboard-list-item',
@@ -17,7 +18,8 @@ export class DashboardListItemComponent implements OnInit {
               public skillstatusService: SkillstatusService,
               public dialogRef: MatDialogRef<DashboardListItemComponent>,
               private snackbar: MatSnackBar,
-              public postService: PostService) {}
+              public postService: PostService,
+              public logService: LogsService) {}
 
   ngOnInit() {
   }

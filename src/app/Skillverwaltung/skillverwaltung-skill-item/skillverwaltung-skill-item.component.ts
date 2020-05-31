@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
+import { formatDate } from '@angular/common';
+import { LogsService } from 'src/app/Shared/Services/logs.service';
 
 @Component({
   selector: 'app-skillverwaltung-skill-item',
@@ -32,7 +34,8 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               public kategorieService: KategorieService,
               public skillstatusService: SkillstatusService,
               public skillkategorieService: SkillkategorieService,
-              public skillService: SkillService) {}
+              public skillService: SkillService,
+              public logService: LogsService) {}
 
 
   ngOnInit() {
@@ -120,6 +123,19 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
             });
           });
 
+          const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+          const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
+            {
+              eintrag: 'Der Skill "' + this.skillService.form.value.skill + '" wurde erstellt',
+              date: date,
+              user_id: parseInt(localStorage.getItem('userid')),
+              art: 'Skill',
+              cat_id: 4
+            }
+          ];
+
+          this.logService.newLogs(logitem[0]).subscribe();
+
           this.onClose();
        },
        500);
@@ -142,6 +158,19 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
           const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
           this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
+
+          const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+          const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
+            {
+              eintrag: 'Der Skill "' + this.skillService.form.value.skill + '" wurde angepasst',
+              date: date,
+              user_id: parseInt(localStorage.getItem('userid')),
+              art: 'Skill',
+              cat_id: 5
+            }
+          ];
+
+          this.logService.newLogs(logitem[0]).subscribe();
 
           this.onClose();
         },

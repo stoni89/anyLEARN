@@ -6,6 +6,8 @@ import { RollenService } from 'src/app/Shared/Services/rollen.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SkillService } from 'src/app/Shared/Services/skill.service';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
+import { formatDate } from '@angular/common';
+import { LogsService } from 'src/app/Shared/Services/logs.service';
 
 @Component({
   selector: 'app-benutzerverwaltung-user-item',
@@ -25,7 +27,8 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
               public skillService: SkillService,
               public skillstatusService: SkillstatusService,
               public dialogRef: MatDialogRef<BenutzerverwaltungUserItemComponent>,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar,
+              public logService: LogsService) { }
 
   ngOnInit() {
     this.kategorieService.getAllKategorie().subscribe(data => {
@@ -75,6 +78,22 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
             });
           });
 
+          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
+          this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
+
+          const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+          const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
+            {
+              eintrag: 'Der Benutzer "' + this.userService.form.value.name + '" wurde erstellt',
+              date: date,
+              user_id: parseInt(localStorage.getItem('userid')),
+              art: 'Benutzer',
+              cat_id: 1
+            }
+          ];
+
+          this.logService.newLogs(logitem[0]).subscribe();
+
           this.onClose();
        },
        500);
@@ -85,6 +104,22 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
         }, error => {
           this.openRedSnackBar('Fehler beim anpassen!', 'Schließen');
         });
+
+        const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
+        this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
+
+        const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+        const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
+          {
+            eintrag: 'Der Benutzer "' + this.userService.form.value.name + '" wurde angepasst',
+            date: date,
+            user_id: parseInt(localStorage.getItem('userid')),
+            art: 'Benutzer',
+            cat_id: 2
+          }
+        ];
+
+        this.logService.newLogs(logitem[0]).subscribe();
 
         this.onClose();
       }

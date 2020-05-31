@@ -15,6 +15,7 @@ var skillstatusController = require('./skillstatus/skillstatusController');
 var vermittlerController = require('./vermittler/vermittlerController');
 var statusController = require('./status/statusController');
 var postController = require('./mitteilung/mitteilungController');
+var logsController = require('./logs/logsController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -27,6 +28,7 @@ app.use('/skillstatus', skillstatusController);
 app.use('/vermittler', vermittlerController);
 app.use('/status', statusController);
 app.use('/post', postController);
+app.use('/logs', logsController);
 
 module.exports = app;
 

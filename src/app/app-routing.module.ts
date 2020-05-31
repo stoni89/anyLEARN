@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from 'microsoft-adal-angular6';
 import { LogoutComponent } from './Logout/logout/logout.component';
 import { PostComponent } from './Mittelungen/post/post.component';
+import { LogsComponent } from './Logs/logs/logs.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path: 'post',
     component: PostComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'logs',
+    component: LogsComponent,
     canActivate: [AuthenticationGuard]
   },
   {

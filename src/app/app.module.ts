@@ -46,6 +46,8 @@ import { PostListComponent } from './Mittelungen/post-list/post-list.component';
 import { PostComponent } from './Mittelungen/post/post.component';
 import { PostService } from './Shared/Services/post.service';
 import { PostListItemComponent } from './Mittelungen/post-list-item/post-list-item.component';
+import { LogsComponent } from './Logs/logs/logs.component';
+import { LogsListComponent } from './Logs/logs-list/logs-list.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { PostListItemComponent } from './Mittelungen/post-list-item/post-list-it
     VermittlerChangeItemComponent,
     PostListComponent,
     PostComponent,
-    PostListItemComponent
+    PostListItemComponent,
+    LogsComponent,
+    LogsListComponent
   ],
   imports: [
     HttpClientModule,
