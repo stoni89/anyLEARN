@@ -132,7 +132,9 @@ mat-footer-row mat-footer-cell {
   color: white !important;
 }
 
-
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: black !important;
+}
 
 .green {
   width: 120px;
@@ -163,6 +165,24 @@ mat-footer-row mat-footer-cell {
 }
 
 .red:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+
+.orange {
+  width: 120px;
+  background-color: darkorange;
+  color: white;
+  width: 120px;
+}
+
+.orange:hover {
+  background-color: orange;
+}
+
+.orange:disabled {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;

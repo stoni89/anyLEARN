@@ -50,7 +50,10 @@
           </mat-select>
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" [ngStyle]="{'float': 'right', 'margin-top': '75px'}">Submit</button>
+          <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
+                  [ngStyle]="{'float': 'right', 'margin-top': '75px'}">Anlegen</button>
+          <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
+                  [ngStyle]="{'float': 'right', 'margin-top': '75px'}">Speichern</button>
         </div>
       </div>
     </mat-grid-tile>

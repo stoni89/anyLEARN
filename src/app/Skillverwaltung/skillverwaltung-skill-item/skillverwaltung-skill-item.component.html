@@ -57,7 +57,10 @@
           <textarea formControlName="links" matInput rows="4" placeholder="Links (1 Link pro Zeile)"></textarea>
         </mat-form-field>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Submit</button>
+          <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Anlegen</button>
+          <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
         </div>
       </div>
     </mat-grid-tile>

@@ -40,8 +40,8 @@
           <textarea formControlName="links" matInput rows="4" readonly placeholder="Links"></textarea>
         </mat-form-field>
         <div class="button-row">
-          <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung'" mat-raised-button color="primary" (click)="onErledigt()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
-          <button *ngIf="this.dashboardService.form.value.status == 'Offen'" mat-raised-button color="primary" (click)="onBearbeitung()" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
+          <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung'" mat-raised-button (click)="onErledigt()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
+          <button *ngIf="this.dashboardService.form.value.status == 'Offen'" mat-raised-button (click)="onBearbeitung()" class="orange" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
         </div>
       </div>
     </mat-grid-tile>
