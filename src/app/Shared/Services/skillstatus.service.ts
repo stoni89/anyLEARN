@@ -13,7 +13,7 @@ export class SkillstatusService {
 
   setSkillStatus(newSkillStatus: any) {
     return this.httpClient.post(`http://localhost:3000/skillstatus`, newSkillStatus);
-   }
+  }
 
    getSkillTableUser(id: number) {
     return this.httpClient.get(`http://localhost:3000/skillstatus/` + id);
@@ -30,6 +30,12 @@ export class SkillstatusService {
   updateVermittlerSkillStatusSpecific(verSkillStatus: any) {
     return this.httpClient.put(`http://localhost:3000/vermittler/vermittler`, verSkillStatus);
   }
+
+  removeSkillStatus(id: number) {
+    return this.httpClient.delete(`http://localhost:3000/skillstatus/` + id);
+   }
+
+
 
 
   listen(): Observable<any>{

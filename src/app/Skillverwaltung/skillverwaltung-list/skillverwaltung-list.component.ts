@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SkillService } from '../../Shared/Services/skill.service';
 import { SkillverwaltungSkillItemComponent } from '../skillverwaltung-skill-item/skillverwaltung-skill-item.component';
+import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
+import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
+import { SkillverwaltungSkillRemoveComponent } from '../skillverwaltung-skill-remove/skillverwaltung-skill-remove.component';
 
 @Component({
   selector: 'app-skillverwaltung-list',
@@ -22,7 +26,10 @@ export class SkillverwaltungListComponent implements OnInit {
   searchKey: string;
 
 
-  constructor(private service: SkillService, private dialog: MatDialog) {
+  constructor(private service: SkillService,
+              private dialog: MatDialog,
+              public skillkategorieService: SkillkategorieService,
+              public skillstatusService: SkillstatusService) {
     this.service.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
       this.refreshSkillList();
@@ -76,6 +83,14 @@ export class SkillverwaltungListComponent implements OnInit {
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 
-
+  onDelete(row) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    dialogConfig.height = '30%';
+    dialogConfig.data = {skill: row.skill, skill_id: row.skill_id};
+    this.dialog.open(SkillverwaltungSkillRemoveComponent, dialogConfig);
+  }
 
 }

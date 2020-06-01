@@ -42,4 +42,17 @@ router.put('/', function (req, res) {
   });
 });
 
+router.delete('/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.removeSkillStatus(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 module.exports = router;

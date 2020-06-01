@@ -25,7 +25,11 @@ var sst = {
   {
     return db.query('UPDATE skillstatus SET status_id=? ' +
                     'WHERE skillstatus_id=?', [postdata.status_id, postdata.skillstatus_id], callback)
-  }
+  },
+  removeSkillStatus: function(id, callback)
+  {
+    return db.query('DELETE FROM skillstatus WHERE skill_id = ' + id, callback)
+  },
 }
 
 module.exports = sst;

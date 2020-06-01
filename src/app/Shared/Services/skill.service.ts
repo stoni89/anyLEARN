@@ -76,6 +76,10 @@ export class SkillService {
     return this.httpClient.get(`http://localhost:3000/skillID/` + name);
   }
 
+  removeSkill(id: number) {
+    return this.httpClient.delete(`http://localhost:3000/skill/` + id);
+   }
+
 
   listen(): Observable<any>{
     return this.listners.asObservable();

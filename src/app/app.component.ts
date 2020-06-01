@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   //badgePost = this.postService.badgeCount;
 
   userRole: string = localStorage.getItem('role');
+  userName: string = localStorage.getItem('name');
 
   isAuthenticated: boolean;
 

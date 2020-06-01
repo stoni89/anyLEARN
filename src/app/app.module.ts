@@ -48,6 +48,7 @@ import { PostService } from './Shared/Services/post.service';
 import { PostListItemComponent } from './Mittelungen/post-list-item/post-list-item.component';
 import { LogsComponent } from './Logs/logs/logs.component';
 import { LogsListComponent } from './Logs/logs-list/logs-list.component';
+import { SkillverwaltungSkillRemoveComponent } from './Skillverwaltung/skillverwaltung-skill-remove/skillverwaltung-skill-remove.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { LogsListComponent } from './Logs/logs-list/logs-list.component';
     PostComponent,
     PostListItemComponent,
     LogsComponent,
-    LogsListComponent
+    LogsListComponent,
+    SkillverwaltungSkillRemoveComponent
   ],
   imports: [
     HttpClientModule,
@@ -113,7 +115,7 @@ import { LogsListComponent } from './Logs/logs-list/logs-list.component';
   providers: [AuthenticationGuard, PostService],
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
-                    StatusChangeItemComponent, PostListItemComponent]
+                    StatusChangeItemComponent, PostListItemComponent, SkillverwaltungSkillRemoveComponent]
 })
 export class AppModule {
 }

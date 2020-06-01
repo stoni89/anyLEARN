@@ -37,7 +37,11 @@ var skill = {
       return db.query('UPDATE skills SET skill=?, lernziel=?, inhalt=?, zeitaufwand=?, zeitpunkt=?, vermittler_id=?, bereich_id=?, nachweis=?, links=? ' +
                       'WHERE skill_id=?', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
                                                          postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.links, postdata.skill_id], callback)
-    }
+    },
+    removeSkill: function(id, callback)
+    {
+      return db.query('DELETE FROM skills WHERE skill_id = ' + id, callback)
+    },
 }
 
 module.exports = skill;

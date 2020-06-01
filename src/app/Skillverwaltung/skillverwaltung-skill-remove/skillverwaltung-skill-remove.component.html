@@ -1,0 +1,20 @@
+<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+  <span [ngStyle]="{'color': 'white'}">Wirklich löschen?</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" (click)="onClose()"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+</mat-toolbar>
+
+<mat-grid-list cols="1" rowHeight="155px">
+  <mat-grid-tile>
+    <div class="controles-container">
+        <br>
+        <mat-label><b>Skill:</b> {{data.skill}}</mat-label>
+        <br>
+        <br>
+        <mat-label>Der Skill wird anschließend bei jedem Benutzer entfernt!</mat-label>
+        <br>
+        <br>
+        <button mat-raised-button class="red" (click)="onDelete()">Löschen</button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
