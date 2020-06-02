@@ -16,6 +16,7 @@ var vermittlerController = require('./vermittler/vermittlerController');
 var statusController = require('./status/statusController');
 var postController = require('./mitteilung/mitteilungController');
 var logsController = require('./logs/logsController');
+var selectController = require('./selektieren/selektierenController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -29,6 +30,7 @@ app.use('/vermittler', vermittlerController);
 app.use('/status', statusController);
 app.use('/post', postController);
 app.use('/logs', logsController);
+app.use('/selektieren', selectController);
 
 module.exports = app;
 

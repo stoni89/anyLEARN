@@ -49,6 +49,8 @@ import { PostListItemComponent } from './Mittelungen/post-list-item/post-list-it
 import { LogsComponent } from './Logs/logs/logs.component';
 import { LogsListComponent } from './Logs/logs-list/logs-list.component';
 import { SkillverwaltungSkillRemoveComponent } from './Skillverwaltung/skillverwaltung-skill-remove/skillverwaltung-skill-remove.component';
+import { SelektierenComponent } from './Selektieren/selektieren/selektieren.component';
+import { SelektierenListComponent } from './Selektieren/selektieren-list/selektieren-list.component';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { SkillverwaltungSkillRemoveComponent } from './Skillverwaltung/skillverw
     PostListItemComponent,
     LogsComponent,
     LogsListComponent,
-    SkillverwaltungSkillRemoveComponent
+    SkillverwaltungSkillRemoveComponent,
+    SelektierenComponent,
+    SelektierenListComponent
   ],
   imports: [
     HttpClientModule,

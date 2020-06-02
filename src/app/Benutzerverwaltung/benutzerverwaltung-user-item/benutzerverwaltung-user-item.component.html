@@ -1,61 +1,61 @@
-<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
-  <span [ngStyle]="{'color': 'white'}" *ngIf="selectedItemName">{{selectedItemName}}</span>
-  <span [ngStyle]="{'color': 'white'}" *ngIf="!selectedItemName">Neuer Benutzer</span>
-  <span class="fill-remaining-space"></span>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
-</mat-toolbar>
-<form [formGroup]="userService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="300px">
-    <mat-grid-tile>
-      <div class="controles-container">
-        <mat-form-field>
-          <input formControlName="kuerzel" matInput placeholder="Kürzel*">
-          <mat-error *ngIf="userService.form.controls['kuerzel'].errors?.required">Pflichtfeld.</mat-error>
-          <mat-error *ngIf="userService.form.controls['kuerzel'].errors?.maxlength">Maximal 3 Zeichen.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="vorname" matInput placeholder="Vorname*">
-          <mat-error>Pflichtfeld.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="nachname" matInput placeholder="Nachname*">
-          <mat-error>Pflichtfeld.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="name" matInput placeholder="Name*" [readonly]="!editable" [ngModel]="userService.form.value.nachname + ' ' + userService.form.value.vorname">
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="mail" matInput placeholder="Email*" [readonly]="!editable" [ngModel]="userService.form.value.kuerzel + '@anyware.ag'">
-          <mat-error>Pflichtfeld.</mat-error>
-        </mat-form-field>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
 
-      <div class="controles-container">
-        <mat-form-field>
-          <mat-select formControlName="kategorie_id" placeholder="Kategorie*">
-            <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id">{{cat.kategorie}}</mat-option>
-          </mat-select>
+
+  <mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+    <span [ngStyle]="{'color': 'white'}" *ngIf="selectedItemName">{{selectedItemName}}</span>
+    <span [ngStyle]="{'color': 'white'}" *ngIf="!selectedItemName">Neuer Benutzer</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+  </mat-toolbar>
+
+  <form [formGroup]="userService.form" class="normal-form">
+    <mat-grid-list cols="1" rowHeight="550px">
+      <mat-grid-tile>
+        <div class="controles-container" style="border: black; border-radius: 1px;">
+          <mat-form-field>
+            <input formControlName="kuerzel" matInput placeholder="Kürzel*">
+            <mat-error *ngIf="userService.form.controls['kuerzel'].errors?.required">Pflichtfeld.</mat-error>
+            <mat-error *ngIf="userService.form.controls['kuerzel'].errors?.maxlength">Maximal 3 Zeichen.</mat-error>
           </mat-form-field>
-        <mat-form-field>
-          <mat-select formControlName="istAktiv" placeholder="Aktiv*">
-            <mat-option [value]="1">Aktiv</mat-option>
-            <mat-option [value]="2">Inaktiv</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select formControlName="rollen_id" placeholder="Rolle*">
-            <mat-option *ngFor="let rol of rollen" [value]="rol.rollen_id">{{rol.rolle}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div class="button-row">
-          <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
-                  [ngStyle]="{'float': 'right', 'margin-top': '75px'}">Anlegen</button>
-          <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
-                  [ngStyle]="{'float': 'right', 'margin-top': '75px'}">Speichern</button>
+          <mat-form-field>
+            <input formControlName="vorname" matInput placeholder="Vorname*">
+            <mat-error>Pflichtfeld.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="nachname" matInput placeholder="Nachname*">
+            <mat-error>Pflichtfeld.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="name" matInput placeholder="Name*" [readonly]="!editable" [ngModel]="userService.form.value.nachname + ' ' + userService.form.value.vorname">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="mail" matInput placeholder="Email*" [readonly]="!editable" [ngModel]="userService.form.value.kuerzel + '@anyware.ag'">
+            <mat-error>Pflichtfeld.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select formControlName="kategorie_id" placeholder="Kategorie*">
+              <mat-option *ngFor="let cat of category" [value]="cat.kategorie_id">{{cat.kategorie}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="istAktiv" placeholder="Aktiv*">
+              <mat-option [value]="1">Aktiv</mat-option>
+              <mat-option [value]="2">Inaktiv</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="rollen_id" placeholder="Rolle*">
+              <mat-option *ngFor="let rol of rollen" [value]="rol.rollen_id">{{rol.rolle}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="button-row">
+            <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
+                    [ngStyle]="{'float': 'right', 'margin-top': '15px'}">Anlegen</button>
+            <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
+                    [ngStyle]="{'float': 'right', 'margin-top': '15px'}">Speichern</button>
+          </div>
         </div>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-</form>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>

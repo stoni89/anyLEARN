@@ -69,7 +69,7 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
-    //dialogConfig.height = '77%';
+    //dialogConfig.height = '100%';
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 
@@ -79,7 +79,7 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
-    //dialogConfig.height = '77%';
+    //dialogConfig.height = '100%';
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 

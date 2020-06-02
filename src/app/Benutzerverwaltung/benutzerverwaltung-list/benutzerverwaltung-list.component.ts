@@ -62,7 +62,7 @@ export class BenutzerverwaltungListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '40%';
+    dialogConfig.width = '30%';
     this.dialog.open(BenutzerverwaltungUserItemComponent, dialogConfig);
   }
 
@@ -71,7 +71,7 @@ export class BenutzerverwaltungListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '40%';
+    dialogConfig.width = '30%';
     this.dialog.open(BenutzerverwaltungUserItemComponent, dialogConfig);
   }
 

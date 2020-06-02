@@ -1,3 +1,4 @@
+import { SelektierenComponent } from './Selektieren/selektieren/selektieren.component';
 import { SkillverwaltungComponent } from './Skillverwaltung/skillverwaltung/skillverwaltung.component';
 import { BenutzerverwaltungComponent } from './Benutzerverwaltung/benutzerverwaltung/benutzerverwaltung.component';
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     path: 'logs',
     component: LogsComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'selektieren',
+    component: SelektierenComponent,
     canActivate: [AuthenticationGuard]
   },
   {

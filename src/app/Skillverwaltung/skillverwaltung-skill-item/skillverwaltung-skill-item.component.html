@@ -6,7 +6,7 @@
 </mat-toolbar>
 
 <form [formGroup]="skillService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="550px">
+  <mat-grid-list cols="2" rowHeight="515px">
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field>
@@ -40,6 +40,7 @@
           <textarea formControlName="lernziel" matInput matInput rows="7"  placeholder="Lernziel*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
+
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -49,18 +50,18 @@
           <textarea style="height:auto;" formControlName="inhalt" matInput rows="12" placeholder="Inhalt*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
-        <mat-form-field style="height: auto;">
+        <mat-form-field >
           <textarea formControlName="nachweis" matInput rows="5" placeholder="Nachweis*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
-        <mat-form-field style="height: auto;">
+        <mat-form-field >
           <textarea formControlName="links" matInput rows="5" placeholder="Links (1 Link pro Zeile)"></textarea>
         </mat-form-field>
         <div class="button-row">
           <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
-                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Anlegen</button>
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '20px'}">Anlegen</button>
           <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
-                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '20px'}">Speichern</button>
         </div>
       </div>
     </mat-grid-tile>
