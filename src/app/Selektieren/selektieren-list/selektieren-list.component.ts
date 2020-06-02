@@ -58,8 +58,5 @@ export class SelektierenListComponent implements OnInit {
     })
   }
 
-  onSelectionChange() {
-    console.log(this.selectUsers)
-  }
 
 }
