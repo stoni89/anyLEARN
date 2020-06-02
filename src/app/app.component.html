@@ -82,10 +82,10 @@
           </button>
         </mat-list-item>
 
-      <!--
+
         <mat-list-item>
           <button
-            *ngIf="isAuthenticated && (userRole == 'Administrator')"
+            *ngIf="isAuthenticated && (userRole == 'Administrator' || userRole == 'Vermittler')"
             (click)="changeNavBarTitle('Selektieren')"
             routerLink="selektieren"
             routerLinkActive="active-list-item"
@@ -93,10 +93,10 @@
             matTooltip="Selektieren"
             matTooltipPosition="right"
             mat-flat-button>
-              <mat-icon>people</mat-icon>
+              <mat-icon>mediation</mat-icon>
           </button>
         </mat-list-item>
-      -->
+
 
         <mat-list-item>
           <button

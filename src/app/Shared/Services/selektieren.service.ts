@@ -9,6 +9,6 @@ export class SelektierenService {
   constructor(private httpClient: HttpClient) { }
 
   getSelectUserID(userID: any) {
-    return this.httpClient.get(`http://localhost:3000/selektieren`, userID);
+    return this.httpClient.get(`http://localhost:3000/selektieren/` + userID);
   }
 }

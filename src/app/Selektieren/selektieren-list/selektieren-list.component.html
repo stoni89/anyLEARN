@@ -1,9 +1,75 @@
-<mat-form-field>
-  <mat-label>User</mat-label>
-  <mat-select [(ngModel)]="selectUsers" multiple>
-    <mat-option *ngFor="let user of users" [value]="user.user_id">
-      {{user.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<button mat-raised-button (click)="onClick()">Klick mich!</button>
+<div class="search-div">
+  <mat-form-field>
+    <mat-label>User</mat-label>
+    <mat-select [(ngModel)]="selectUsers" (selectionChange)="onSelectionChange()" multiple>
+      <mat-option *ngFor="let user of users" [value]="user.user_id">
+        {{user.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<button mat-raised-button class="green" style="margin-right: 15px; margin-left: 15px;" (click)="onClick()" [disabled]="selectUsers.length === 0">Start</button>
+
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Filtern" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="datasource" matSort>
+
+    <ng-container matColumnDef="skill">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Skill </th>
+      <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nachname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Benutzer </th>
+      <td mat-cell *matCellDef="let element"> {{element.nachname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="vermittler">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vermittler </th>
+      <td mat-cell *matCellDef="let element"> {{element.vermittler}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.status_id == 1" [ngStyle]="{'color': 'darkred', 'justify-content': 'center', 'padding-top': '5px'}"
+                   matTooltip="Offen" matTooltipPosition="right"> brightness_1 </mat-icon>
+        <mat-icon *ngIf="element.status_id == 2" [ngStyle]="{'color': 'orange', 'justify-content': 'center', 'padding-top': '5px'}"
+                   matTooltip="In Bearbeitung" matTooltipPosition="right"> brightness_1 </mat-icon>
+        <mat-icon *ngIf="element.status_id == 3" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
+                   matTooltip="In Bearbeitung (Genehmigung ausstehend)" matTooltipPosition="right"> brightness_1 </mat-icon>
+        <mat-icon *ngIf="element.status_id == 4" [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"
+                   matTooltip="Erledigt" matTooltipPosition="right"> done </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+      <mat-header-cell *matFooterCellDef colspan="6">
+        Loading Data...
+      </mat-header-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="noData">
+      <mat-header-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-header-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource != null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(datasource != null && datasource.data.length == 0)}"></mat-footer-row>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="25" showFirstLastButtons> </mat-paginator>
+
+  </div>
