@@ -59,11 +59,11 @@
     <td mat-cell *matCellDef="let element">
       <mat-icon *ngIf="element.bereich == 'Allgemeines Wissen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="Allgemeines Wissen" matTooltipPosition="right"> public </mat-icon>
-      <mat-icon *ngIf="element.bereich == 'anyWARE-interne Themen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+      <mat-icon *ngIf="element.bereich == 'anyWARE-interne Themen'" [ngStyle]="{'color': 'red', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="anyWARE-interne Themen" matTooltipPosition="right"> wb_auto </mat-icon>
-      <mat-icon *ngIf="element.bereich == 'Technische Themen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+      <mat-icon *ngIf="element.bereich == 'Technische Themen'" [ngStyle]="{'color': 'blue', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="Technische Themen" matTooltipPosition="right"> text_fields </mat-icon>
-      <mat-icon *ngIf="element.bereich == 'Kaufmännische Themen'" [ngStyle]="{'color': 'black', 'justify-content': 'center', 'padding-top': '5px'}"
+      <mat-icon *ngIf="element.bereich == 'Kaufmännische Themen'" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="Kaufmännische Themen" matTooltipPosition="right"> local_grocery_store </mat-icon>
     </td>
   </ng-container>
@@ -116,7 +116,7 @@
     </mat-header-cell>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource != null}"></mat-footer-row>

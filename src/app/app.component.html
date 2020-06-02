@@ -5,6 +5,7 @@
   <mat-label style="padding-right: 15px;">{{userName}}</mat-label>
 
   <mat-icon
+    style="margin-right: 30px; margin-left: 10px;"
     *ngIf="isAuthenticated"
     routerLink="post"
     (click)="changeNavBarTitle('Mitteilungen')"
@@ -15,6 +16,7 @@
     matBadgeOverlap="true"
   >notifications</mat-icon>
 
+  <div class="v1"></div>
 
   <button mat-button (click)="login()" *ngIf="!isAuthenticated">
     <mat-icon>power_settings_new</mat-icon>
