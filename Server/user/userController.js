@@ -56,6 +56,18 @@ router.get('/mail/:mail', function (req, res) {
   });
 });
 
+router.get('/max/max', function (req, res) {
+  user.getMaxUserID(function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 router.post('/', function (req, res) {
   user.newUser(req.body, function(err,rows){
       if(err) {

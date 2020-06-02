@@ -91,24 +91,20 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     if (this.skillService.form.valid) {
       if (!this.skillService.form.get('skill_id').value) {
         this.skillService.setSkill(this.skillService.form.value).subscribe(data => {
-          this.openGreenSnackBar('Neuer Skill wurde angelegt!', 'Schließen');
-        }, error => {
-          this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
-        });
+          const vermitID = this.skillService.form.value.vermittler_id;
 
-        const vermitID = this.skillService.form.value.vermittler_id;
-
-        setTimeout(() => {
-          this.skillService.getLastSkillID(this.skillService.form.value.skill).subscribe(da => {
+          this.skillService.getLastSkillID().subscribe(da => {
+            console.log(da[0].skill_id);
             this.selected.forEach(element => {
               const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: da[0].skill_id, kategorie_id: element}];
               this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
             });
 
+            // tslint:disable-next-line: no-shadowed-variable
             this.userService.getAllUsers().subscribe(data => {
               const arr = [];
               // tslint:disable-next-line: forin
-              for(const i in data)
+              for (const i in data)
               {
                 arr.push(i);
               }
@@ -118,8 +114,6 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
                   { skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1, vermittler_id: vermitID}];
                 this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
               });
-
-
             });
           });
 
@@ -127,7 +121,9 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
           const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
             {
               eintrag: 'Der Skill "' + this.skillService.form.value.skill + '" wurde erstellt',
+              // tslint:disable-next-line: object-literal-shorthand
               date: date,
+              // tslint:disable-next-line: radix
               user_id: parseInt(localStorage.getItem('userid')),
               art: 'Skill',
               cat_id: 4
@@ -135,10 +131,12 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
           ];
 
           this.logService.newLogs(logitem[0]).subscribe();
-
+          this.openGreenSnackBar('Neuer Skill wurde angelegt!', 'Schließen');
           this.onClose();
-       },
-       500);
+
+        }, error => {
+          this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
+        });
       }
       else {
         this.skillService.updateSkill(this.skillService.form.value).subscribe(data => {
@@ -156,14 +154,17 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
             this.skillkategorieService.setSkillKategorie(item[0]).subscribe();
           });
 
-          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
+          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id,
+                                                                              skill_id: this.skillService.form.value.skill_id}];
           this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
 
           const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
           const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
             {
               eintrag: 'Der Skill "' + this.skillService.form.value.skill + '" wurde angepasst',
+              // tslint:disable-next-line: object-literal-shorthand
               date: date,
+              // tslint:disable-next-line: radix
               user_id: parseInt(localStorage.getItem('userid')),
               art: 'Skill',
               cat_id: 5
@@ -188,7 +189,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   }
 
   getTempID() {
-    this.skillService.getLastSkillID(this.skillService.form.value.skill).subscribe(data => {
+    this.skillService.getLastSkillID().subscribe(data => {
       this.tempSkillID = data;
       return this.tempSkillID;
     });

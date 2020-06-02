@@ -24,6 +24,10 @@ var user = {
     {
         return db.query('SELECT u.user_id, u.mail, u.vorname, u.name, u.rollen_id, r.rolle FROM users u INNER JOIN rollen r ON (r.rollen_id = u.rollen_id) WHERE mail = ' + '"' + mail + '"', callback);
     },
+    getMaxUserID: function(callback)
+    {
+      return db.query('SELECT max(user_id) AS user_id FROM users', callback);
+    },
     newUser: function(postdata, callback)
     {
       return db.query('INSERT INTO users (vorname, nachname, name, kategorie_id, rollen_id, kuerzel, mail, istAktiv) ' +

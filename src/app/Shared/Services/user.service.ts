@@ -72,8 +72,8 @@ export class UserService {
     return this.httpClient.put(`http://localhost:3000/user`, editUser);
   }
 
-  getLastUserID(nachname: string) {
-    return this.httpClient.get(`http://localhost:3000/userID/` + nachname);
+  getLastUserID() {
+    return this.httpClient.get(`http://localhost:3000/user/max/max`);
   }
 
 

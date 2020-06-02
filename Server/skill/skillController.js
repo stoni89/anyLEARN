@@ -17,6 +17,18 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/max', function (req, res) {
+  skill.getMaxSkillID(function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 // Alle User formatiert holen
 router.get('/:skill_id', function (req, res) {
   const skill_id = req.params.skill_id;

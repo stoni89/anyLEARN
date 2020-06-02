@@ -47,20 +47,15 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
     this.userService.initializeFormGroup();
     this.dialogRef.close();
     this.userService.filter('Register click');
-  };
+  }
 
   onSubmit() {
     console.log(this.userService.form.value);
     if (this.userService.form.valid) {
       if (!this.userService.form.get('user_id').value) {
         this.userService.setUser(this.userService.form.value).subscribe(data => {
-          this.openGreenSnackBar('Neuer User wurde angelegt!', 'Schließen');
-        }, error => {
-          this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
-        });
-
-        setTimeout(() => {
-          this.userService.getLastUserID(this.userService.form.value.nachname).subscribe(da => {
+          this.userService.getLastUserID().subscribe(da => {
+            console.log(da[0].user_id);
 
             this.skillService.getAllSkills().subscribe(data => {
               const arr = [];
@@ -78,14 +73,62 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
             });
           });
 
-          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
+          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id,
+                                                                              skill_id: this.skillService.form.value.skill_id}];
+          this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
+
+          const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+          const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
+            {
+            eintrag: 'Der Benutzer "' + this.userService.form.value.name + '" wurde erstellt',
+            // tslint:disable-next-line: object-literal-shorthand
+            date: date,
+            // tslint:disable-next-line: radix
+            user_id: parseInt(localStorage.getItem('userid')),
+            art: 'Benutzer',
+            cat_id: 1
+            }
+          ];
+
+          this.logService.newLogs(logitem[0]).subscribe();
+          this.openGreenSnackBar('Neuer User wurde angelegt!', 'Schließen');
+          this.onClose();
+
+        }, error => {
+          this.openRedSnackBar('Fehler beim anlegen!', 'Schließen');
+        });
+
+        /*
+        setTimeout(() => {
+          this.userService.getLastUserID().subscribe(da => {
+
+            this.skillService.getAllSkills().subscribe(data => {
+              const arr = [];
+              // tslint:disable-next-line: forin
+              for (const i in data)
+              {
+                arr.push(i);
+              }
+
+              arr.forEach(element => {
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number, vermittler_id: number}> = [
+                  { skill_id: data[element].skill_id, user_id: da[0].user_id, status_id: 1, vermittler_id: data[element].vermittler_id}];
+                this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
+              });
+            });
+          });
+
+          const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id,
+                                                                              skill_id: this.skillService.form.value.skill_id}];
           this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
 
           const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
           const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
             {
               eintrag: 'Der Benutzer "' + this.userService.form.value.name + '" wurde erstellt',
+              // tslint:disable-next-line: object-literal-shorthand
               date: date,
+              // tslint:disable-next-line: radix
               user_id: parseInt(localStorage.getItem('userid')),
               art: 'Benutzer',
               cat_id: 1
@@ -97,6 +140,8 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
           this.onClose();
        },
        500);
+
+       */
       }
       else {
         this.userService.updateUser(this.userService.form.value).subscribe(data => {
@@ -105,14 +150,17 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
           this.openRedSnackBar('Fehler beim anpassen!', 'Schließen');
         });
 
-        const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id, skill_id: this.skillService.form.value.skill_id}]
+        const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.skillService.form.value.vermittler_id,
+                                                                            skill_id: this.skillService.form.value.skill_id}];
         this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
 
         const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
         const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
           {
             eintrag: 'Der Benutzer "' + this.userService.form.value.name + '" wurde angepasst',
+            // tslint:disable-next-line: object-literal-shorthand
             date: date,
+            // tslint:disable-next-line: radix
             user_id: parseInt(localStorage.getItem('userid')),
             art: 'Benutzer',
             cat_id: 2

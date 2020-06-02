@@ -51,7 +51,8 @@ export class SkillService {
   populateForm(skill) {
     this.form.setValue(skill);
     this.form.patchValue({
-      kategorie_id: this.form.value.kategorie_id.split(',').map(function(item) {return parseInt(item, 10)})
+      // tslint:disable-next-line: only-arrow-functions
+      kategorie_id: this.form.value.kategorie_id.split(',').map(function(item) {return parseInt(item, 10); })
     });
 
   }
@@ -72,8 +73,8 @@ export class SkillService {
     return this.httpClient.put(`http://localhost:3000/skill`, editUser);
   }
 
-  getLastSkillID(name: string) {
-    return this.httpClient.get(`http://localhost:3000/skillID/` + name);
+  getLastSkillID() {
+    return this.httpClient.get(`http://localhost:3000/skill/max`);
   }
 
   removeSkill(id: number) {

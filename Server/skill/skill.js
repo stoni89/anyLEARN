@@ -26,6 +26,10 @@ var skill = {
                       'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
                       'WHERE sk.skill_id = ' + id, callback);
     },
+    getMaxSkillID: function(callback)
+    {
+      return db.query('SELECT max(skill_id) AS skill_id FROM skills', callback);
+    },
     newSkill: function(postdata, callback)
     {
       return db.query('INSERT INTO skills (skill, lernziel, inhalt, zeitaufwand, zeitpunkt, vermittler_id, bereich_id, nachweis, links) ' +
