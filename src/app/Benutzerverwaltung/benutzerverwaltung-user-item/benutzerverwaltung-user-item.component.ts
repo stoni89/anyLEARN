@@ -57,6 +57,7 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
           this.userService.getLastUserID().subscribe(da => {
             console.log(da[0].user_id);
 
+            // tslint:disable-next-line: no-shadowed-variable
             this.skillService.getAllSkills().subscribe(data => {
               const arr = [];
               // tslint:disable-next-line: forin

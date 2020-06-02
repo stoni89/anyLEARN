@@ -9,7 +9,7 @@ var mit = {
                         'INNER JOIN skills s ON (s.skill_id = p.skill_id) ' +
                         'INNER JOIN users u ON (u.user_id = p.fromuser_id) ' +
                         'INNER JOIN users uu ON (uu.user_id = p.user_id) ' +
-                        'WHERE p.user_id = ' + id, callback);
+                        'WHERE p.user_id = ' + id + ' ORDER by p.date', callback);
     },
     getMitCount: function(id, callback)
     {
