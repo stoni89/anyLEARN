@@ -4,7 +4,7 @@ var skill = {
 
     getAllSkills: function(callback)
     {
-        return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
+        return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, FORMAT(s.zeitpunkt,1) AS zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
                         's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
                         'group_concat(sk.kategorie_id separator ", ") kategorie_id ' +
                         'FROM skillkategorie sk ' +
@@ -16,7 +16,7 @@ var skill = {
     },
     getSpezificSkill: function(id, callback)
     {
-      return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
+      return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, FORMAT(s.zeitpunkt,1) AS zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
                       's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
                       'group_concat(sk.kategorie_id separator ", ") kategorie_id ' +
                       'FROM skillkategorie sk ' +

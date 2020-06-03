@@ -4,7 +4,7 @@ var sst = {
   getSkillTableUser: function(id, callback)
   {
     return db.query('SELECT sst.skillstatus_id, sst.skill_id, sst.status_id, sst.user_id, s.skill, s.skill, s.links, s.lernziel, s.inhalt, s.zeitaufwand, sst.vermittler_id AS verID, ' +
-                    's.zeitpunkt, s.vermittler_id, s.bereich_id, s.nachweis, b.bereich, group_concat(k.kategorie separator ", ") kategorie, sta.status, ' +
+                    'FORMAT(s.zeitpunkt,1) AS zeitpunkt, s.vermittler_id, s.bereich_id, s.nachweis, b.bereich, group_concat(k.kategorie separator ", ") kategorie, sta.status, ' +
                     'group_concat(sk.kategorie_id separator ", ") kategorie_id, u.nachname AS nachname, uu.nachname AS vermittler ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN skills s ON (s.skill_id = sst.skill_id) ' +
