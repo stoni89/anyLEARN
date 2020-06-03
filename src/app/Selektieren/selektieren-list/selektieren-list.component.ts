@@ -4,6 +4,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import 'jspdf-autotable';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-selektieren-list',
@@ -19,7 +21,7 @@ export class SelektierenListComponent implements OnInit {
   data;
   completeArray: Array<any> = [];
   datasource;
-  displayedColumns = ['skill', 'status_id', 'nachname', 'vermittler'];
+  displayedColumns = ['skill', 'status', 'nachname', 'vermittler'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -55,7 +57,26 @@ export class SelektierenListComponent implements OnInit {
       this.datasource = new MatTableDataSource(data as any);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
-    })
+    });
+  }
+
+  print() {
+    const doc = new jsPDF();
+    const data = [];
+
+    this.datasource.filteredData.forEach(obj => {
+      const arr = [];
+      this.displayedColumns.forEach(col => {
+        arr.push(obj[col]);
+      });
+      data.push(arr);
+    });
+    doc.autoTable({
+      styles: { fontSize: [6] },
+      head: [['Skill', 'Status', 'User', 'Vermittler']],
+      body: data
+    });
+    doc.save('Selektieren.pdf');
   }
 
 

@@ -27,8 +27,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCheckboxModule } from '@angular/material/checkbox'
-import { MatBadgeModule } from '@angular/material/badge'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { DashboardSkillListComponent } from './Dashboard/dashboard-skill-list/dashboard-skill-list.component';
@@ -92,6 +93,7 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
     MatTooltipModule,
     MatTableModule,
     MatSortModule,
+    MatTableExporterModule,
     MatSelectModule,
     MatCheckboxModule,
     MatDatepickerModule,

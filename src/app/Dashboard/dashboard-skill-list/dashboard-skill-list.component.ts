@@ -10,6 +10,8 @@ import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service'
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import 'jspdf-autotable';
+import * as jsPDF from 'jspdf';
 
 
 @Component({
@@ -23,7 +25,7 @@ export class DashboardSkillListComponent implements OnInit {
   vermittler: any;
   userID = localStorage.getItem('userid');
   selectUser;
-  displayedColumns = ['status_id', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
+  displayedColumns = ['status', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
 
   userRole: string = localStorage.getItem('role');
   userName: string = localStorage.getItem('name');
@@ -73,6 +75,26 @@ export class DashboardSkillListComponent implements OnInit {
 
   }
 
+
+  print() {
+    const user: string = localStorage.getItem('name');
+    const doc = new jsPDF();
+    const data = [];
+
+    this.datasource.filteredData.forEach(obj => {
+      const arr = [];
+      this.displayedColumns.forEach(col => {
+        arr.push(obj[col]);
+      });
+      data.push(arr);
+    });
+    doc.autoTable({
+      styles: { fontSize: [6] },
+      head: [['Status', 'Bereich', 'Skill' , 'Zeitpunkt', 'Zeitaufwand', 'Vermittler']],
+      body: data
+    });
+    doc.save(user + '_Skills.pdf');
+  }
 
   refreshSkillList() {
     this.skillstatusService.getSkillTableUser(this.selectUser).subscribe(data => {

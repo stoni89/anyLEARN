@@ -16,6 +16,10 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
+  <button mat-raised-button class="red" style="float: right; margin-top: 11px;" (click)="print()">PDF</button>
+  <mat-label style="font-size: 15px; float: right; margin-right: 10px; margin-top: 20px;"><b>Export Tabelle:</b></mat-label>
+
 </div>
 
 <div class="mat-elevation-z8">
@@ -26,16 +30,16 @@
       <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="status_id">
+    <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon *ngIf="element.status_id == 1" [ngStyle]="{'color': 'darkred', 'justify-content': 'center', 'padding-top': '5px'}"
+        <mat-icon *ngIf="element.status == 'Offen'" [ngStyle]="{'color': 'darkred', 'justify-content': 'center', 'padding-top': '5px'}"
                    matTooltip="Offen" matTooltipPosition="right"> brightness_1 </mat-icon>
-        <mat-icon *ngIf="element.status_id == 2" [ngStyle]="{'color': 'orange', 'justify-content': 'center', 'padding-top': '5px'}"
+        <mat-icon *ngIf="element.status == 'In Bearbeitung'" [ngStyle]="{'color': 'orange', 'justify-content': 'center', 'padding-top': '5px'}"
                    matTooltip="In Bearbeitung" matTooltipPosition="right"> brightness_1 </mat-icon>
-        <mat-icon *ngIf="element.status_id == 3" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
-                   matTooltip="In Bearbeitung (Genehmigung ausstehend)" matTooltipPosition="right"> brightness_1 </mat-icon>
-        <mat-icon *ngIf="element.status_id == 4" [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"
+        <mat-icon *ngIf="element.status == 'In Bearbeitung (Warte auf Abschluss)'" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
+                   matTooltip="In Bearbeitung (Warte auf Abschluss)" matTooltipPosition="right"> brightness_1 </mat-icon>
+        <mat-icon *ngIf="element.status == 'Erledigt'" [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"
                    matTooltip="Erledigt" matTooltipPosition="right"> done </mat-icon>
       </td>
     </ng-container>

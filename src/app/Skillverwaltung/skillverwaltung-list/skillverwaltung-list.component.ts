@@ -9,6 +9,8 @@ import { SkillverwaltungSkillItemComponent } from '../skillverwaltung-skill-item
 import { SkillkategorieService } from 'src/app/Shared/Services/skillkategorie.service';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { SkillverwaltungSkillRemoveComponent } from '../skillverwaltung-skill-remove/skillverwaltung-skill-remove.component';
+import 'jspdf-autotable';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-skillverwaltung-list',
@@ -69,7 +71,6 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
-    //dialogConfig.height = '100%';
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 
@@ -79,7 +80,6 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
-    //dialogConfig.height = '100%';
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 
@@ -91,6 +91,25 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.height = '30%';
     dialogConfig.data = {skill: row.skill, skill_id: row.skill_id};
     this.dialog.open(SkillverwaltungSkillRemoveComponent, dialogConfig);
+  }
+
+  print() {
+    const doc = new jsPDF();
+    const data = [];
+
+    this.datasource.filteredData.forEach(obj => {
+      const arr = [];
+      this.displayedColumns.forEach(col => {
+        arr.push(obj[col]);
+      });
+      data.push(arr);
+    });
+    doc.autoTable({
+      styles: { fontSize: [6] },
+      head: [['Bereich', 'Skill' , 'Zeitpunkt', 'Zeitaufwand', 'Vermittler', 'Kategorie']],
+      body: data
+    });
+    doc.save('Skills.pdf');
   }
 
 }
