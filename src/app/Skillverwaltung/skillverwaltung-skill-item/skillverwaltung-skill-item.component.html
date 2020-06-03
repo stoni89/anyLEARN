@@ -46,8 +46,8 @@
     <mat-grid-tile>
 
       <div class="controles-container">
-        <mat-form-field >
-          <textarea style="height:auto;" formControlName="inhalt" matInput rows="12" placeholder="Inhalt*"></textarea>
+        <mat-form-field style="margin-top: 15px;">
+          <textarea formControlName="inhalt" matInput rows="12" placeholder="Inhalt*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field >
@@ -59,9 +59,9 @@
         </mat-form-field>
         <div class="button-row">
           <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
-                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '20px'}">Anlegen</button>
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '8px'}">Anlegen</button>
           <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
-                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '20px'}">Speichern</button>
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '8px'}">Speichern</button>
         </div>
       </div>
     </mat-grid-tile>
