@@ -56,8 +56,10 @@ export class DashboardListItemComponent implements OnInit {
 
     const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
     const skill = this.dashboardService.form.value.skill;
-    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number,
+                          kategorie: string, bemerkung: string, skillstatus_id: number}> = [
       {
+        // tslint:disable-next-line: object-literal-shorthand
         date: date,
         text: 'Abschluss für den Skill "' + skill + '" wurde beantragt',
         user_id: this.dashboardService.form.value.verID,
