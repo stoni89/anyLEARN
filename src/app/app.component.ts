@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 import { Observable } from 'rxjs';
 import { PostService } from './Shared/Services/post.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -15,21 +17,24 @@ export class AppComponent implements OnInit {
   isMenuOpen = false;
   contentMargin = 200;
   isTooltipActive = true;
-  //badgePost = this.postService.badgeCount;
 
   userRole: string = localStorage.getItem('role');
   userName: string = localStorage.getItem('name');
 
   isAuthenticated: boolean;
 
-  constructor(private adalService: MsAdalAngular6Service, public userService: UserService, public postService: PostService) {
+  constructor(private adalService: MsAdalAngular6Service, public userService: UserService, public postService: PostService,
+              private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar) {
     // tslint:disable-next-line: no-shadowed-variable
   }
 
   ngOnInit() {
     const token = this.adalService.acquireToken('https://graph.microsoft.com').subscribe((token: string) => {
       this.userService.getSpezificUsersMail(this.adalService.LoggedInUserEmail).subscribe(data => {
-        if (data[0]['mail'] === this.adalService.LoggedInUserEmail)
+        localStorage.setItem('istAktiv', data[0]['istAktiv']);
+        localStorage.setItem('mail', data[0]['mail']);
+        console.log(localStorage.getItem('istAktiv'));
+        if (data[0]['mail'] === this.adalService.LoggedInUserEmail && data[0]['istAktiv'] === 1)
         {
           localStorage.setItem('role', data[0]['rolle']);
           localStorage.setItem('name', data[0]['name']);
@@ -46,16 +51,33 @@ export class AppComponent implements OnInit {
             this.postService.getPostIDCount(tempUserID).subscribe(data => {
               localStorage.setItem('anzahl', data[0].anzahl);
               console.log(localStorage.getItem('anzahl'));
-            })
+            });
             this.changeNavBarTitle('Dashboard');
           }
+        }
+        else
+        {
+          this.openRedSnackBar('Account nicht aktiv!', 'Schließen');
+          this.router.navigate(['/logout']);
         }
       });
     });
   }
 
   login(): void {
-    this.adalService.login();
+    this.userService.getSpezificUsersMail(localStorage.getItem('mail')).subscribe(data => {
+      localStorage.setItem('istAktiv', data[0]['istAktiv']);
+      if (localStorage.getItem('istAktiv') === '2')
+      {
+        this.openRedSnackBar('Account nicht aktiv!', 'Schließen');
+        this.router.navigate(['/logout']);
+      }
+      else
+      {
+        this.adalService.login();
+      }
+    });
+
   }
 
   logout(): void {
@@ -65,5 +87,13 @@ export class AppComponent implements OnInit {
 
   changeNavBarTitle(navBarTitle: string) {
     this.navBarTitle = navBarTitle;
+  }
+
+  openGreenSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 2000, panelClass: ['green-snackbar']});
+  }
+
+  openRedSnackBar(message, action) {
+    this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
   }
 }
