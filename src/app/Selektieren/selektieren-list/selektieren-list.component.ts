@@ -15,7 +15,7 @@ import * as jsPDF from 'jspdf';
 export class SelektierenListComponent implements OnInit {
 
   users: any;
-  selectUsers = new Array<number>();;
+  selectUsers = new Array<number>();
   format: Array<number> = [];
   dataTable: any;
   data;
