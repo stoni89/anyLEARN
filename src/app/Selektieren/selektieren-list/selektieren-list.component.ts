@@ -30,7 +30,7 @@ export class SelektierenListComponent implements OnInit {
   constructor(public userService: UserService, public selectService: SelektierenService) { }
 
   ngOnInit() {
-    this.userService.getAllUsersAktiv().subscribe(data => {
+    this.userService.getAllUsersAzubi().subscribe(data => {
       this.users = data;
     });
 

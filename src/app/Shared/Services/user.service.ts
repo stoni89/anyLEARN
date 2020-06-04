@@ -56,6 +56,10 @@ export class UserService {
     return this.httpClient.get(`http://localhost:3000/user/user/aktiv`);
   }
 
+  getAllUsersAzubi() {
+    return this.httpClient.get(`http://localhost:3000/user/user/azubi`);
+  }
+
   getSpezificUsers(id: number) {
     return this.httpClient.get(`http://localhost:3000/user/` + id);
   }

@@ -47,30 +47,32 @@ export class DashboardSkillListComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!localStorage.getItem('key'))
-    {
-      localStorage.setItem('key', this.userID);
-      // tslint:disable-next-line: radix
-      this.selectUser = parseInt(localStorage.getItem('key'));
-    }
-    else
-    {
-      // tslint:disable-next-line: radix
-      this.selectUser = parseInt(localStorage.getItem('key'));
-    }
-
-    this.userService.getAllUsersAktiv().subscribe(data => {
+    this.userService.getAllUsersAzubi().subscribe(data => {
       this.users = data;
+
+      // tslint:disable-next-line: radix
+      if (isNaN (parseInt(localStorage.getItem('key'))))
+      {
+        // tslint:disable-next-line: no-string-literal
+        localStorage.setItem('key', data[0]['user_id']);
+        // tslint:disable-next-line: radix
+        this.selectUser = parseInt(localStorage.getItem('key'));
+      }
+      else
+      {
+        // tslint:disable-next-line: radix
+        this.selectUser = parseInt(localStorage.getItem('key'));
+      }
+
+      this.skillstatusService.getSkillTableUser(this.selectUser).subscribe(data2 => {
+        this.datasource = new MatTableDataSource(data2 as any);
+        this.datasource.sort = this.sort;
+        this.datasource.paginator = this.paginator;
+      });
     });
 
     this.userService.getAllUsers().subscribe(data => {
       this.vermittler = data;
-    });
-
-    this.skillstatusService.getSkillTableUser(this.selectUser).subscribe(data => {
-      this.datasource = new MatTableDataSource(data as any);
-      this.datasource.sort = this.sort;
-      this.datasource.paginator = this.paginator;
     });
 
   }

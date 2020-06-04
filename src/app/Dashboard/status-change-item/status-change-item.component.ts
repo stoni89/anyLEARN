@@ -25,7 +25,6 @@ export class StatusChangeItemComponent implements OnInit {
     });
 
     this.selectStatus = this.data.status_id;
-    console.log(this.data.skillstatus_id);
   }
 
   onSetStatus() {

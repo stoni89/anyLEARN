@@ -33,13 +33,13 @@ export class AppComponent implements OnInit {
       this.userService.getSpezificUsersMail(this.adalService.LoggedInUserEmail).subscribe(data => {
         localStorage.setItem('istAktiv', data[0]['istAktiv']);
         localStorage.setItem('mail', data[0]['mail']);
-        console.log(localStorage.getItem('istAktiv'));
         if (data[0]['mail'] === this.adalService.LoggedInUserEmail && data[0]['istAktiv'] === 1)
         {
           localStorage.setItem('role', data[0]['rolle']);
           localStorage.setItem('name', data[0]['name']);
           localStorage.setItem('userid', data[0]['user_id']);
-          localStorage.setItem('key', data[0]['user_id']);
+
+          //localStorage.setItem('key', data[0]['user_id']);
           this.isAuthenticated = this.adalService.isAuthenticated;
           if (!this.isAuthenticated)
           {
@@ -50,7 +50,6 @@ export class AppComponent implements OnInit {
             const tempUserID = parseInt(localStorage.getItem('userid'));
             this.postService.getPostIDCount(tempUserID).subscribe(data => {
               localStorage.setItem('anzahl', data[0].anzahl);
-              console.log(localStorage.getItem('anzahl'));
             });
             this.changeNavBarTitle('Dashboard');
           }
