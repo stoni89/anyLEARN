@@ -33,6 +33,8 @@ export class SelektierenListComponent implements OnInit {
     this.userService.getAllUsersAktiv().subscribe(data => {
       this.users = data;
     });
+
+    this.datasource = new MatTableDataSource();
   }
 
   onSearchClear() {
