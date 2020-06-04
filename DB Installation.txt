@@ -1,1 +1,2 @@
-Save Mode in den Optionen deaktivieren
+- Save Mode in den Optionen deaktivieren
+- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
