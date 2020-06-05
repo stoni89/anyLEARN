@@ -8,18 +8,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SkillkategorieService {
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) { }
 
   getSpezificSkillKategorie(id: number) {
-   return this.httpClient.get(`http://localhost:3000/skillkategorie/` + id);
+   return this.httpClient.get(this.url + `skillkategorie/` + id);
   }
 
   setSkillKategorie(newSkillKategorie: any) {
-    return this.httpClient.post(`http://localhost:3000/skillkategorie`, newSkillKategorie);
+    return this.httpClient.post(this.url + `skillkategorie`, newSkillKategorie);
    }
 
    removeSkillKategorie(id: number) {
-    return this.httpClient.delete(`http://localhost:3000/skillkategorie/` + id);
+    return this.httpClient.delete(this.url + `skillkategorie/` + id);
    }
 }

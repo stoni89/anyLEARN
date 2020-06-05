@@ -8,6 +8,7 @@ import { Subject, Observable } from 'rxjs';
 export class PostService {
   private listners = new Subject<any>();
   badgeCount: Observable<number>;
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) {
    }
@@ -15,19 +16,19 @@ export class PostService {
 
 
   getPostID(id: number) {
-    return this.httpClient.get(`http://localhost:3000/post/` + id);
+    return this.httpClient.get(this.url + `post/` + id);
   }
 
   getPostIDCount(id: number) {
-    return this.httpClient.get(`http://localhost:3000/post/count/` + id);
+    return this.httpClient.get(this.url + `post/count/` + id);
   }
 
   removePost(id: number) {
-    return this.httpClient.delete(`http://localhost:3000/post/` + id);
+    return this.httpClient.delete(this.url + `post/` + id);
    }
 
   newPost(newPost: any) {
-    return this.httpClient.post(`http://localhost:3000/post`, newPost);
+    return this.httpClient.post(this.url + `post`, newPost);
   }
 
 

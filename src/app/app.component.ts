@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
   }
 
   login(): void {
+    /*
     this.userService.getSpezificUsersMail(localStorage.getItem('mail')).subscribe(data => {
       localStorage.setItem('istAktiv', data[0]['istAktiv']);
       if (localStorage.getItem('istAktiv') === '2')
@@ -76,6 +77,8 @@ export class AppComponent implements OnInit {
         this.adalService.login();
       }
     });
+    */
+    this.adalService.login();
 
   }
 

@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   providedIn: 'root'
 })
 export class DashboardService {
+  url = 'http://srv-automate:3000/';
 
   constructor() { }
 

@@ -7,32 +7,33 @@ import { Subject, Observable } from 'rxjs';
 })
 export class SkillstatusService {
   private listners = new Subject<any>();
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) { }
 
 
   setSkillStatus(newSkillStatus: any) {
-    return this.httpClient.post(`http://localhost:3000/skillstatus`, newSkillStatus);
+    return this.httpClient.post(this.url + `skillstatus`, newSkillStatus);
   }
 
    getSkillTableUser(id: number) {
-    return this.httpClient.get(`http://localhost:3000/skillstatus/` + id);
+    return this.httpClient.get(this.url + `skillstatus/` + id);
   }
 
   updateSkillStatus(skillstatus: any) {
-    return this.httpClient.put(`http://localhost:3000/skillstatus`, skillstatus);
+    return this.httpClient.put(this.url + `skillstatus`, skillstatus);
   }
 
   updateVermittlerSkillStatus(vermittlerSkillStatus: any) {
-    return this.httpClient.put(`http://localhost:3000/vermittler`, vermittlerSkillStatus);
+    return this.httpClient.put(this.url + `vermittler`, vermittlerSkillStatus);
   }
 
   updateVermittlerSkillStatusSpecific(verSkillStatus: any) {
-    return this.httpClient.put(`http://localhost:3000/vermittler/vermittler`, verSkillStatus);
+    return this.httpClient.put(this.url + `vermittler/vermittler`, verSkillStatus);
   }
 
   removeSkillStatus(id: number) {
-    return this.httpClient.delete(`http://localhost:3000/skillstatus/` + id);
+    return this.httpClient.delete(this.url + `skillstatus/` + id);
    }
 
 

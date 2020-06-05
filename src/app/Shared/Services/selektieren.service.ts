@@ -5,10 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SelektierenService {
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) { }
 
   getSelectUserID(userID: any) {
-    return this.httpClient.get(`http://localhost:3000/selektieren/` + userID);
+    return this.httpClient.get(this.url + `selektieren/` + userID);
   }
 }

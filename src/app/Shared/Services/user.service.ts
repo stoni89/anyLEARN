@@ -8,6 +8,7 @@ import { Subject, Observable } from 'rxjs';
 })
 export class UserService {
   private listners = new Subject<any>();
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -49,35 +50,35 @@ export class UserService {
 
 
   getAllUsers() {
-    return this.httpClient.get(`http://localhost:3000/user`);
+    return this.httpClient.get(this.url + `user`);
   }
 
   getAllUsersAktiv() {
-    return this.httpClient.get(`http://localhost:3000/user/user/aktiv`);
+    return this.httpClient.get(this.url + `user/user/aktiv`);
   }
 
   getAllUsersAzubi() {
-    return this.httpClient.get(`http://localhost:3000/user/user/azubi`);
+    return this.httpClient.get(this.url + `user/user/azubi`);
   }
 
   getSpezificUsers(id: number) {
-    return this.httpClient.get(`http://localhost:3000/user/` + id);
+    return this.httpClient.get(this.url + `user/` + id);
   }
 
   getSpezificUsersMail(mail: string) {
-    return this.httpClient.get(`http://localhost:3000/user/mail/` + mail);
+    return this.httpClient.get(this.url + `user/mail/` + mail);
   }
 
   setUser(newUser: any) {
-    return this.httpClient.post(`http://localhost:3000/user`, newUser);
+    return this.httpClient.post(this.url + `user`, newUser);
   }
 
   updateUser(editUser: any) {
-    return this.httpClient.put(`http://localhost:3000/user`, editUser);
+    return this.httpClient.put(this.url + `user`, editUser);
   }
 
   getLastUserID() {
-    return this.httpClient.get(`http://localhost:3000/user/max/max`);
+    return this.httpClient.get(this.url + `user/max/max`);
   }
 
 

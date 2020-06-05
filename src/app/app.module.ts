@@ -109,13 +109,13 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
     MsAdalAngular6Module.forRoot({
       tenant: '0a9e2776-62d5-46c5-9650-ec0cc551babf',
       clientId: 'df4e9ceb-596c-4ff5-b344-db62b0aab33d',
-      redirectUri: 'https://srv-automate/anylearn',
+      redirectUri: 'https://srv-automate/anylearn/',
       endpoints: {
         'https://graph.microsoft.com': 'df4e9ceb-596c-4ff5-b344-db62b0aab33d', // this is for feteching the access token
       },
       navigateToLoginRequestUrl: false,
       cacheLocation: 'localStorage',
-      postLogoutRedirectUri: 'http://localhost:4200/logout',
+      postLogoutRedirectUri: 'https://srv-automate/anylearn/logout',
     })
   ],
   providers: [AuthenticationGuard, PostService],

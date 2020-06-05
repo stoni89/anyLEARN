@@ -9,6 +9,7 @@ import { Subject, Observable } from 'rxjs';
 export class SkillService {
   private listners = new Subject<any>();
   currentData: any;
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -58,27 +59,27 @@ export class SkillService {
   }
 
   getAllSkills() {
-    return this.httpClient.get(`http://localhost:3000/skill`);
+    return this.httpClient.get(this.url + `skill`);
   }
 
   getSpezificSkill(id: number) {
-    this.httpClient.get(`http://localhost:3000/skill/` + id);
+    this.httpClient.get(this.url + `skill/` + id);
   }
 
   setSkill(newUser: any) {
-    return this.httpClient.post(`http://localhost:3000/skill`, newUser);
+    return this.httpClient.post(this.url + `skill`, newUser);
   }
 
   updateSkill(editUser: any) {
-    return this.httpClient.put(`http://localhost:3000/skill`, editUser);
+    return this.httpClient.put(this.url + `skill`, editUser);
   }
 
   getLastSkillID() {
-    return this.httpClient.get(`http://localhost:3000/skill/max`);
+    return this.httpClient.get(this.url + `skill/max`);
   }
 
   removeSkill(id: number) {
-    return this.httpClient.delete(`http://localhost:3000/skill/` + id);
+    return this.httpClient.delete(this.url + `skill/` + id);
    }
 
 

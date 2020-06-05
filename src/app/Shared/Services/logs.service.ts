@@ -7,15 +7,16 @@ import { Subject, Observable } from 'rxjs';
 })
 export class LogsService {
   private listners = new Subject<any>();
+  url = 'http://srv-automate:3000/';
 
   constructor(private httpClient: HttpClient) { }
 
   getLogs() {
-    return this.httpClient.get(`http://localhost:3000/logs`);
+    return this.httpClient.get(this.url + `logs`);
   }
 
   newLogs(newLogs: any) {
-    return this.httpClient.post(`http://localhost:3000/logs`, newLogs);
+    return this.httpClient.post(this.url + `logs`, newLogs);
   }
 
 
