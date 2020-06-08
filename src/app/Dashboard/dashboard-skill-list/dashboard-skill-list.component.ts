@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { StatusChangeItemComponent } from './../status-change-item/status-change-item.component';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { DashboardListItemComponent } from './../dashboard-list-item/dashboard-list-item.component';
@@ -25,6 +26,10 @@ export class DashboardSkillListComponent implements OnInit {
   vermittler: any;
   userID = localStorage.getItem('userid');
   selectUser;
+  gesamt;
+  offen;
+  bearbeitung;
+  erledigt;
   displayedColumns = ['status', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
 
   userRole: string = localStorage.getItem('role');
@@ -75,7 +80,23 @@ export class DashboardSkillListComponent implements OnInit {
       this.vermittler = data;
     });
 
+    this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.offen = data3[0]['offen'];
+    });
+
+    this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.bearbeitung = data3[0]['bearbeitung'];
+    });
+
+    this.skillstatusService.getSkillStatusCountErledigt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.erledigt = data3[0]['erledigt'];
+    });
+
+    this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.gesamt = data3[0]['gesamt'];
+    });
   }
+
 
 
   print() {
@@ -105,6 +126,22 @@ export class DashboardSkillListComponent implements OnInit {
       this.datasource.paginator = this.paginator;
       this.applyFilter();
     });
+
+    this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.offen = data3[0]['offen'];
+    });
+
+    this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.bearbeitung = data3[0]['bearbeitung'];
+    });
+
+    this.skillstatusService.getSkillStatusCountErledigt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.erledigt = data3[0]['erledigt'];
+    });
+
+    this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.gesamt = data3[0]['gesamt'];
+    });
   }
 
 
@@ -126,6 +163,22 @@ export class DashboardSkillListComponent implements OnInit {
       this.datasource = new MatTableDataSource(data as any);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
+
+      this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.offen = data3[0]['offen'];
+      });
+
+      this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.bearbeitung = data3[0]['bearbeitung'];
+      });
+
+      this.skillstatusService.getSkillStatusCountErledigt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.erledigt = data3[0]['erledigt'];
+      });
+
+      this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.gesamt = data3[0]['gesamt'];
+      });
     });
   }
 

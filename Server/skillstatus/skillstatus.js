@@ -16,6 +16,34 @@ var sst = {
                     'INNER JOIN kategorie k ON (k.kategorie_id = sk.kategorie_id) ' +
                     'WHERE u.kategorie_id = sk.kategorie_id && u.user_id = ' + id + ' GROUP BY sst.skill_id ORDER BY s.zeitpunkt, s.skill', callback);
   },
+  getSkillStatusCountGesamt: function(id, callback)
+  {
+    return db.query('SELECT COUNT(*) AS gesamt, u.kategorie_id FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id && sst.user_id = ' + id, callback)
+  },
+  getSkillStatusCountOffen: function(id, callback)
+  {
+    return db.query('SELECT COUNT(*) AS offen, u.kategorie_id FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id && sst.user_id = ' + id + ' && sst.status_id = 1', callback)
+  },
+  getSkillStatusCountBearbeitung: function(id, callback)
+  {
+    return db.query('SELECT COUNT(*) AS bearbeitung, u.kategorie_id FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id && sst.user_id = ' + id + ' && (sst.status_id = 2 || sst.status_id = 3)', callback)
+  },
+    getSkillStatusCountErledigt: function(id, callback)
+  {
+    return db.query('SELECT COUNT(*) AS erledigt, u.kategorie_id FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id && sst.user_id = ' + id + ' && sst.status_id = 4', callback)
+  },
   newSkillStatus: function(postdata, callback)
   {
     return db.query('INSERT INTO skillstatus (skill_id, user_id, status_id, vermittler_id) ' +

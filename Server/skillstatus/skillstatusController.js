@@ -30,6 +30,58 @@ router.get('/:user_id', function (req, res) {
   });
 });
 
+router.get('/countoffen/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  sst.getSkillStatusCountOffen(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/countbearbeitung/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  sst.getSkillStatusCountBearbeitung(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/counterledigt/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  sst.getSkillStatusCountErledigt(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/countgesamt/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  sst.getSkillStatusCountGesamt(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 router.put('/', function (req, res) {
   sst.updateSkillStatus(req.body, function(err,rows){
       if(err) {
