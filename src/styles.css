@@ -75,7 +75,7 @@ background: #eee;
 }
 
 .active-list-item {
-  color: darkred !important; /* Note: You could also use a custom theme */
+  color: #B80000 !important; /* Note: You could also use a custom theme */
 }
 
 #sidenav .menu-item mat-icon {
@@ -165,7 +165,7 @@ mat-footer-row mat-footer-cell {
 
 .red {
   width: 120px;
-  background-color: darkred;
+  background-color: #B80000;
   color: white;
   width: 120px;
 }

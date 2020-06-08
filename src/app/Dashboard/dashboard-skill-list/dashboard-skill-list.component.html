@@ -30,18 +30,18 @@
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
     <td mat-cell *matCellDef="let element">
-      <mat-icon *ngIf="element.status == 'Offen' && userRole == 'User'" [ngStyle]="{'color': 'darkred', 'justify-content': 'center', 'padding-top': '5px'}"
+      <mat-icon *ngIf="element.status == 'Offen' && userRole == 'User'" [ngStyle]="{'color': 'red', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="Offen" matTooltipPosition="right"> brightness_1 </mat-icon>
       <mat-icon *ngIf="element.status == 'In Bearbeitung' && userRole == 'User'" [ngStyle]="{'color': 'darkorange', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="In Bearbeitung" matTooltipPosition="right"> brightness_1 </mat-icon>
       <mat-icon *ngIf="element.status == 'In Bearbeitung (Warte auf Abschluss)' && userRole == 'User'" [ngStyle]="{'color': '#D4DB05', 'justify-content': 'center', 'padding-top': '5px'}"
                  matTooltip="In Bearbeitung (Warte auf Abschluss)" matTooltipPosition="right"> brightness_1 </mat-icon>
       <mat-icon *ngIf="element.status == 'Erledigt' && userRole == 'User'" [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"
-                 matTooltip="Erledigt" matTooltipPosition="right"> done </mat-icon>
+                 matTooltip="Erledigt" matTooltipPosition="right"> brightness_1 </mat-icon>
 
       <button mat-icon-button  matTooltip="Offen" matTooltipPosition="right"
               *ngIf="element.status == 'Offen' && (userRole == 'Administrator' || userRole == 'Vermittler')" (click)="onStatusChange(element)">
-        <mat-icon [ngStyle]="{'color': 'darkred', 'justify-content': 'center', 'padding-top': '5px'}">brightness_1</mat-icon>
+        <mat-icon [ngStyle]="{'color': 'red', 'justify-content': 'center', 'padding-top': '5px'}">brightness_1</mat-icon>
       </button>
       <button mat-icon-button  matTooltip="In Bearbeitung" matTooltipPosition="right" *ngIf="element.status == 'In Bearbeitung' && (userRole == 'Administrator'
                                || userRole == 'Vermittler')" (click)="onStatusChange(element)">
@@ -53,7 +53,7 @@
       </button>
       <button mat-icon-button  matTooltip="Erledigt" matTooltipPosition="right" *ngIf="element.status == 'Erledigt' && (userRole == 'Administrator'
                                         || userRole == 'Vermittler')" (click)="onStatusChange(element)">
-        <mat-icon [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}">done</mat-icon>
+        <mat-icon [ngStyle]="{'color': 'darkgreen', 'justify-content': 'center', 'padding-top': '5px'}"> brightness_1 </mat-icon>
       </button>
     </td>
   </ng-container>

@@ -45,6 +45,7 @@ export class PostListComponent implements OnInit {
       this.datasource = new MatTableDataSource(data as any);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
+      this.applyFilter();
     });
   }
 
