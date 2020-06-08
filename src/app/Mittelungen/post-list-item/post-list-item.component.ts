@@ -36,8 +36,10 @@ export class PostListItemComponent implements OnInit {
         skillstatus_id: data.skillstatus_id
       }
     ];
-    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number,
+                          skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
       {
+        // tslint:disable-next-line: object-literal-shorthand
         date: date,
         text: 'Abschluss für den Skill "' + skill + '" wurde genehmigt',
         user_id: data.fromuser_id,
@@ -67,8 +69,10 @@ export class PostListItemComponent implements OnInit {
         skillstatus_id: data.skillstatus_id
       }
     ];
-    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number,
+                          skill_id: number, kategorie: string, bemerkung: string, skillstatus_id: number}> = [
       {
+        // tslint:disable-next-line: object-literal-shorthand
         date: date,
         text: 'Abschluss für den Skill "' + skill + '" wurde abgelehnt',
         user_id: data.fromuser_id,

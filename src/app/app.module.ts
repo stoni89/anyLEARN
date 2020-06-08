@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -92,11 +93,12 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
     MatCardModule,
     MatTooltipModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSortModule,
     MatTableExporterModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatDatepickerModule,
     MatBadgeModule,
     MatInputModule,
     MatFormFieldModule,
@@ -119,7 +121,9 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
       postLogoutRedirectUri: 'https://srv-automate/anylearn/logout',
     })
   ],
-  providers: [AuthenticationGuard, PostService],
+  providers: [AuthenticationGuard, PostService, MatDatepickerModule, MatNativeDateModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+  ],
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
                     StatusChangeItemComponent, PostListItemComponent, SkillverwaltungSkillRemoveComponent]

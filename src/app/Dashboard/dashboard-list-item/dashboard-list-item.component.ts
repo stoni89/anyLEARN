@@ -42,6 +42,26 @@ export class DashboardListItemComponent implements OnInit {
       this.openRedSnackBar('Konnte nicht gestartet werden!', 'Schließen');
     });
 
+    const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+    const skill = this.dashboardService.form.value.skill;
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number,
+                          kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+      {
+        // tslint:disable-next-line: object-literal-shorthand
+        date: date,
+        text: 'Der Skill "' + skill + '" wurde gestartet',
+        user_id: this.dashboardService.form.value.verID,
+        fromuser_id: this.dashboardService.form.value.user_id,
+        skill_id: this.dashboardService.form.value.skill_id,
+        kategorie: 'Information',
+        bemerkung: null,
+        skillstatus_id: this.dashboardService.form.value.skillstatus_id
+      }
+    ];
+
+    this.postService.newPost(newItem[0]).subscribe();
+    this.postService.updateBadge();
+
     this.onClose();
   }
 

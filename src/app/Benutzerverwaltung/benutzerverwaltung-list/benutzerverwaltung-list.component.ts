@@ -17,7 +17,7 @@ export class BenutzerverwaltungListComponent implements OnInit {
 
   currentData: any;
   datasource;
-  displayedColumns = ['istAktiv', 'kuerzel' , 'vorname', 'nachname', 'name', 'mail', 'kategorie', 'rolle', 'actions'];
+  displayedColumns = ['istAktiv', 'kuerzel' , 'vorname', 'nachname', 'name', 'mail', 'kategorie', 'eintritt', 'rolle', 'actions'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

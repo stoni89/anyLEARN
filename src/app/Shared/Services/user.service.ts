@@ -23,6 +23,7 @@ export class UserService {
     rollen_id: new FormControl(1, Validators.required),
     name: new FormControl(''),
     rolle: new FormControl(''),
+    eintritt: new FormControl(),
     kategorie: new FormControl(''),
     kategorie_id: new FormControl(1, Validators.required)
   });
@@ -34,6 +35,7 @@ export class UserService {
       vorname: '',
       mail: '',
       kuerzel: '',
+      eintritt: null,
       user_id: null,
       rollen_id: 1,
       kategorie_id: 1,

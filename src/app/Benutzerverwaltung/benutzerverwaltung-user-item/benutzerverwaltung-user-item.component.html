@@ -8,7 +8,7 @@
   </mat-toolbar>
 
   <form [formGroup]="userService.form" class="normal-form">
-    <mat-grid-list cols="1" rowHeight="550px">
+    <mat-grid-list cols="1" rowHeight="600px">
       <mat-grid-tile>
         <div class="controles-container" style="border: black; border-radius: 1px;">
           <mat-form-field>
@@ -47,6 +47,12 @@
             <mat-select formControlName="rollen_id" placeholder="Rolle*">
               <mat-option *ngFor="let rol of rollen" [value]="rol.rollen_id">{{rol.rolle}}</mat-option>
             </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Datum auswählen</mat-label>
+            <input matInput [matDatepicker]="myDatepicker" formControlName="eintritt">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
           </mat-form-field>
 
           <div class="button-row">
