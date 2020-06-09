@@ -1,3 +1,5 @@
+import { SkillstatusService } from './../../Shared/Services/skillstatus.service';
+import { SelektierenStatusChangeComponent } from './../selektieren-status-change/selektieren-status-change.component';
 import { SelektierenService } from './../../Shared/Services/selektieren.service';
 import { UserService } from './../../Shared/Services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -6,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import 'jspdf-autotable';
 import * as jsPDF from 'jspdf';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-selektieren-list',
@@ -27,7 +30,13 @@ export class SelektierenListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(public userService: UserService, public selectService: SelektierenService) { }
+  constructor(public userService: UserService, public selectService: SelektierenService,
+              public skillstatusService: SkillstatusService, private dialog: MatDialog) {
+    this.skillstatusService.listen().subscribe(async data => {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      this.refreshSkillList();
+    });
+  }
 
   ngOnInit() {
     this.userService.getAllUsersAzubi().subscribe(data => {
@@ -81,5 +90,34 @@ export class SelektierenListComponent implements OnInit {
     doc.save('Selektieren.pdf');
   }
 
+  onStatusChange(element) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    dialogConfig.height = '36%';
+    dialogConfig.data = {skillstatus_id: element.skillstatus_id, status_id: element.status_id,
+                         status: element.status, skill: element.skill, nachname: element.nachname,
+                         skill_id: element.skill_id, vermittler_id: element.vermittler_id,
+                         user_id: element.user_id};
+    this.dialog.open(SelektierenStatusChangeComponent, dialogConfig);
+  }
 
+
+  refreshSkillList() {
+    this.format.length = 0;
+
+    this.selectUsers.forEach(element => {
+      this.format.push(element);
+    });
+
+    this.dataTable = this.format.toString();
+
+    this.selectService.getSelectUserID(this.dataTable).subscribe(data => {
+      this.datasource = new MatTableDataSource(data as any);
+      this.datasource.sort = this.sort;
+      this.datasource.paginator = this.paginator;
+      this.applyFilter();
+    });
+  }
 }

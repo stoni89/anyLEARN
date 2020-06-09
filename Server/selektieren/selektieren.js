@@ -3,7 +3,7 @@ var db = require('../db');
 var select = {
     getSelectUserID: function(user_id, callback)
     {
-        return db.query('SELECT s.skill, sst.status_id, sst.skill_id, sta.status, u.nachname, sst.vermittler_id, uu.nachname AS vermittler ' +
+        return db.query('SELECT s.skill, sst.status_id, sst.skillstatus_id, sst.user_id, sst.skill_id, sta.status, u.nachname, sst.vermittler_id, uu.nachname AS vermittler ' +
                         'FROM skillstatus sst ' +
                         'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
                         'INNER JOIN users uu ON (uu.user_id = sst.vermittler_id) ' +

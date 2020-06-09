@@ -53,6 +53,7 @@ import { LogsListComponent } from './Logs/logs-list/logs-list.component';
 import { SkillverwaltungSkillRemoveComponent } from './Skillverwaltung/skillverwaltung-skill-remove/skillverwaltung-skill-remove.component';
 import { SelektierenComponent } from './Selektieren/selektieren/selektieren.component';
 import { SelektierenListComponent } from './Selektieren/selektieren-list/selektieren-list.component';
+import { SelektierenStatusChangeComponent } from './Selektieren/selektieren-status-change/selektieren-status-change.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
     LogsListComponent,
     SkillverwaltungSkillRemoveComponent,
     SelektierenComponent,
-    SelektierenListComponent
+    SelektierenListComponent,
+    SelektierenStatusChangeComponent
   ],
   imports: [
     HttpClientModule,
@@ -111,7 +113,7 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
     MsAdalAngular6Module.forRoot({
       tenant: '0a9e2776-62d5-46c5-9650-ec0cc551babf',
       clientId: 'df4e9ceb-596c-4ff5-b344-db62b0aab33d',
-      //redirectUri: 'https://srv-automate/anylearn/',
+      // redirectUri: 'https://srv-automate/anylearn/',
       redirectUri: 'http://localhost:4200/',
       endpoints: {
         'https://graph.microsoft.com': 'df4e9ceb-596c-4ff5-b344-db62b0aab33d', // this is for feteching the access token
@@ -126,7 +128,7 @@ import { SelektierenListComponent } from './Selektieren/selektieren-list/selekti
   ],
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
-                    StatusChangeItemComponent, PostListItemComponent, SkillverwaltungSkillRemoveComponent]
+                    StatusChangeItemComponent, PostListItemComponent, SkillverwaltungSkillRemoveComponent, SelektierenStatusChangeComponent]
 })
 export class AppModule {
 }
