@@ -3,7 +3,7 @@ var db = require('../db');
 var sst = {
   getSkillTableUser: function(id, callback)
   {
-    return db.query('SELECT sst.skillstatus_id, sst.skill_id, sst.status_id, sst.user_id, s.skill, s.skill, s.links, s.lernziel, s.inhalt, s.zeitaufwand, sst.vermittler_id AS verID, ' +
+    return db.query('SELECT sst.skillstatus_id, sst.skill_id, sst.status_id, sst.ueberschritten, sst.user_id, s.skill, s.skill, s.links, s.lernziel, s.inhalt, s.zeitaufwand, sst.vermittler_id AS verID, ' +
                     'FORMAT(z.zeitpunkt,1) AS zeitpunkt, s.vermittler_id, s.bereich_id, s.nachweis, b.bereich, group_concat(k.kategorie separator ", ") kategorie, sta.status, ' +
                     'group_concat(sk.kategorie_id separator ", ") kategorie_id, u.nachname AS nachname, uu.nachname AS vermittler ' +
                     'FROM skillstatus sst ' +
@@ -47,8 +47,8 @@ var sst = {
   },
   newSkillStatus: function(postdata, callback)
   {
-    return db.query('INSERT INTO skillstatus (skill_id, user_id, status_id, vermittler_id) ' +
-                    'values(?,?,?,?)', [postdata.skill_id, postdata.user_id, postdata.status_id, postdata.vermittler_id], callback)
+    return db.query('INSERT INTO skillstatus (skill_id, user_id, status_id, vermittler_id, ueberschritten) ' +
+                    'values(?,?,?,?)', [postdata.skill_id, postdata.user_id, postdata.status_id, postdata.vermittler_id, postdate.ueberschritten], callback)
   },
   updateSkillStatus: function(postdata, callback)
   {

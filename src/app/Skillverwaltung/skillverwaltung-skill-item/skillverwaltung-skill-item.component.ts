@@ -115,8 +115,10 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               }
 
               arr.forEach(element => {
-                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number, vermittler_id: number}> = [
-                  { skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1, vermittler_id: vermitID}];
+                const statusitem: Array<{ skill_id: number, user_id: number, status_id: number, vermittler_id: number,
+                                          ueberschritten: string}> = [
+                  { skill_id: da[0].skill_id, user_id: data[element].user_id, status_id: 1, vermittler_id: vermitID,
+                    ueberschritten: 'false'}];
                 this.skillstatusService.setSkillStatus(statusitem[0]).subscribe();
               });
             });

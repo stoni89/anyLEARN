@@ -202,3 +202,11 @@ mat-footer-row mat-footer-cell {
   border-left: 1px solid whitesmoke;
   height: 100px;
 }
+
+.row-color-false {
+  background-color: white;
+}
+
+.row-color-true {
+  background-color: rgb(245, 241, 3);
+}

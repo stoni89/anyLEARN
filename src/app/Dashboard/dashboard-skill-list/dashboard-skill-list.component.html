@@ -125,7 +125,9 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      [ngClass]="{'row-color-false': row.status_id > 1 && row.ueberschritten == 'false','row-color-true' : row.status_id == 1 && row.ueberschritten == 'true'}">
+  </tr>
 
   <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource != null}"></mat-footer-row>
   <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(datasource != null && datasource.data.length == 0)}"></mat-footer-row>
