@@ -47,7 +47,7 @@ export class StatusChangeItemComponent implements OnInit {
         date: date,
         text: 'Der Status vom Skill "' + skill + '" wurde angepasst',
         user_id: this.data.user_id,
-        fromuser_id: this.data.vermittler_id,
+        fromuser_id: parseInt(localStorage.getItem('userid')),
         skill_id: this.data.skill_id,
         kategorie: 'Information',
         bemerkung: null,
