@@ -18,8 +18,9 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="zeitpunkt" matInput placeholder="Zeitpunkt* (Jahr.Halbjahr)" type="number">
-          <mat-error *ngIf="skillService.form.controls['zeitpunkt'].errors?.required">Pflichtfeld.</mat-error>
+          <mat-select formControlName="zeitpunkt_id" placeholder="Zeitpunkt*">
+            <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
           <mat-select [(ngModel)]="selected" multiple placeholder="Kategorie*" [ngModelOptions]="{standalone: true}" style="font-size: small">

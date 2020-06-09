@@ -4,23 +4,25 @@ var skill = {
 
     getAllSkills: function(callback)
     {
-        return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, FORMAT(s.zeitpunkt,1) AS zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
+        return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt_id, FORMAT(z.zeitpunkt,1) AS zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
                         's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
                         'group_concat(sk.kategorie_id separator ", ") kategorie_id ' +
                         'FROM skillkategorie sk ' +
                         'INNER JOIN skills s ON (s.skill_id = sk.skill_id) ' +
+                        'INNER JOIN zeitpunkt z ON (z.zeitpunkt_id = s.zeitpunkt_id) ' +
                         'INNER JOIN kategorie k ON (k.kategorie_id = sk.kategorie_id) ' +
                         'INNER JOIN users u ON (u.user_id = s.vermittler_id) ' +
                         'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
-                        'GROUP BY s.skill_ID ORDER BY s.zeitpunkt, s.skill', callback);
+                        'GROUP BY s.skill_ID ORDER BY z.zeitpunkt, s.skill', callback);
     },
     getSpezificSkill: function(id, callback)
     {
-      return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, FORMAT(s.zeitpunkt,1) AS zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
+      return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt_id, FORMAT(z.zeitpunkt,1) AS zeitpunkt, s.links, s.vermittler_id, s.bereich_id, ' +
                       's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
                       'group_concat(sk.kategorie_id separator ", ") kategorie_id ' +
                       'FROM skillkategorie sk ' +
                       'INNER JOIN skills s ON (s.skill_id = sk.skill_id) ' +
+                      'INNER JOIN zeitpunkt z ON (z.zeitpunkt_id = s.zeitpunkt_id) ' +
                       'INNER JOIN kategorie k ON (k.kategorie_id = sk.kategorie_id) ' +
                       'INNER JOIN users u ON (u.user_id = s.vermittler_id) ' +
                       'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
@@ -32,14 +34,14 @@ var skill = {
     },
     newSkill: function(postdata, callback)
     {
-      return db.query('INSERT INTO skills (skill, lernziel, inhalt, zeitaufwand, zeitpunkt, vermittler_id, bereich_id, nachweis, links) ' +
-                      'values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
+      return db.query('INSERT INTO skills (skill, lernziel, inhalt, zeitaufwand, zeitpunkt_id, vermittler_id, bereich_id, nachweis, links) ' +
+                      'values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt_id,
                                                          postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.links], callback)
     },
     updateSkill: function(postdata, callback)
     {
-      return db.query('UPDATE skills SET skill=?, lernziel=?, inhalt=?, zeitaufwand=?, zeitpunkt=?, vermittler_id=?, bereich_id=?, nachweis=?, links=? ' +
-                      'WHERE skill_id=?', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt,
+      return db.query('UPDATE skills SET skill=?, lernziel=?, inhalt=?, zeitaufwand=?, zeitpunkt_id=?, vermittler_id=?, bereich_id=?, nachweis=?, links=? ' +
+                      'WHERE skill_id=?', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt_id,
                                                          postdata.vermittler_id, postdata.bereich_id, postdata.nachweis, postdata.links, postdata.skill_id], callback)
     },
     removeSkill: function(id, callback)

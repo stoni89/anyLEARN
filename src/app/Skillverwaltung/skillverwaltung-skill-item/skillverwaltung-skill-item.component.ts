@@ -1,3 +1,4 @@
+import { ZeitpunktService } from './../../Shared/Services/zeitpunkt.service';
 import { Component, OnInit} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkillService } from '../../Shared/Services/skill.service';
@@ -35,6 +36,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               public skillstatusService: SkillstatusService,
               public skillkategorieService: SkillkategorieService,
               public skillService: SkillService,
+              public zeitpunktService: ZeitpunktService,
               public logService: LogsService) {}
 
 
@@ -51,6 +53,9 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
       this.category = data;
     });
 
+    this.zeitpunktService.getAllZeitpunkt().subscribe(data => {
+      this.zeitpunkt = data;
+    });
 
     this.selectedItemName = this.skillService.form.value.skill;
 

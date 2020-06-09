@@ -17,6 +17,7 @@ var statusController = require('./status/statusController');
 var postController = require('./mitteilung/mitteilungController');
 var logsController = require('./logs/logsController');
 var selectController = require('./selektieren/selektierenController');
+var zeitpunktController = require('./zeitpunkt/zeitpunktController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -31,6 +32,7 @@ app.use('/status', statusController);
 app.use('/post', postController);
 app.use('/logs', logsController);
 app.use('/selektieren', selectController);
+app.use('/zeitpunkt', zeitpunktController);
 
 module.exports = app;
 
