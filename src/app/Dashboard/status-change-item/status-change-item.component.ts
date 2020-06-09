@@ -1,3 +1,5 @@
+import { PostService } from './../../Shared/Services/post.service';
+import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { StatusService } from './../../Shared/Services/status.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,7 +19,7 @@ export class StatusChangeItemComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<StatusChangeItemComponent>, @Inject(MAT_DIALOG_DATA) public data,
               public statusService: StatusService, public skillstatusService: SkillstatusService,
-              private snackbar: MatSnackBar) { }
+              public dashboardService: DashboardService, public postService: PostService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.statusService.getAllStatus().subscribe(data => {
@@ -35,6 +37,25 @@ export class StatusChangeItemComponent implements OnInit {
     }, error => {
       this.openRedSnackBar('Änderung fehlgeschlagen!', 'Schließen');
     });
+
+    const skill = this.data.skill;
+    const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+    const newItem: Array<{date: string, text: string, user_id: number, fromuser_id: number, skill_id: number,
+                          kategorie: string, bemerkung: string, skillstatus_id: number}> = [
+      {
+        // tslint:disable-next-line: object-literal-shorthand
+        date: date,
+        text: 'Der Status vom Skill "' + skill + '" wurde angepasst',
+        user_id: this.data.user_id,
+        fromuser_id: this.data.vermittler_id,
+        skill_id: this.data.skill_id,
+        kategorie: 'Information',
+        bemerkung: null,
+        skillstatus_id: this.data.skillstatus_id
+      }
+    ];
+
+    this.postService.newPost(newItem[0]).subscribe();
 
     this.onClose();
   }

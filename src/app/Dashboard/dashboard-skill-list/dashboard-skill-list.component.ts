@@ -205,7 +205,9 @@ export class DashboardSkillListComponent implements OnInit {
     dialogConfig.width = '30%';
     dialogConfig.height = '36%';
     dialogConfig.data = {skillstatus_id: element.skillstatus_id, status_id: element.status_id,
-                         status: element.status, skill: element.skill, nachname: element.nachname};
+                         status: element.status, skill: element.skill, nachname: element.nachname,
+                         skill_id: element.skill_id, vermittler_id: element.vermittler_id,
+                         user_id: element.user_id};
     this.dialog.open(StatusChangeItemComponent, dialogConfig);
   }
 
