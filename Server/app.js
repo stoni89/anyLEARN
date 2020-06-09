@@ -18,6 +18,7 @@ var postController = require('./mitteilung/mitteilungController');
 var logsController = require('./logs/logsController');
 var selectController = require('./selektieren/selektierenController');
 var zeitpunktController = require('./zeitpunkt/zeitpunktController');
+var sendMailController = require('./sendMail/sendMail');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -33,6 +34,7 @@ app.use('/post', postController);
 app.use('/logs', logsController);
 app.use('/selektieren', selectController);
 app.use('/zeitpunkt', zeitpunktController);
+app.use('/sendMail', sendMailController);
 
 module.exports = app;
 

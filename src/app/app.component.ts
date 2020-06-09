@@ -1,3 +1,4 @@
+import { SendMailService } from './Shared/Services/send-mail.service';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean;
 
   constructor(private adalService: MsAdalAngular6Service, public userService: UserService, public postService: PostService,
-              private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar) {
+              private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar,
+              public sendMailService: SendMailService) {
     // tslint:disable-next-line: no-shadowed-variable
   }
 
