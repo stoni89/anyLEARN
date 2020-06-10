@@ -55,9 +55,6 @@
           <textarea formControlName="nachweis" matInput rows="5" placeholder="Nachweis*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
-        <mat-form-field >
-          <textarea formControlName="links" matInput rows="5" placeholder="Links (1 Link pro Zeile)"></textarea>
-        </mat-form-field>
         <div class="button-row">
           <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
                   class="green" [ngStyle]="{'float': 'right', 'margin-top': '8px'}">Anlegen</button>

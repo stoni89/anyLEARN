@@ -65,6 +65,7 @@
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let row">
       <button mat-icon-button (click)="onEdit(row)" matTooltip="Bearbeiten" matTooltipPosition="left"><mat-icon>launch</mat-icon></button>
+      <button mat-icon-button (click)="onLink(row)" matTooltip="Links" matTooltipPosition="right"><mat-icon>link</mat-icon></button>
       <button mat-icon-button (click)="onDelete(row)" color="warn" matTooltip="Löschen" matTooltipPosition="right"><mat-icon>delete_outline</mat-icon></button>
     </td>
   </ng-container>

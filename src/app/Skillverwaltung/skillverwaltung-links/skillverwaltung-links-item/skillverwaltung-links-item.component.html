@@ -1,0 +1,28 @@
+<mat-toolbar [ngStyle]="{'background-color': '#B80000'}">
+  <span [ngStyle]="{'color': 'white'}">Neuer Link</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1" ><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+</mat-toolbar>
+
+<form [formGroup]="linksService.form" class="normal-form">
+  <mat-grid-list cols="1" rowHeight="130px">
+    <mat-grid-tile>
+      <div class="controles-container" >
+        <mat-form-field>
+          <input formControlName="bezeichnung" matInput placeholder="Bezeichnung*">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="url" matInput placeholder="URL*">
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="button-row">
+          <button mat-raised-button type="submit" [disabled]="linksService.form.invalid" (click)="onSubmit()"
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '8px'}">Anlegen</button>
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
+

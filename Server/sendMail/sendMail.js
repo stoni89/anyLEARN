@@ -5,32 +5,32 @@ router.use(bodyParser.json());
 const nodemailer = require('nodemailer');
 
 
-router.post('/', (req, res) => {
-  let user = req.body;
-  sendMail(user, info => {
-    console.log('The Mail has been send!')
-    res.send(info);
-  });
-});
-
-async function sendMail(user, callback) {
-  let transporter = nodemailer.createTransport({
-    host: 'anyware-ag.mail.protection.outlook.com',
-    port: 465,
-    secure: false
+router.post("/", (req, res) => {
+  var transporter = nodemailer.createTransport({
+      host: "anyware-ag.mail.protection.outlook.com",
+      secureConnection: false,
+      port: 587,
+      tls: {
+          chipers: "SSLv3"
+      },
+      auth: {
+          user: "js@anyware.ag",
+          pass: "js1234##"
+      }
   });
 
   var mailOptions = {
-    from: user.email,
-    to: user.email,
-    subject: 'Test',
-    text: 'test'
+      from: "xxx@hotmail.com",
+      to: "xxx@gmail.com",
+      subject: "Nodejs Mail",
+      text: "this is the email's body text..."
   };
 
-  let info = await transporter.sendMail(mailOptions);
-
-  callback(info);
-}
+  transporter.sendMail(mailOptions, function(error, info) {
+      if (error) console.log(error);
+      else console.log("Message sent successfully: " + info.response);
+  });
+})
 
 
 

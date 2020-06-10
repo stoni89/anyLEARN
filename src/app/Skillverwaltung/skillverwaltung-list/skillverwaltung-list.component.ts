@@ -1,3 +1,4 @@
+import { SkillverwaltungLinksComponent } from './../skillverwaltung-links/skillverwaltung-links.component';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -92,6 +93,16 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.height = '30%';
     dialogConfig.data = {skill: row.skill, skill_id: row.skill_id};
     this.dialog.open(SkillverwaltungSkillRemoveComponent, dialogConfig);
+  }
+
+  onLink(row) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '40%';
+    dialogConfig.height = '60%';
+    dialogConfig.data = {skill: row.skill, skill_id: row.skill_id};
+    this.dialog.open(SkillverwaltungLinksComponent, dialogConfig);
   }
 
   print() {

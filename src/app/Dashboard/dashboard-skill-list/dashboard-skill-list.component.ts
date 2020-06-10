@@ -13,6 +13,7 @@ import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import 'jspdf-autotable';
 import * as jsPDF from 'jspdf';
+import { DashboardLinksComponent } from '../dashboard-links/dashboard-links.component';
 
 
 @Component({
@@ -209,6 +210,16 @@ export class DashboardSkillListComponent implements OnInit {
                          skill_id: element.skill_id, vermittler_id: element.vermittler_id,
                          user_id: element.user_id};
     this.dialog.open(StatusChangeItemComponent, dialogConfig);
+  }
+
+  onLink(row) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '40%';
+    dialogConfig.height = '60%';
+    dialogConfig.data = {skill: row.skill, skill_id: row.skill_id};
+    this.dialog.open(DashboardLinksComponent, dialogConfig);
   }
 
   openGreenSnackBar(message, action) {

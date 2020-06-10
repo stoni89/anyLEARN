@@ -1,0 +1,58 @@
+<mat-toolbar [ngStyle]="{'background-color': '#B80000'}">
+  <span [ngStyle]="{'color': 'white'}">Links: {{data.skill}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+</mat-toolbar>
+
+<button mat-raised-button class="green" style="width: auto; margin-top: 10px; margin-left: 10px; margin-bottom: 10px;" (click)="onNew()">
+  <mat-icon>add</mat-icon>Neuer Link
+</button>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="datasource" matSort>
+
+    <ng-container matColumnDef="bezeichnung">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bezeichnung </th>
+      <td mat-cell *matCellDef="let element"> {{element.bezeichnung}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> URL </th>
+      <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="warn" matTooltip="Löschen" matTooltipPosition="left" (click)="onDelete(row)"><mat-icon>delete_outline</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+      <mat-header-cell *matFooterCellDef colspan="6">
+        Loading Data...
+      </mat-header-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="noData">
+      <mat-header-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-header-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource != null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(datasource != null && datasource.data.length == 0)}"></mat-footer-row>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="25" showFirstLastButtons> </mat-paginator>
+
+  </div>
+
+
+

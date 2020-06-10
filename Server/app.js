@@ -19,6 +19,7 @@ var logsController = require('./logs/logsController');
 var selectController = require('./selektieren/selektierenController');
 var zeitpunktController = require('./zeitpunkt/zeitpunktController');
 var sendMailController = require('./sendMail/sendMail');
+var linksController = require('./links/linksController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -35,6 +36,7 @@ app.use('/logs', logsController);
 app.use('/selektieren', selectController);
 app.use('/zeitpunkt', zeitpunktController);
 app.use('/sendMail', sendMailController);
+app.use('/links', linksController);
 
 module.exports = app;
 
