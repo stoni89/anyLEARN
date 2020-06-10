@@ -11,7 +11,13 @@ export class SendMailService {
   constructor(private httpClient: HttpClient) { }
 
   sendEmail() {
-    return this.httpClient.post(this.url + `sendMail`, {email: 'jens.steinbrech@anyware.ag'});
+    const user = {
+      email: 'js@anyware.ag'
+    };
+
+    return this.httpClient.post(this.url + `sendMail`, user).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }

@@ -10,6 +10,7 @@ import { formatDate } from '@angular/common';
 import { LogsService } from 'src/app/Shared/Services/logs.service';
 import { DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../AppDateAdapter';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-benutzerverwaltung-user-item',
@@ -60,6 +61,10 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
   }
 
   onSubmit() {
+    const formatdate: string = moment(this.userService.form.value.eintritt).format('YYYY-MM-DD');
+    this.userService.form.patchValue({eintritt: formatdate});
+    console.log(this.userService.form.value.eintritt);
+
     if (this.userService.form.valid) {
       if (!this.userService.form.get('user_id').value) {
         this.userService.setUser(this.userService.form.value).subscribe(data => {

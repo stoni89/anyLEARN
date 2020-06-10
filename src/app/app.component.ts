@@ -100,4 +100,8 @@ export class AppComponent implements OnInit {
   openRedSnackBar(message, action) {
     this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
   }
+
+  onClick() {
+    this.sendMailService.sendEmail();
+  }
 }

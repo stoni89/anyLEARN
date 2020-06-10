@@ -4,6 +4,8 @@
 
   <mat-label *ngIf="isAuthenticated" style="padding-right: 15px;">{{userName}}</mat-label>
 
+  <button mat-raised-button class="green" (click)="onClick()">Send Mail</button>
+
   <mat-icon
     style="margin-right: 30px; margin-left: 10px;"
     *ngIf="isAuthenticated"

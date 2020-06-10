@@ -4,40 +4,34 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 const nodemailer = require('nodemailer');
 
-router.get('/', (req, res) => {
-
-  res.send('api works');
-
-});
 
 router.post('/', (req, res) => {
-  console.log(req);
-  console.log(res);
-  var smtpConfig = {
-      host: 'anyware-ag.mail.protection.outlook.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: 'js@anyware.ag',
-        pass: 'js1234##'
-    }
-  }
-
-  var transporter = nodemailer.createTransport(smtpConfig);
-
-  var mailOptions = {
-      from: 'email',
-      to: 'email',
-      subject: 'Test',
-      text: 'test'
-  };
-
-  transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-          return console.log(error);
-      }
-      console.log('Message sent: ' + info.response);
+  let user = req.body;
+  sendMail(user, info => {
+    console.log('The Mail has been send!')
+    res.send(info);
   });
 });
+
+async function sendMail(user, callback) {
+  let transporter = nodemailer.createTransport({
+    host: 'anyware-ag.mail.protection.outlook.com',
+    port: 465,
+    secure: false
+  });
+
+  var mailOptions = {
+    from: user.email,
+    to: user.email,
+    subject: 'Test',
+    text: 'test'
+  };
+
+  let info = await transporter.sendMail(mailOptions);
+
+  callback(info);
+}
+
+
 
 module.exports = router;
