@@ -4,7 +4,7 @@
 
   <mat-label *ngIf="isAuthenticated" style="padding-right: 15px;">{{userName}}</mat-label>
 
-  <button mat-raised-button class="green" (click)="onClick()">Send Mail</button>
+  <!--<button mat-raised-button class="green" (click)="onClick()">Send Mail</button>-->
 
   <mat-icon
     style="margin-right: 30px; margin-left: 10px;"
@@ -72,21 +72,6 @@
 
         <mat-list-item>
           <button
-            *ngIf="isAuthenticated && (userRole == 'Administrator')"
-            (click)="changeNavBarTitle('Benutzerverwaltung')"
-            routerLink="benutzerverwaltung"
-            routerLinkActive="active-list-item"
-            class="menu-item"
-            matTooltip="Benutzerverwaltung"
-            matTooltipPosition="right"
-            mat-flat-button>
-              <mat-icon>people</mat-icon>
-          </button>
-        </mat-list-item>
-
-
-        <mat-list-item>
-          <button
             *ngIf="isAuthenticated && (userRole == 'Administrator' || userRole == 'Vermittler')"
             (click)="changeNavBarTitle('Selektieren')"
             routerLink="selektieren"
@@ -96,6 +81,20 @@
             matTooltipPosition="right"
             mat-flat-button>
               <mat-icon>mediation</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-list-item>
+          <button
+            *ngIf="isAuthenticated && (userRole == 'Administrator')"
+            (click)="changeNavBarTitle('Benutzerverwaltung')"
+            routerLink="benutzerverwaltung"
+            routerLinkActive="active-list-item"
+            class="menu-item"
+            matTooltip="Benutzerverwaltung"
+            matTooltipPosition="right"
+            mat-flat-button>
+              <mat-icon>people</mat-icon>
           </button>
         </mat-list-item>
 
