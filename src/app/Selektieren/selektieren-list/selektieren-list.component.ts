@@ -24,7 +24,7 @@ export class SelektierenListComponent implements OnInit {
   data;
   completeArray: Array<any> = [];
   datasource;
-  displayedColumns = ['skill', 'status', 'nachname', 'vermittler'];
+  displayedColumns = ['nachname', 'status', 'bereich', 'skill', 'zeitpunkt', 'zeitaufwand', 'vermittler'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -164,6 +164,7 @@ export class DashboardSkillListComponent implements OnInit {
       this.datasource = new MatTableDataSource(data as any);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
+      this.applyFilter();
 
       this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
         this.offen = data3[0]['offen'];
@@ -195,7 +196,7 @@ export class DashboardSkillListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '70%';
+    dialogConfig.width = '90%';
     this.dialog.open(DashboardListItemComponent, dialogConfig);
   }
 

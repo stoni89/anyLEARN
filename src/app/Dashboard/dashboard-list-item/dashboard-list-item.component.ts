@@ -16,6 +16,7 @@ import { LinksService } from 'src/app/Shared/Services/links.service';
 export class DashboardListItemComponent implements OnInit {
 
   links;
+  userRole: string = localStorage.getItem('role');
 
   constructor(public dashboardService: DashboardService,
               public skillstatusService: SkillstatusService,

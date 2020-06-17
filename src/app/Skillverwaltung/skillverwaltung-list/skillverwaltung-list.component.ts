@@ -72,7 +72,7 @@ export class SkillverwaltungListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '70%';
+    dialogConfig.width = '90%';
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 
@@ -81,7 +81,7 @@ export class SkillverwaltungListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '70%';
+    dialogConfig.width = '90%';
     this.dialog.open(SkillverwaltungSkillItemComponent, dialogConfig);
   }
 
