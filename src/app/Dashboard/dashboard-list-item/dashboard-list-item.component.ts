@@ -1,3 +1,6 @@
+import { UserService } from 'src/app/Shared/Services/user.service';
+import { BereichService } from 'src/app/Shared/Services/bereich.service';
+import { ZeitpunktService } from './../../Shared/Services/zeitpunkt.service';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
@@ -7,6 +10,7 @@ import { PostService } from 'src/app/Shared/Services/post.service';
 import { formatDate } from '@angular/common';
 import { LogsService } from 'src/app/Shared/Services/logs.service';
 import { LinksService } from 'src/app/Shared/Services/links.service';
+import { SkillService } from 'src/app/Shared/Services/skill.service';
 
 @Component({
   selector: 'app-dashboard-list-item',
@@ -16,6 +20,9 @@ import { LinksService } from 'src/app/Shared/Services/links.service';
 export class DashboardListItemComponent implements OnInit {
 
   links;
+  zeitpunkt: any;
+  bereich: any;
+  vermittler: any;
   userRole: string = localStorage.getItem('role');
 
   constructor(public dashboardService: DashboardService,
@@ -23,10 +30,25 @@ export class DashboardListItemComponent implements OnInit {
               public dialogRef: MatDialogRef<DashboardListItemComponent>,
               private snackbar: MatSnackBar,
               public postService: PostService,
+              public bereichService: BereichService,
+              public userService: UserService,
               public logService: LogsService,
-              public linksService: LinksService) {}
+              public skillService: SkillService,
+              public linksService: LinksService,
+              public zeitpunktService: ZeitpunktService) {}
 
   ngOnInit() {
+    this.zeitpunktService.getAllZeitpunkt().subscribe(data => {
+      this.zeitpunkt = data;
+    });
+
+    this.bereichService.getAllBereich().subscribe(data => {
+      this.bereich = data;
+    });
+
+    this.userService.getAllUsers().subscribe(data => {
+      this.vermittler = data;
+    });
   }
 
 
@@ -99,6 +121,34 @@ export class DashboardListItemComponent implements OnInit {
     this.postService.newPost(newItem[0]).subscribe();
     this.postService.updateBadge();
 
+    this.onClose();
+  }
+
+  onSave() {
+    this.skillService.updateSkill(this.dashboardService.form.value).subscribe(data => {
+      this.openGreenSnackBar('Erfolgreich angepasst!', 'Schließen');
+    }, error => {
+      this.openRedSnackBar('Fehler beim anpassen!', 'Schließen');
+    });
+
+    const verItem: Array<{vermittler_id: number, skill_id: number}> = [{vermittler_id: this.dashboardService.form.value.vermittler_id,
+                                                                        skill_id: this.dashboardService.form.value.skill_id}];
+    this.skillstatusService.updateVermittlerSkillStatus(verItem[0]).subscribe();
+
+    const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en');
+    const logitem: Array<{ eintrag: string, date: string, user_id: number, art: string, cat_id: number}> = [
+      {
+        eintrag: 'Der Skill "' + this.dashboardService.form.value.skill + '" wurde angepasst',
+        // tslint:disable-next-line: object-literal-shorthand
+        date: date,
+        // tslint:disable-next-line: radix
+        user_id: parseInt(localStorage.getItem('userid')),
+        art: 'Skill',
+        cat_id: 5
+      }
+    ];
+
+    this.logService.newLogs(logitem[0]).subscribe();
     this.onClose();
   }
 

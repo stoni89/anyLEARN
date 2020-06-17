@@ -9,38 +9,53 @@
     <mat-grid-tile>
       <div class="controles-container" >
         <mat-form-field>
-          <input formControlName="skill" [readonly]="userRole == 'Benutzer'" matInput placeholder="Skill">
+          <input formControlName="skill" [readonly]="userRole == 'User'" matInput placeholder="Skill">
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="zeitaufwand" [readonly]="userRole == 'Benutzer'" matInput placeholder="Zeitaufwand">
+          <input formControlName="zeitaufwand" [readonly]="userRole == 'User'" matInput placeholder="Zeitaufwand">
         </mat-form-field>
-        <mat-form-field>
-          <input formControlName="zeitpunkt" [readonly]="userRole == 'Benutzer'" matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
+        <mat-form-field *ngIf="userRole == 'User'">
+          <input formControlName="zeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
         </mat-form-field>
-        <mat-form-field>
-          <input formControlName="bereich" [readonly]="userRole == 'Benutzer'" matInput placeholder="Bereich">
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+          <mat-select formControlName="zeitpunkt_id" placeholder="Zeitpunkt*">
+            <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
+          </mat-select>
         </mat-form-field>
-        <mat-form-field>
-          <input formControlName="vermittler" [readonly]="userRole == 'Benutzer'" matInput placeholder="Vermittler">
+        <mat-form-field *ngIf="userRole == 'User'">
+          <input formControlName="bereich" [readonly]="userRole == 'User'" matInput placeholder="Bereich">
+        </mat-form-field>
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+          <mat-select formControlName="bereich_id" placeholder="Bereich*">
+            <mat-option *ngFor="let ber of bereich" [value]="ber.bereich_id">{{ber.bereich}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="userRole == 'User'">
+          <input formControlName="vermittler" [readonly]="userRole == 'User'" matInput placeholder="Vermittler">
+        </mat-form-field>
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+          <mat-select formControlName="vermittler_id" placeholder="Vermittler*">
+            <mat-option *ngFor="let ver of vermittler" [value]="ver.user_id">{{ver.nachname}}</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field >
-          <textarea formControlName="lernziel" [readonly]="userRole == 'Benutzer'" matInput matInput rows="11"  placeholder="Lernziel"></textarea>
+          <textarea formControlName="lernziel" [readonly]="userRole == 'User'" matInput matInput rows="11"  placeholder="Lernziel"></textarea>
         </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field style="margin-top: 10px;">
-          <textarea style="height:auto" formControlName="inhalt" [readonly]="userRole == 'Benutzer'" matInput rows="20" placeholder="Inhalt"></textarea>
+          <textarea style="height:auto" formControlName="inhalt" [readonly]="userRole == 'User'" matInput rows="20" placeholder="Inhalt"></textarea>
         </mat-form-field>
         <mat-form-field >
-          <textarea formControlName="nachweis" matInput rows="5" [readonly]="userRole == 'Benutzer'" placeholder="Nachweis"></textarea>
+          <textarea formControlName="nachweis" matInput rows="5" [readonly]="userRole == 'User'" placeholder="Nachweis"></textarea>
         </mat-form-field>
 
         <div class="button-row">
-          <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung' && (userRole == 'Benutzer')" mat-raised-button (click)="onErledigt()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
-          <button *ngIf="this.dashboardService.form.value.status == 'Offen' && (userRole == 'Benutzer')" mat-raised-button (click)="onBearbeitung()" class="orange" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
-          <button *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" mat-raised-button class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
+          <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung' && (userRole == 'User')" mat-raised-button (click)="onErledigt()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
+          <button *ngIf="this.dashboardService.form.value.status == 'Offen' && (userRole == 'User')" mat-raised-button (click)="onBearbeitung()" class="orange" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
+          <button *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" mat-raised-button (click)="onSave()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
         </div>
       </div>
     </mat-grid-tile>
