@@ -210,3 +210,7 @@ mat-footer-row mat-footer-cell {
 .row-color-true {
   background-color: rgb(245, 241, 3);
 }
+
+.mat-tooltip {
+  font-size: 12px !important;
+}
