@@ -10,11 +10,41 @@
 
   <mat-label *ngIf="userRole == 'User'" [ngStyle]="{'padding-left': '10px', 'font-weight': 'bold', 'font-size': '18px'}">{{ userName }}</mat-label>
 
+  <!--
   <mat-form-field class="search-form-field" floatLabel="never">
     <input matInput [(ngModel)]="searchKey" placeholder="Filtern" autocomplete="off" (keyup)="applyFilter()">
     <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
       <mat-icon>close</mat-icon>
     </button>
+  </mat-form-field>
+  -->
+
+  <mat-label style="margin-left: 40px;"><b>Filtern:</b></mat-label>
+
+  <mat-form-field style="margin-left: 15px;">
+    <mat-select placeholder="Status" [formControl]="statusFilter">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let sta of status" [value]="sta.status">{{sta.status}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="margin-left: 15px;">
+    <mat-select placeholder="Bereich" [formControl]="bereichFilter">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let ber of bereich" [value]="ber.bereich">{{ber.bereich}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="margin-left: 15px;">
+    <mat-label>Skill</mat-label>
+    <input matInput [formControl]="skillFilter">
+  </mat-form-field>
+
+  <mat-form-field style="margin-left: 15px;">
+    <mat-select placeholder="Vermittler" [formControl]="vermittlerFilter">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let ver of vermittler" [value]="ver.nachname">{{ver.nachname}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-label style="margin-left: 80px; margin-right: 15px; color: black; font-size: 15px;"><b>Gesamt: {{gesamt}} </b></mat-label>
@@ -22,8 +52,8 @@
   <mat-label style="margin-left: 10px; margin-right: 15px; color: darkorange; font-size: 15px;"><b>Bearbeitung: {{bearbeitung}} </b></mat-label>
   <mat-label style="margin-left: 10px; color: green; font-size: 15px;"><b>Erledigt: {{erledigt}}</b></mat-label>
 
-  <button mat-raised-button class="red" style="float: right; margin-top: auto;" (click)="print()">PDF</button>
-  <mat-label style="font-size: 15px; float: right; margin-right: 10px; margin-top: 10px;"><b>Export Tabelle:</b></mat-label>
+  <button mat-icon-button style="float: right; color: red" matTooltip="Export als PDF" matTooltipPosition="left" (click)="print()"><mat-icon>picture_as_pdf</mat-icon></button>
+
 
 </div>
 

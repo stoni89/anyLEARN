@@ -11,29 +11,29 @@
         <mat-form-field>
           <input formControlName="skill" [readonly]="userRole == 'User'" matInput placeholder="Skill">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field >
           <input formControlName="zeitaufwand" [readonly]="userRole == 'User'" matInput placeholder="Zeitaufwand">
         </mat-form-field>
-        <mat-form-field *ngIf="userRole == 'User'">
+        <mat-form-field *ngIf="userRole == 'User'" >
           <input formControlName="zeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
         </mat-form-field>
-        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
           <mat-select formControlName="zeitpunkt_id" placeholder="Zeitpunkt*">
             <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field *ngIf="userRole == 'User'">
+        <mat-form-field *ngIf="userRole == 'User'" >
           <input formControlName="bereich" [readonly]="userRole == 'User'" matInput placeholder="Bereich">
         </mat-form-field>
-        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
           <mat-select formControlName="bereich_id" placeholder="Bereich*">
             <mat-option *ngFor="let ber of bereich" [value]="ber.bereich_id">{{ber.bereich}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field *ngIf="userRole == 'User'">
+        <mat-form-field *ngIf="userRole == 'User'" >
           <input formControlName="vermittler" [readonly]="userRole == 'User'" matInput placeholder="Vermittler">
         </mat-form-field>
-        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
           <mat-select formControlName="vermittler_id" placeholder="Vermittler*">
             <mat-option *ngFor="let ver of vermittler" [value]="ver.user_id">{{ver.nachname}}</mat-option>
           </mat-select>
@@ -45,7 +45,7 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <div class="controles-container">
-        <mat-form-field style="margin-top: 10px;">
+        <mat-form-field style="margin-top: 10px; width: 1800;">
           <textarea style="height:auto" formControlName="inhalt" [readonly]="userRole == 'User'" matInput rows="20" placeholder="Inhalt"></textarea>
         </mat-form-field>
         <mat-form-field >
@@ -56,6 +56,7 @@
           <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung' && (userRole == 'User')" mat-raised-button (click)="onErledigt()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
           <button *ngIf="this.dashboardService.form.value.status == 'Offen' && (userRole == 'User')" mat-raised-button (click)="onBearbeitung()" class="orange" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
           <button *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" mat-raised-button (click)="onSave()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
+          <button mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
         </div>
       </div>
     </mat-grid-tile>

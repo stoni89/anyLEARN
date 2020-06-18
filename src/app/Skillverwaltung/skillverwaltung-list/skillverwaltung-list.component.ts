@@ -57,6 +57,8 @@ export class SkillverwaltungListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
     });

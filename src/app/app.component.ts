@@ -41,6 +41,17 @@ export class AppComponent implements OnInit {
           localStorage.setItem('role', data[0]['rolle']);
           localStorage.setItem('name', data[0]['name']);
           localStorage.setItem('userid', data[0]['user_id']);
+          sessionStorage.setItem('skillverwFilterSkill', '');
+          sessionStorage.setItem('skillverwFilterVermittler', '');
+          sessionStorage.setItem('skillverwFilterBereich', '');
+          sessionStorage.setItem('dashboardFilterSkill', '');
+          sessionStorage.setItem('dashboardFilterVermittler', '');
+          sessionStorage.setItem('dashboardFilterBereich', '');
+          sessionStorage.setItem('dashboardFilterStatus', '');
+          sessionStorage.setItem('selektierenFilterSkill', '');
+          sessionStorage.setItem('selektierenFilterVermittler', '');
+          sessionStorage.setItem('selektierenFilterBereich', '');
+          sessionStorage.setItem('selektierenFilterStatus', '');
 
           //localStorage.setItem('key', data[0]['user_id']);
           this.isAuthenticated = this.adalService.isAuthenticated;

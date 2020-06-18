@@ -57,9 +57,10 @@
 
           <div class="button-row">
             <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
-                    [ngStyle]="{'float': 'right', 'margin-top': '15px'}">Anlegen</button>
+                    [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Anlegen</button>
             <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
-                    [ngStyle]="{'float': 'right', 'margin-top': '15px'}">Speichern</button>
+                    [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
+            <button mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
           </div>
         </div>
       </mat-grid-tile>

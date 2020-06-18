@@ -15,6 +15,13 @@
   <mat-label><b>Filtern:</b></mat-label>
 
   <mat-form-field style="margin-left: 15px;">
+    <mat-select placeholder="Bereich" [formControl]="bereichFilter">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let ber of bereich" [value]="ber.bereich">{{ber.bereich}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="margin-left: 15px;">
     <mat-label>Skill</mat-label>
     <input matInput [formControl]="skillFilter">
   </mat-form-field>
@@ -23,13 +30,6 @@
     <mat-select placeholder="Vermittler" [formControl]="vermittlerFilter">
       <mat-option>None</mat-option>
       <mat-option *ngFor="let ver of users" [value]="ver.nachname">{{ver.nachname}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field style="margin-left: 15px;">
-    <mat-select placeholder="Bereich" [formControl]="bereichFilter">
-      <mat-option>None</mat-option>
-      <mat-option *ngFor="let ber of bereich" [value]="ber.bereich">{{ber.bereich}}</mat-option>
     </mat-select>
   </mat-form-field>
 

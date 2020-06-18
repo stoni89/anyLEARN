@@ -1,5 +1,5 @@
 <mat-toolbar [ngStyle]="{'background-color': '#B80000'}">
-  <span [ngStyle]="{'color': 'white'}">{{data.skill}}</span>
+  <span [ngStyle]="{'color': 'white', 'font-size': '12px'}">{{data.skill}}</span>
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" (click)="onClose()"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
 </mat-toolbar>
@@ -18,7 +18,8 @@
       </mat-form-field>
         <br>
         <br>
-        <button mat-raised-button style="width: 120px; background-color: green; color: white;" (click)="onSetStatus()">Speichern</button>
+        <button mat-raised-button class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}" (click)="onSetStatus()">Speichern</button>
+        <button mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

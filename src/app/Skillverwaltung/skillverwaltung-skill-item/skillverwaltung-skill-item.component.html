@@ -57,9 +57,11 @@
         </mat-form-field>
         <div class="button-row">
           <button *ngIf="!selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
-                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '8px'}">Anlegen</button>
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Anlegen</button>
           <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="skillService.form.invalid || selected.length == 0" (click)="onSubmit()"
-                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '8px'}">Speichern</button>
+                  class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
+          <button mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
+
         </div>
       </div>
     </mat-grid-tile>
