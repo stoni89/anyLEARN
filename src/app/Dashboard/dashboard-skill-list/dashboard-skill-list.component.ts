@@ -1,6 +1,6 @@
 import { BereichService } from './../../Shared/Services/bereich.service';
 import { StatusService } from './../../Shared/Services/status.service';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { StatusChangeItemComponent } from './../status-change-item/status-change-item.component';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { DashboardListItemComponent } from './../dashboard-list-item/dashboard-list-item.component';
@@ -68,9 +68,27 @@ export class DashboardSkillListComponent implements OnInit {
       await new Promise(resolve => setTimeout(resolve, 500));
       this.refreshSkillList();
     });
+
   }
 
   ngOnInit() {
+    if (this.filterValues.bereich === null)
+    {
+      this.filterValues.bereich = "";
+    }
+    if (this.filterValues.skill === null)
+    {
+      this.filterValues.skill = "";
+    }
+    if (this.filterValues.vermittler === null)
+    {
+      this.filterValues.vermittler = "";
+    }
+    if (this.filterValues.status === null)
+    {
+      this.filterValues.status = "";
+    }
+
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
     });
@@ -119,7 +137,6 @@ export class DashboardSkillListComponent implements OnInit {
             this.filterValues.vermittler = sessionStorage.getItem('dashboardFilterVermittler');
             this.datasource.filter = JSON.stringify(this.filterValues);
           }
-          console.log(this.filterValues);
         });
 
         this.bereichFilter.valueChanges.subscribe(bereich => {
@@ -153,6 +170,8 @@ export class DashboardSkillListComponent implements OnInit {
         });
 
       });
+
+      console.log(this.filterValues);
     });
 
     this.userService.getAllUsers().subscribe(data => {

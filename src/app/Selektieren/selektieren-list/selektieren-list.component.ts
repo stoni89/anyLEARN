@@ -57,6 +57,25 @@ export class SelektierenListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if (this.filterValues.bereich === null)
+    {
+      this.filterValues.bereich = "";
+    }
+    if (this.filterValues.skill === null)
+    {
+      this.filterValues.skill = "";
+    }
+    if (this.filterValues.vermittler === null)
+    {
+      this.filterValues.vermittler = "";
+    }
+    if (this.filterValues.status === null)
+    {
+      this.filterValues.status = "";
+    }
+
+
     this.userService.getAllUsersAzubi().subscribe(data => {
       this.users = data;
     });

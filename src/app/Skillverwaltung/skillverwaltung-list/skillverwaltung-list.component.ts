@@ -58,6 +58,18 @@ export class SkillverwaltungListComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.filterValues.bereich === null)
+    {
+      this.filterValues.bereich = "";
+    }
+    if (this.filterValues.skill === null)
+    {
+      this.filterValues.skill = "";
+    }
+    if (this.filterValues.nachname === null)
+    {
+      this.filterValues.nachname = "";
+    }
 
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
