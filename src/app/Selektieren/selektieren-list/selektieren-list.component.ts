@@ -200,7 +200,7 @@ export class SelektierenListComponent implements OnInit {
     });
     doc.autoTable({
       styles: { fontSize: [6] },
-      head: [['Skill', 'Status', 'User', 'Vermittler']],
+      head: [['Bereich', 'Skill', 'Status', 'User', 'Zeitpunkt', 'Zeitaufwand', 'Vermittler']],
       body: data
     });
     doc.save('Selektieren.pdf');
