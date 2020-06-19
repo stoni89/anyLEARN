@@ -96,19 +96,27 @@ export class DashboardSkillListComponent implements OnInit {
     this.userService.getAllUsersAzubi().subscribe(data => {
       this.users = data;
 
-      // tslint:disable-next-line: radix
-      if (isNaN (parseInt(localStorage.getItem('key'))))
+      if(localStorage.getItem('role') === 'User')
       {
-        // tslint:disable-next-line: no-string-literal
-        localStorage.setItem('key', data[0]['user_id']);
-        // tslint:disable-next-line: radix
-        this.selectUser = parseInt(localStorage.getItem('key'));
+        this.selectUser = parseInt(localStorage.getItem('userid'));
       }
       else
       {
         // tslint:disable-next-line: radix
-        this.selectUser = parseInt(localStorage.getItem('key'));
+        if (isNaN (parseInt(localStorage.getItem('key'))))
+        {
+          // tslint:disable-next-line: no-string-literal
+          localStorage.setItem('key', data[0]['user_id']);
+          // tslint:disable-next-line: radix
+          this.selectUser = parseInt(localStorage.getItem('key'));
+        }
+        else
+        {
+          // tslint:disable-next-line: radix
+          this.selectUser = parseInt(localStorage.getItem('key'));
+        }
       }
+
 
       this.skillstatusService.getSkillTableUser(this.selectUser).subscribe(data2 => {
         this.datasource = new MatTableDataSource(data2 as any);

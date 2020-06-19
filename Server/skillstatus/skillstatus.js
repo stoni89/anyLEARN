@@ -48,7 +48,7 @@ var sst = {
   newSkillStatus: function(postdata, callback)
   {
     return db.query('INSERT INTO skillstatus (skill_id, user_id, status_id, vermittler_id, ueberschritten) ' +
-                    'values(?,?,?,?)', [postdata.skill_id, postdata.user_id, postdata.status_id, postdata.vermittler_id, postdate.ueberschritten], callback)
+                    'values(?,?,?,?,?)', [postdata.skill_id, postdata.user_id, postdata.status_id, postdata.vermittler_id, postdata.ueberschritten], callback)
   },
   updateSkillStatus: function(postdata, callback)
   {

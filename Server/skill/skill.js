@@ -35,7 +35,7 @@ var skill = {
     newSkill: function(postdata, callback)
     {
       return db.query('INSERT INTO skills (skill, lernziel, inhalt, zeitaufwand, zeitpunkt_id, vermittler_id, bereich_id, nachweis) ' +
-                      'values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt_id,
+                      'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.skill, postdata.lernziel, postdata.inhalt, postdata.zeitaufwand, postdata.zeitpunkt_id,
                                                          postdata.vermittler_id, postdata.bereich_id, postdata.nachweis], callback)
     },
     updateSkill: function(postdata, callback)

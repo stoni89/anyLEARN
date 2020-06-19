@@ -93,13 +93,13 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.skillService.form.value);
     if (this.skillService.form.valid) {
       if (!this.skillService.form.get('skill_id').value) {
         this.skillService.setSkill(this.skillService.form.value).subscribe(data => {
           const vermitID = this.skillService.form.value.vermittler_id;
 
           this.skillService.getLastSkillID().subscribe(da => {
-            console.log(da[0].skill_id);
             this.selected.forEach(element => {
               const item: Array<{ skill_id: number, kategorie_id: number}> = [{ skill_id: da[0].skill_id, kategorie_id: element}];
               this.skillkategorieService.setSkillKategorie(item[0]).subscribe();

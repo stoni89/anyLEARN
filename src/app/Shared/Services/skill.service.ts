@@ -37,7 +37,7 @@ export class SkillService {
       lernziel: '',
       inhalt: '',
       zeitaufwand: '',
-      zeitpunkt_id: null,
+      zeitpunkt_id: 1,
       vermittler_id: 1,
       bereich_id: 1,
       nachweis: '',
