@@ -63,7 +63,7 @@ export class SkillService {
   }
 
   getSpezificSkill(id: number) {
-    this.httpClient.get(this.url + `skill/` + id);
+    return this.httpClient.get(this.url + `skill/` + id);
   }
 
   setSkill(newUser: any) {

@@ -1,3 +1,6 @@
+import { PostSkillInfoComponent } from './../post-skill-info/post-skill-info.component';
+import { filter } from 'rxjs/operators';
+import { SkillService } from 'src/app/Shared/Services/skill.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -13,6 +16,7 @@ import { PostListItemComponent } from '../post-list-item/post-list-item.componen
 })
 export class PostListComponent implements OnInit {
 
+  myskill: any;
   currentData: any;
   datasource;
   displayedColumns = ['text', 'date' , 'kategorie', 'von', 'actions'];
@@ -22,7 +26,7 @@ export class PostListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private postService: PostService, private dialog: MatDialog) {
+  constructor(private postService: PostService, public dialog: MatDialog, public skillService: SkillService) {
     this.postService.listen().subscribe(async data => {
       await new Promise(resolve => setTimeout(resolve, 500));
       this.refreshPostList();
@@ -67,4 +71,15 @@ export class PostListComponent implements OnInit {
     this.dialog.open(PostListItemComponent, dialogConfig);
   }
 
+  onSkillInfo(row) {
+    this.skillService.getAllSkills().subscribe(data => {
+      this.myskill = data;
+      this.postService.populateForm(this.myskill.find(x => x.skill_id === row.skill_id));
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = '100%';
+      this.dialog.open(PostSkillInfoComponent, dialogConfig);
+    });
+  }
 }

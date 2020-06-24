@@ -1,0 +1,49 @@
+<mat-toolbar [ngStyle]="{'background-color': '#B80000'}">
+  <span [ngStyle]="{'color': 'white'}">{{postService.form.value.skill}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+</mat-toolbar>
+
+<form [formGroup]="postService.form" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="530px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <input readonly formControlName="skill" matInput placeholder="Skill*">
+        </mat-form-field>
+        <mat-form-field>
+          <input readonly formControlName="zeitaufwand" matInput placeholder="Zeitaufwand* (z.B. 1 Stunde)">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="zeitpunkt" readonly matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="bereich" readonly matInput placeholder="Bereich">
+        </mat-form-field>
+        <mat-form-field >
+          <input formControlName="nachname" readonly matInput placeholder="Vermittler">
+        </mat-form-field>
+        <mat-form-field style="height: 100%;">
+          <textarea readonly formControlName="lernziel" matInput matInput rows="11"  placeholder="Lernziel*"></textarea>
+        </mat-form-field>
+
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+
+      <div class="controles-container">
+        <mat-form-field style="margin-top: 15px;">
+          <textarea readonly formControlName="inhalt" matInput rows="20" placeholder="Inhalt*"></textarea>
+        </mat-form-field>
+        <mat-form-field >
+          <textarea readonly formControlName="nachweis" matInput rows="5" placeholder="Nachweis*"></textarea>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Schließen</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
+

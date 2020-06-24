@@ -34,10 +34,13 @@
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let row">
       <button *ngIf="row.kategorie == 'Genehmigung'" mat-icon-button  matTooltip="Genehmigen/Ablehnen" matTooltipPosition="left" (click)="onClick(row)">
-        <mat-icon style="color: darkorange;">rule</mat-icon>
+        <mat-icon style="color: darkorange;">thumbs_up_down</mat-icon>
       </button>
       <button *ngIf="row.kategorie == 'Information'" mat-icon-button  matTooltip="Nachricht bestätigen" matTooltipPosition="left" (click)="onClick(row)">
         <mat-icon style="color: darkorange;">mark_chat_read</mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="Skill Details anzeigen" matTooltipPosition="right" (click)="onSkillInfo(row)">
+        <mat-icon style="color: black;">info</mat-icon>
       </button>
     </td>
   </ng-container>
