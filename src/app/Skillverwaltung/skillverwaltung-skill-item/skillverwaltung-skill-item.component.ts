@@ -1,6 +1,7 @@
+import { SkillverwaltungCloseDialogComponent } from './../skillverwaltung-close-dialog/skillverwaltung-close-dialog.component';
 import { ZeitpunktService } from './../../Shared/Services/zeitpunkt.service';
 import { Component, OnInit} from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { SkillService } from '../../Shared/Services/skill.service';
 import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
 import { BereichService } from 'src/app/Shared/Services/bereich.service';
@@ -32,6 +33,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               public dialogRef: MatDialogRef<SkillverwaltungSkillItemComponent>,
               public bereichService: BereichService,
               public userService: UserService,
+              private dialog: MatDialog,
               public kategorieService: KategorieService,
               public skillstatusService: SkillstatusService,
               public skillkategorieService: SkillkategorieService,
@@ -90,6 +92,14 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
     this.skillService.initializeFormGroup();
     this.dialogRef.close();
     this.skillService.filter('Register click');
+  }
+
+  onExit() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '18%';
+    this.dialog.open(SkillverwaltungCloseDialogComponent, dialogConfig);
   }
 
   onSubmit() {

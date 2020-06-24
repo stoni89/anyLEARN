@@ -1,3 +1,4 @@
+import { UserCloseDialogComponent } from './../user-close-dialog/user-close-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../Shared/Services/user.service';
@@ -11,6 +12,7 @@ import { LogsService } from 'src/app/Shared/Services/logs.service';
 import { DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../AppDateAdapter';
 import * as moment from 'moment';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-benutzerverwaltung-user-item',
@@ -33,6 +35,7 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
   editable = false;
 
   constructor(public userService: UserService,
+              private dialog: MatDialog,
               public kategorieService: KategorieService,
               public rollenService: RollenService,
               public skillService: SkillService,
@@ -58,6 +61,14 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
     this.userService.initializeFormGroup();
     this.dialogRef.close();
     this.userService.filter('Register click');
+  }
+
+  onExit() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '18%';
+    this.dialog.open(UserCloseDialogComponent, dialogConfig);
   }
 
   onSubmit() {

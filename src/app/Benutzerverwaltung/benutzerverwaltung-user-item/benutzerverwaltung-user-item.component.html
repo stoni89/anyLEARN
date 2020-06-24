@@ -4,7 +4,7 @@
     <span [ngStyle]="{'color': 'white'}" *ngIf="selectedItemName">{{selectedItemName}}</span>
     <span [ngStyle]="{'color': 'white'}" *ngIf="!selectedItemName">Neuer Benutzer</span>
     <span class="fill-remaining-space"></span>
-    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onExit()" tabIndex="-1"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
   </mat-toolbar>
 
   <form [formGroup]="userService.form" class="normal-form">
@@ -60,7 +60,7 @@
                     [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Anlegen</button>
             <button *ngIf="selectedItemName" mat-raised-button type="submit" [disabled]="userService.form.invalid" (click)="onSubmit()" class="green"
                     [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
-            <button mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
+            <button mat-raised-button (click)="onExit()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
           </div>
         </div>
       </mat-grid-tile>

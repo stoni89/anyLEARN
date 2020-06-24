@@ -1,10 +1,11 @@
+import { DashboardCloseDialogComponent } from './../dashboard-close-dialog/dashboard-close-dialog.component';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { BereichService } from 'src/app/Shared/Services/bereich.service';
 import { ZeitpunktService } from './../../Shared/Services/zeitpunkt.service';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PostService } from 'src/app/Shared/Services/post.service';
 import { formatDate } from '@angular/common';
@@ -29,6 +30,7 @@ export class DashboardListItemComponent implements OnInit {
               public skillstatusService: SkillstatusService,
               public dialogRef: MatDialogRef<DashboardListItemComponent>,
               private snackbar: MatSnackBar,
+              private dialog: MatDialog,
               public postService: PostService,
               public bereichService: BereichService,
               public userService: UserService,
@@ -57,6 +59,14 @@ export class DashboardListItemComponent implements OnInit {
     this.dashboardService.initializeFormGroup();
     this.dialogRef.close();
     this.skillstatusService.filter('Register click');
+  }
+
+  onExit() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '18%';
+    this.dialog.open(DashboardCloseDialogComponent, dialogConfig);
   }
 
   onBearbeitung() {

@@ -58,7 +58,6 @@ export class BenutzerverwaltungListComponent implements OnInit {
   }
 
   onEdit(row) {
-    console.log(row);
     this.service.populateForm(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

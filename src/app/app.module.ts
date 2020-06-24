@@ -58,6 +58,9 @@ import { SkillverwaltungLinksComponent } from './Skillverwaltung/skillverwaltung
 import { SkillverwaltungLinksItemComponent } from './Skillverwaltung/skillverwaltung-links/skillverwaltung-links-item/skillverwaltung-links-item.component';
 import { DashboardLinksComponent } from './Dashboard/dashboard-links/dashboard-links.component';
 import { PostSkillInfoComponent } from './Mittelungen/post-skill-info/post-skill-info.component';
+import { UserCloseDialogComponent } from './Benutzerverwaltung/user-close-dialog/user-close-dialog.component';
+import { SkillverwaltungCloseDialogComponent } from './Skillverwaltung/skillverwaltung-close-dialog/skillverwaltung-close-dialog.component';
+import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialog/dashboard-close-dialog.component';
 
 
 @NgModule({
@@ -87,7 +90,10 @@ import { PostSkillInfoComponent } from './Mittelungen/post-skill-info/post-skill
     SkillverwaltungLinksComponent,
     SkillverwaltungLinksItemComponent,
     DashboardLinksComponent,
-    PostSkillInfoComponent
+    PostSkillInfoComponent,
+    UserCloseDialogComponent,
+    SkillverwaltungCloseDialogComponent,
+    DashboardCloseDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -137,7 +143,8 @@ import { PostSkillInfoComponent } from './Mittelungen/post-skill-info/post-skill
   bootstrap: [AppComponent],
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
                     StatusChangeItemComponent, PostListItemComponent, SkillverwaltungSkillRemoveComponent, SelektierenStatusChangeComponent,
-                    SkillverwaltungLinksComponent, SkillverwaltungLinksItemComponent, DashboardLinksComponent, PostSkillInfoComponent]
+                    SkillverwaltungLinksComponent, SkillverwaltungLinksItemComponent, DashboardLinksComponent, PostSkillInfoComponent,
+                    UserCloseDialogComponent, SkillverwaltungCloseDialogComponent, DashboardCloseDialogComponent]
 })
 export class AppModule {
 }
