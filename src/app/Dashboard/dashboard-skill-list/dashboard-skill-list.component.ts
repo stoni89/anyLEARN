@@ -1,6 +1,6 @@
+import { SkillService } from './../../Shared/Services/skill.service';
 import { BereichService } from './../../Shared/Services/bereich.service';
 import { StatusService } from './../../Shared/Services/status.service';
-import { map, filter } from 'rxjs/operators';
 import { StatusChangeItemComponent } from './../status-change-item/status-change-item.component';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { DashboardListItemComponent } from './../dashboard-list-item/dashboard-list-item.component';
@@ -11,7 +11,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SkillstatusService } from 'src/app/Shared/Services/skillstatus.service';
 import { UserService } from 'src/app/Shared/Services/user.service';
-import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import 'jspdf-autotable';
 import * as jsPDF from 'jspdf';
@@ -57,8 +56,8 @@ export class DashboardSkillListComponent implements OnInit {
   searchKey: string;
 
   constructor(public skillstatusService: SkillstatusService,
-              private adalService: MsAdalAngular6Service,
               public userService: UserService,
+              public skillService: SkillService,
               public bereichService: BereichService,
               public statusService: StatusService,
               private dashboardService: DashboardService,
@@ -178,8 +177,6 @@ export class DashboardSkillListComponent implements OnInit {
         });
 
       });
-
-      console.log(this.filterValues);
     });
 
     this.userService.getAllUsers().subscribe(data => {

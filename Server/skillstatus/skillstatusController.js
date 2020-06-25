@@ -82,6 +82,58 @@ router.get('/countgesamt/:user_id', function (req, res) {
   });
 });
 
+router.get('/useroffen/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusUsersOffen(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/userbearbeitung/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusUsersBearbeitung(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/usergenehmigung/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusUsersBearbeitungGen(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/usererledigt/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusUsersErledigt(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 router.put('/', function (req, res) {
   sst.updateSkillStatus(req.body, function(err,rows){
       if(err) {

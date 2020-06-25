@@ -36,6 +36,22 @@ export class SkillstatusService {
     return this.httpClient.get(this.url + `skillstatus/countgesamt/` + userid);
   }
 
+  getSkillStatusUserOffen(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/useroffen/` + skillid);
+  }
+
+  getSkillStatusUserBearbeitung(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/userbearbeitung/` + skillid);
+  }
+
+  getSkillStatusUserGenehmigung(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/usergenehmigung/` + skillid);
+  }
+
+  getSkillStatusUserErledigt(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/usererledigt/` + skillid);
+  }
+
   updateSkillStatus(skillstatus: any) {
     return this.httpClient.put(this.url + `skillstatus`, skillstatus);
   }

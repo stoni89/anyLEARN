@@ -1,3 +1,4 @@
+import { SkillverwaltungSkillstatusDialogComponent } from './../skillverwaltung-skillstatus-dialog/skillverwaltung-skillstatus-dialog.component';
 import { UserService } from './../../Shared/Services/user.service';
 import { BereichService } from './../../Shared/Services/bereich.service';
 import { SkillverwaltungLinksComponent } from './../skillverwaltung-links/skillverwaltung-links.component';
@@ -195,6 +196,27 @@ export class SkillverwaltungListComponent implements OnInit {
     dialogConfig.height = '60%';
     dialogConfig.data = {skill: row.skill, skill_id: row.skill_id};
     this.dialog.open(SkillverwaltungLinksComponent, dialogConfig);
+  }
+
+  onSkillStatusInfo(row) {
+    this.skillstatusService.getSkillStatusUserOffen(row.skill_id).subscribe(dataOffen => {
+      this.skillstatusService.getSkillStatusUserBearbeitung(row.skill_id).subscribe(dataBearbeitung => {
+        this.skillstatusService.getSkillStatusUserGenehmigung(row.skill_id).subscribe(dataGenehmigung => {
+          this.skillstatusService.getSkillStatusUserErledigt(row.skill_id).subscribe(dataErledigt => {
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.disableClose = true;
+            dialogConfig.autoFocus = true;
+            dialogConfig.width = '50%';
+            dialogConfig.data = {offen: dataOffen,
+                                 bearbeitung: dataBearbeitung,
+                                 genehmigung: dataGenehmigung,
+                                 erledigt: dataErledigt,
+                                 skill: row.skill};
+            this.dialog.open(SkillverwaltungSkillstatusDialogComponent, dialogConfig);
+          });
+        });
+      });
+    });
   }
 
   print() {

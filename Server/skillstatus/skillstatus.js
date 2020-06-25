@@ -38,12 +38,40 @@ var sst = {
                     'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
                     'WHERE u.kategorie_id = sk.kategorie_id && sst.user_id = ' + id + ' && (sst.status_id = 2 || sst.status_id = 3)', callback)
   },
-    getSkillStatusCountErledigt: function(id, callback)
+  getSkillStatusCountErledigt: function(id, callback)
   {
     return db.query('SELECT COUNT(*) AS erledigt, u.kategorie_id FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
                     'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
                     'WHERE u.kategorie_id = sk.kategorie_id && sst.user_id = ' + id + ' && sst.status_id = 4', callback)
+  },
+  getSkillStatusUsersOffen: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 1 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+  },
+  getSkillStatusUsersBearbeitung: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 2 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+  },
+  getSkillStatusUsersBearbeitungGen: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 3 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+  },
+  getSkillStatusUsersErledigt: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 4 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
   },
   newSkillStatus: function(postdata, callback)
   {

@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
@@ -61,6 +62,7 @@ import { PostSkillInfoComponent } from './Mittelungen/post-skill-info/post-skill
 import { UserCloseDialogComponent } from './Benutzerverwaltung/user-close-dialog/user-close-dialog.component';
 import { SkillverwaltungCloseDialogComponent } from './Skillverwaltung/skillverwaltung-close-dialog/skillverwaltung-close-dialog.component';
 import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialog/dashboard-close-dialog.component';
+import { SkillverwaltungSkillstatusDialogComponent } from './Skillverwaltung/skillverwaltung-skillstatus-dialog/skillverwaltung-skillstatus-dialog.component';
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialo
     PostSkillInfoComponent,
     UserCloseDialogComponent,
     SkillverwaltungCloseDialogComponent,
-    DashboardCloseDialogComponent
+    DashboardCloseDialogComponent,
+    SkillverwaltungSkillstatusDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -117,6 +120,7 @@ import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialo
     MatCheckboxModule,
     MatBadgeModule,
     MatInputModule,
+    MatAutocompleteModule,
     MatFormFieldModule,
     MatGridListModule,
     MatPaginatorModule,
@@ -127,14 +131,14 @@ import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialo
     MsAdalAngular6Module.forRoot({
       tenant: '0a9e2776-62d5-46c5-9650-ec0cc551babf',
       clientId: 'df4e9ceb-596c-4ff5-b344-db62b0aab33d',
-      // redirectUri: 'https://srv-automate/anylearn/',
+      //redirectUri: 'https://anylearn.anyware.ag/anylearn/',
       redirectUri: 'http://localhost:4200/',
       endpoints: {
         'https://graph.microsoft.com': 'df4e9ceb-596c-4ff5-b344-db62b0aab33d', // this is for feteching the access token
       },
       navigateToLoginRequestUrl: false,
       cacheLocation: 'localStorage',
-      postLogoutRedirectUri: 'https://srv-automate/anylearn/logout',
+      postLogoutRedirectUri: 'https://anylearn.anyware.ag/anylearn/logout',
     })
   ],
   providers: [AuthenticationGuard, PostService, MatDatepickerModule, MatNativeDateModule,
@@ -144,7 +148,8 @@ import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialo
   entryComponents: [BenutzerverwaltungUserItemComponent, SkillverwaltungSkillItemComponent, DashboardListItemComponent,
                     StatusChangeItemComponent, PostListItemComponent, SkillverwaltungSkillRemoveComponent, SelektierenStatusChangeComponent,
                     SkillverwaltungLinksComponent, SkillverwaltungLinksItemComponent, DashboardLinksComponent, PostSkillInfoComponent,
-                    UserCloseDialogComponent, SkillverwaltungCloseDialogComponent, DashboardCloseDialogComponent]
+                    UserCloseDialogComponent, SkillverwaltungCloseDialogComponent, DashboardCloseDialogComponent,
+                    SkillverwaltungSkillstatusDialogComponent]
 })
 export class AppModule {
 }

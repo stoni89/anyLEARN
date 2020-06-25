@@ -1,0 +1,41 @@
+<mat-toolbar [ngStyle]="{'background-color': 'darkred'}">
+  <span [ngStyle]="{'color': 'white'}">{{data.skill}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button  tabIndex="-1" (click)="onClose()"><mat-icon [ngStyle]="{'color': 'white'}">clear</mat-icon></button>
+</mat-toolbar>
+
+<mat-grid-list cols="4">
+  <mat-grid-tile>
+    <div>
+        <mat-label style="color: red;"><b>Offen:</b></mat-label>
+        <br>
+        <mat-label *ngFor="let offen of data.offen">{{offen.nachname}} <br></mat-label>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+      <mat-label style="color: darkorange;"><b>Bearbeitung:</b></mat-label>
+      <br>
+      <mat-label *ngFor="let bearbeitung of data.bearbeitung">{{bearbeitung.nachname}} <br></mat-label>
+  </div>
+</mat-grid-tile>
+<mat-grid-tile>
+  <div>
+    <mat-label style="color: #D4DB05;"><b>Bearbeitung (Genehemigung):</b></mat-label>
+    <br>
+    <mat-label *ngFor="let genehmigung of data.genehmigung">{{genehmigung.nachname}} <br></mat-label>
+</div>
+</mat-grid-tile>
+<mat-grid-tile>
+  <div>
+    <mat-label style="color: darkgreen;"><b>Erledigt:</b></mat-label>
+    <br>
+    <mat-label *ngFor="let erledigt of data.erledigt">{{erledigt.nachname}} <br></mat-label>
+  </div>
+</mat-grid-tile>
+</mat-grid-list>
+
+<div class="button-row">
+  <button mat-raised-button class="red" style="margin-right: 20px; margin-bottom: 20px; float: right;" (click)="onClose()">Abbrechen</button>
+</div>
+
