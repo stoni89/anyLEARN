@@ -16,7 +16,6 @@ export class SendMailService {
     };
 
     return this.httpClient.post(this.url + `sendMail`, user).subscribe(data => {
-      console.log(data);
     });
   }
 

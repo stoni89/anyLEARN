@@ -74,13 +74,11 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
   onSubmit() {
     const formatdate: string = moment(this.userService.form.value.eintritt).format('YYYY-MM-DD');
     this.userService.form.patchValue({eintritt: formatdate});
-    console.log(this.userService.form.value.eintritt);
 
     if (this.userService.form.valid) {
       if (!this.userService.form.get('user_id').value) {
         this.userService.setUser(this.userService.form.value).subscribe(data => {
           this.userService.getLastUserID().subscribe(da => {
-            console.log(da[0].user_id);
 
             // tslint:disable-next-line: no-shadowed-variable
             this.skillService.getAllSkills().subscribe(data => {

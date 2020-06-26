@@ -113,7 +113,6 @@ export class SelektierenListComponent implements OnInit {
             this.filterValues.vermittler = sessionStorage.getItem('selektierenFilterVermittler');
             this.datasource.filter = JSON.stringify(this.filterValues);
           }
-          console.log(this.filterValues);
         });
 
     this.bereichFilter.valueChanges.subscribe(bereich => {

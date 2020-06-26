@@ -75,7 +75,6 @@ export class DashboardListItemComponent implements OnInit {
   }
 
   onBearbeitung() {
-    console.log('Bearbeitung');
     const item: Array<{ skillstatus_id: number, status_id: number}> =
           [{ skillstatus_id: this.dashboardService.form.value.skillstatus_id, status_id: 2}];
     this.skillstatusService.updateSkillStatus(item[0]).subscribe(data => {

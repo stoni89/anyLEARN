@@ -22,7 +22,6 @@ export class SelektierenStatusChangeComponent implements OnInit {
               public dashboardService: DashboardService, public postService: PostService, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
-    console.log(this.data);
     this.statusService.getAllStatus().subscribe(data => {
       this.status = data;
     });

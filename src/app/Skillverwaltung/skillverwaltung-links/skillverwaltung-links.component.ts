@@ -33,7 +33,6 @@ export class SkillverwaltungLinksComponent implements OnInit {
 
   ngOnInit() {
     this.linksService.getSpezificLink(this.data.skill_id).subscribe(data2 => {
-      console.log(this.data.skill_id);
       this.datasource = new MatTableDataSource(data2 as any);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
@@ -59,9 +58,7 @@ export class SkillverwaltungLinksComponent implements OnInit {
   }
 
   onDelete(row) {
-    console.log(row);
     this.linksService.removeLink(row.skilllink_id).subscribe(data => {
-      console.log(data);
       this.openGreenSnackBar('Link gelöscht!', 'Schließen');
       this.linksService.filter('Register click');
     }, error => {
