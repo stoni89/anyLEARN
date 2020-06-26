@@ -18,6 +18,7 @@ export class DashboardService {
     kategorie: new FormControl(''),
     kategorie_id: new FormControl(null),
     zeitpunkt_id: new FormControl(null),
+    endzeitpunkt_id: new FormControl(null),
     lernziel: new FormControl(''),
     ueberschritten: new FormControl(''),
     nachweis: new FormControl(''),
@@ -31,7 +32,8 @@ export class DashboardService {
     vermittler: new FormControl(''),
     vermittler_id: new FormControl(null),
     zeitaufwand: new FormControl(''),
-    zeitpunkt: new FormControl(null)
+    zeitpunkt: new FormControl(null),
+    endzeitpunkt: new FormControl(null)
   });
 
   initializeFormGroup() {
@@ -50,6 +52,7 @@ export class DashboardService {
       verID: null,
       skill_id: null,
       zeitpunkt_id: null,
+      endzeitpunkt_id: null,
       skillstatus_id: null,
       status_id: '',
       linkAnzahl: '',
@@ -57,7 +60,8 @@ export class DashboardService {
       vermittler: '',
       vermittler_id: null,
       zeitaufwand: '',
-      zeitpunkt: null
+      zeitpunkt: null,
+      endzeitpunkt: null
     });
   }
 

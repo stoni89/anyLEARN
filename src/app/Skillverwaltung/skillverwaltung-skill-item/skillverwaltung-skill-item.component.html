@@ -6,7 +6,7 @@
 </mat-toolbar>
 
 <form [formGroup]="skillService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="530px">
+  <mat-grid-list cols="2" rowHeight="580px">
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field>
@@ -18,8 +18,13 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="zeitpunkt_id" placeholder="Zeitpunkt*">
+          <mat-select formControlName="zeitpunkt_id" placeholder="Startzeitpunkt (Jahr.Halbjahr)*">
             <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="endzeitpunkt_id" placeholder="Endzeitpunkt (Jahr.Halbjahr)*">
+            <mat-option *ngFor="let zeit of endzeitpunkt" [value]="zeit.endzeitpunkt_id">{{zeit.endzeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
@@ -48,7 +53,7 @@
 
       <div class="controles-container">
         <mat-form-field style="margin-top: 15px;">
-          <textarea formControlName="inhalt" matInput rows="20" placeholder="Inhalt*"></textarea>
+          <textarea formControlName="inhalt" matInput rows="24" placeholder="Inhalt*"></textarea>
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field >

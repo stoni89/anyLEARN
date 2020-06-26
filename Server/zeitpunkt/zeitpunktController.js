@@ -17,4 +17,16 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/endzeitpunkt', function (req, res) {
+  zeitpunkt.getAllEndZeitpunkt(function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 module.exports = router;

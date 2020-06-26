@@ -112,8 +112,13 @@
   </ng-container>
 
   <ng-container matColumnDef="zeitpunkt">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Zeitpunkt </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="'Jahr/Halbjahr'"> Startzeitpunkt </th>
     <td mat-cell *matCellDef="let element"> {{element.zeitpunkt}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="endzeitpunkt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="'Jahr/Halbjahr'"> Endzeitpunkt </th>
+    <td mat-cell *matCellDef="let element"> {{element.endzeitpunkt}} </td>
   </ng-container>
 
   <ng-container matColumnDef="zeitaufwand">

@@ -12,4 +12,8 @@ export class ZeitpunktService {
   getAllZeitpunkt() {
     return this.httpClient.get(this.url + `zeitpunkt`);
   }
+
+  getAllEndZeitpunkt() {
+    return this.httpClient.get(this.url + `zeitpunkt/endzeitpunkt`);
+  }
 }

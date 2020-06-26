@@ -6,7 +6,7 @@
 </mat-toolbar>
 
 <form [formGroup]="dashboardService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="530px">
+  <mat-grid-list cols="2" rowHeight="570px">
     <mat-grid-tile>
       <div class="controles-container" >
         <mat-form-field>
@@ -21,6 +21,14 @@
         <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
           <mat-select formControlName="zeitpunkt_id" placeholder="Zeitpunkt*">
             <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="userRole == 'User'" >
+          <input formControlName="endzeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Endzeitpunkt (Jahr.Halbjahr)">
+        </mat-form-field>
+        <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
+          <mat-select formControlName="endzeitpunkt_id" placeholder="Endzeitpunkt (Jahr.Halbjahr)*">
+            <mat-option *ngFor="let zeit of endzeitpunkt" [value]="zeit.endzeitpunkt_id">{{zeit.endzeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field *ngIf="userRole == 'User'" >
@@ -47,7 +55,7 @@
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field style="margin-top: 10px; width: 1800;">
-          <textarea style="height:auto" formControlName="inhalt" [readonly]="userRole == 'User'" matInput rows="20" placeholder="Inhalt"></textarea>
+          <textarea style="height:auto" formControlName="inhalt" [readonly]="userRole == 'User'" matInput rows="24" placeholder="Inhalt"></textarea>
         </mat-form-field>
         <mat-form-field >
           <textarea formControlName="nachweis" matInput rows="5" [readonly]="userRole == 'User'" placeholder="Nachweis"></textarea>

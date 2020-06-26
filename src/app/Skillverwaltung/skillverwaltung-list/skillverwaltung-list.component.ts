@@ -26,7 +26,7 @@ export class SkillverwaltungListComponent implements OnInit {
   selectedKatIDS: string;
   currentData: any;
   datasource;
-  displayedColumns = ['bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'nachname', 'kategorie', 'actions'];
+  displayedColumns = ['bereich', 'skill' , 'zeitpunkt', 'endzeitpunkt', 'zeitaufwand', 'nachname', 'kategorie', 'actions'];
 
   skillFilter = new FormControl(sessionStorage.getItem('skillverwFilterSkill'));
   vermittlerFilter = new FormControl(sessionStorage.getItem('skillverwFilterVermittler'));
@@ -232,7 +232,7 @@ export class SkillverwaltungListComponent implements OnInit {
     });
     doc.autoTable({
       styles: { fontSize: [6] },
-      head: [['Bereich', 'Skill' , 'Zeitpunkt', 'Zeitaufwand', 'Vermittler', 'Kategorie']],
+      head: [['Bereich', 'Skill' , 'Startzeitpunkt', 'Endzeitpunkt', 'Zeitaufwand', 'Vermittler', 'Kategorie']],
       body: data
     });
     doc.save('Skills.pdf');

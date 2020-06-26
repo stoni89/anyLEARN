@@ -5,7 +5,7 @@
 </mat-toolbar>
 
 <form [formGroup]="postService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="530px">
+  <mat-grid-list cols="2" rowHeight="570px">
     <mat-grid-tile>
       <div class="controles-container">
         <mat-form-field>
@@ -15,7 +15,10 @@
           <input readonly formControlName="zeitaufwand" matInput placeholder="Zeitaufwand* (z.B. 1 Stunde)">
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="zeitpunkt" readonly matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
+          <input formControlName="zeitpunkt" readonly matInput placeholder="Startzeitpunkt (Jahr.Halbjahr)">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="endzeitpunkt" readonly matInput placeholder="Endzeitpunkt (Jahr.Halbjahr)">
         </mat-form-field>
         <mat-form-field>
           <input formControlName="bereich" readonly matInput placeholder="Bereich">
@@ -33,7 +36,7 @@
 
       <div class="controles-container">
         <mat-form-field style="margin-top: 15px;">
-          <textarea readonly formControlName="inhalt" matInput rows="20" placeholder="Inhalt*"></textarea>
+          <textarea readonly formControlName="inhalt" matInput rows="24" placeholder="Inhalt*"></textarea>
         </mat-form-field>
         <mat-form-field >
           <textarea readonly formControlName="nachweis" matInput rows="5" placeholder="Nachweis*"></textarea>

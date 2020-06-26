@@ -33,7 +33,7 @@ export class DashboardSkillListComponent implements OnInit {
   offen;
   bearbeitung;
   erledigt;
-  displayedColumns = ['status', 'bereich', 'skill' , 'zeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
+  displayedColumns = ['status', 'bereich', 'skill' , 'zeitpunkt', 'endzeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
 
   skillFilter = new FormControl(sessionStorage.getItem('dashboardFilterSkill'));
   vermittlerFilter = new FormControl(sessionStorage.getItem('dashboardFilterVermittler'));
@@ -229,7 +229,7 @@ export class DashboardSkillListComponent implements OnInit {
     });
     doc.autoTable({
       styles: { fontSize: [6] },
-      head: [['Status', 'Bereich', 'Skill' , 'Zeitpunkt', 'Zeitaufwand', 'Vermittler']],
+      head: [['Status', 'Bereich', 'Skill' , 'Startzeitpunkt', 'Endzeitpunkt', 'Zeitaufwand', 'Vermittler']],
       body: data
     });
     doc.save(user + '_Skills.pdf');

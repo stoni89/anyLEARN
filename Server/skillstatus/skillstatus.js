@@ -5,11 +5,13 @@ var sst = {
   {
     return db.query('SELECT sst.skillstatus_id, sst.skill_id, sst.status_id, sst.ueberschritten, sst.user_id, s.skill, s.skill, s.zeitpunkt_id, s.lernziel, s.inhalt, s.zeitaufwand, sst.vermittler_id AS verID, ' +
                     'FORMAT(z.zeitpunkt,1) AS zeitpunkt, s.vermittler_id, s.bereich_id, s.nachweis, b.bereich, group_concat(k.kategorie separator ", ") kategorie, sta.status, ' +
-                    'group_concat(sk.kategorie_id separator ", ") kategorie_id, u.nachname AS nachname, uu.nachname AS vermittler, COUNT(sl.skill_id) AS linkAnzahl ' +
+                    'group_concat(sk.kategorie_id separator ", ") kategorie_id, u.nachname AS nachname, uu.nachname AS vermittler, COUNT(sl.skill_id) AS linkAnzahl, ' +
+                    's.endzeitpunkt_id, FORMAT(ez.endzeitpunkt,1) AS endzeitpunkt ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN skills s ON (s.skill_id = sst.skill_id) ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
                     'INNER JOIN zeitpunkt z ON (z.zeitpunkt_id = s.zeitpunkt_id) ' +
+                    'INNER JOIN endzeitpunkt ez ON (ez.endzeitpunkt_id = s.endzeitpunkt_id) ' +
                     'INNER JOIN users uu ON (uu.user_id = sst.vermittler_id) ' +
                     'INNER JOIN skillkategorie sk ON (sk.skill_id = sst.skill_id) ' +
                     'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +

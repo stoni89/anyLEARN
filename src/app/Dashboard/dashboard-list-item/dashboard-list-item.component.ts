@@ -22,6 +22,7 @@ export class DashboardListItemComponent implements OnInit {
 
   links;
   zeitpunkt: any;
+  endzeitpunkt: any;
   bereich: any;
   vermittler: any;
   userRole: string = localStorage.getItem('role');
@@ -42,6 +43,10 @@ export class DashboardListItemComponent implements OnInit {
   ngOnInit() {
     this.zeitpunktService.getAllZeitpunkt().subscribe(data => {
       this.zeitpunkt = data;
+    });
+
+    this.zeitpunktService.getAllEndZeitpunkt().subscribe(data => {
+      this.endzeitpunkt = data;
     });
 
     this.bereichService.getAllBereich().subscribe(data => {

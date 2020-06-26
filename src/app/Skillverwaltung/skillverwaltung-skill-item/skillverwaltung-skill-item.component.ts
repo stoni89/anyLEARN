@@ -22,6 +22,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
   bereich: any;
   vermittler: any;
   zeitpunkt: any;
+  endzeitpunkt: any;
   skillkategorie: any;
   selectedItemName: string;
   selectedSkillKategorie = new Array<any>();
@@ -57,6 +58,10 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
 
     this.zeitpunktService.getAllZeitpunkt().subscribe(data => {
       this.zeitpunkt = data;
+    });
+
+    this.zeitpunktService.getAllEndZeitpunkt().subscribe(data => {
+      this.endzeitpunkt = data;
     });
 
     this.selectedItemName = this.skillService.form.value.skill;

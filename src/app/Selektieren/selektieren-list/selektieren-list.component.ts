@@ -27,7 +27,7 @@ export class SelektierenListComponent implements OnInit {
   data;
   completeArray: Array<any> = [];
   datasource;
-  displayedColumns = ['bereich', 'skill', 'status', 'nachname', 'zeitpunkt', 'zeitaufwand', 'vermittler'];
+  displayedColumns = ['bereich', 'skill', 'status', 'nachname', 'zeitpunkt', 'endzeitpunkt', 'zeitaufwand', 'vermittler'];
 
   skillFilter = new FormControl(sessionStorage.getItem('selektierenFilterSkill'));
   vermittlerFilter = new FormControl(sessionStorage.getItem('selektierenFilterVermittler'));
@@ -200,7 +200,7 @@ export class SelektierenListComponent implements OnInit {
     });
     doc.autoTable({
       styles: { fontSize: [6] },
-      head: [['Bereich', 'Skill', 'Status', 'User', 'Zeitpunkt', 'Zeitaufwand', 'Vermittler']],
+      head: [['Bereich', 'Skill', 'Status', 'User', 'Startzeitpunkt', 'Endzeitpunkt', 'Zeitaufwand', 'Vermittler']],
       body: data
     });
     doc.save('Selektieren.pdf');
