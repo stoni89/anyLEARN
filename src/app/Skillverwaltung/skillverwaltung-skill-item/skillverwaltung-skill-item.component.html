@@ -18,12 +18,12 @@
           <mat-error>Pflichtfeld.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="zeitpunkt_id" placeholder="Startzeitpunkt (Jahr.Halbjahr)*">
+          <mat-select formControlName="zeitpunkt_id" placeholder="Startzeitraum (Jahr.Halbjahr)*">
             <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select formControlName="endzeitpunkt_id" placeholder="Endzeitpunkt (Jahr.Halbjahr)*">
+          <mat-select formControlName="endzeitpunkt_id" placeholder="Endzeitraum (Jahr.Halbjahr)*">
             <mat-option *ngFor="let zeit of endzeitpunkt" [value]="zeit.endzeitpunkt_id">{{zeit.endzeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>

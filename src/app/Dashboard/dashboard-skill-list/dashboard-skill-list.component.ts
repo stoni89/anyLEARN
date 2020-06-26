@@ -229,7 +229,7 @@ export class DashboardSkillListComponent implements OnInit {
     });
     doc.autoTable({
       styles: { fontSize: [6] },
-      head: [['Status', 'Bereich', 'Skill' , 'Startzeitpunkt', 'Endzeitpunkt', 'Zeitaufwand', 'Vermittler']],
+      head: [['Status', 'Bereich', 'Skill' , 'Startzeitraum', 'Endzeitraum', 'Zeitaufwand', 'Vermittler']],
       body: data
     });
     doc.save(user + '_Skills.pdf');

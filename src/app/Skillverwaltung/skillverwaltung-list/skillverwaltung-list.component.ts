@@ -232,7 +232,7 @@ export class SkillverwaltungListComponent implements OnInit {
     });
     doc.autoTable({
       styles: { fontSize: [6] },
-      head: [['Bereich', 'Skill' , 'Startzeitpunkt', 'Endzeitpunkt', 'Zeitaufwand', 'Vermittler', 'Kategorie']],
+      head: [['Bereich', 'Skill' , 'Startzeitraum', 'Endzeitraum', 'Zeitaufwand', 'Vermittler', 'Kategorie']],
       body: data
     });
     doc.save('Skills.pdf');

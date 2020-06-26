@@ -112,12 +112,12 @@
   </ng-container>
 
   <ng-container matColumnDef="zeitpunkt">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="'Jahr/Halbjahr'"> Startzeitpunkt </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="'Jahr.Halbjahr'"> Startzeitraum </th>
     <td mat-cell *matCellDef="let element"> {{element.zeitpunkt}} </td>
   </ng-container>
 
   <ng-container matColumnDef="endzeitpunkt">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="'Jahr/Halbjahr'"> Endzeitpunkt </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="'Jahr.Halbjahr'"> Endzeitraum </th>
     <td mat-cell *matCellDef="let element"> {{element.endzeitpunkt}} </td>
   </ng-container>
 

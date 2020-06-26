@@ -16,18 +16,18 @@
           <input formControlName="zeitaufwand" [readonly]="userRole == 'User'" matInput placeholder="Zeitaufwand">
         </mat-form-field>
         <mat-form-field *ngIf="userRole == 'User'" >
-          <input formControlName="zeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Zeitpunkt (Jahr.Halbjahr)">
+          <input formControlName="zeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Startzeitraum (Jahr.Halbjahr)">
         </mat-form-field>
         <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
-          <mat-select formControlName="zeitpunkt_id" placeholder="Zeitpunkt*">
+          <mat-select formControlName="zeitpunkt_id" placeholder="Startzeitraum (Jahr.Halbjahr)*">
             <mat-option *ngFor="let zeit of zeitpunkt" [value]="zeit.zeitpunkt_id">{{zeit.zeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field *ngIf="userRole == 'User'" >
-          <input formControlName="endzeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Endzeitpunkt (Jahr.Halbjahr)">
+          <input formControlName="endzeitpunkt" [readonly]="userRole == 'User'" matInput placeholder="Endzeitraum (Jahr.Halbjahr)">
         </mat-form-field>
         <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" >
-          <mat-select formControlName="endzeitpunkt_id" placeholder="Endzeitpunkt (Jahr.Halbjahr)*">
+          <mat-select formControlName="endzeitpunkt_id" placeholder="Endzeitraum (Jahr.Halbjahr)*">
             <mat-option *ngFor="let zeit of endzeitpunkt" [value]="zeit.endzeitpunkt_id">{{zeit.endzeitpunkt}}</mat-option>
           </mat-select>
         </mat-form-field>
