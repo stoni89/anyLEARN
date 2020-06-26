@@ -162,7 +162,7 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{'row-color-false': row.status_id > 1 && row.ueberschritten == 'false','row-color-true' : row.status_id == 1 && row.ueberschritten == 'true'}">
+      [ngClass]="{'row-color-false': row.status_id > 1 && row.ueberschritten == 'false','row-color-true' : row.status_id == 1 && row.ueberschritten == 'true', 'row-color-end' : row.status_id < 4 && row.ueberschritten == 'end'}">
   </tr>
 
   <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource != null}"></mat-footer-row>
