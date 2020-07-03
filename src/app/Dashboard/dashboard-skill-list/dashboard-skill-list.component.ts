@@ -98,7 +98,6 @@ export class DashboardSkillListComponent implements OnInit {
       if(localStorage.getItem('role') === 'User')
       {
         this.selectUser = parseInt(localStorage.getItem('userid'));
-        console.log(parseInt(localStorage.getItem('userid')));
       }
       else
       {
