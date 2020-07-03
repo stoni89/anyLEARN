@@ -98,6 +98,7 @@ export class DashboardSkillListComponent implements OnInit {
       if(localStorage.getItem('role') === 'User')
       {
         this.selectUser = parseInt(localStorage.getItem('userid'));
+        console.log(parseInt(localStorage.getItem('userid')));
       }
       else
       {
@@ -187,21 +188,42 @@ export class DashboardSkillListComponent implements OnInit {
       this.status = data;
     });
 
-    this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
-      this.offen = data3[0]['offen'];
-    });
+    if(localStorage.getItem('role') === 'User')
+    {
+      this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        this.offen = data3[0]['offen'];
+      });
 
-    this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
-      this.bearbeitung = data3[0]['bearbeitung'];
-    });
+      this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        this.bearbeitung = data3[0]['bearbeitung'];
+      });
 
-    this.skillstatusService.getSkillStatusCountErledigt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
-      this.erledigt = data3[0]['erledigt'];
-    });
+      this.skillstatusService.getSkillStatusCountErledigt(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        this.erledigt = data3[0]['erledigt'];
+      });
 
-    this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
-      this.gesamt = data3[0]['gesamt'];
-    });
+      this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        this.gesamt = data3[0]['gesamt'];
+      });
+    }
+    else
+    {
+      this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.offen = data3[0]['offen'];
+      });
+
+      this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.bearbeitung = data3[0]['bearbeitung'];
+      });
+
+      this.skillstatusService.getSkillStatusCountErledigt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.erledigt = data3[0]['erledigt'];
+      });
+
+      this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.gesamt = data3[0]['gesamt'];
+      });
+    }
   }
 
   createFilter(): (data: any, filter: string) => boolean {
