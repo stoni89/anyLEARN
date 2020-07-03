@@ -1,3 +1,4 @@
+import { UeberschrittenService } from './../../Shared/Services/ueberschritten.service';
 import { SkillverwaltungCloseDialogComponent } from './../skillverwaltung-close-dialog/skillverwaltung-close-dialog.component';
 import { ZeitpunktService } from './../../Shared/Services/zeitpunkt.service';
 import { Component, OnInit} from '@angular/core';
@@ -40,6 +41,7 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               public skillkategorieService: SkillkategorieService,
               public skillService: SkillService,
               public zeitpunktService: ZeitpunktService,
+              public ueberschrittenService: UeberschrittenService,
               public logService: LogsService) {}
 
 
@@ -151,6 +153,11 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
             }
           ];
 
+          this.ueberschrittenService.updateStart().subscribe();
+          this.ueberschrittenService.updateEnd().subscribe();
+          this.ueberschrittenService.updateStartFalse().subscribe();
+          this.ueberschrittenService.updateEndFalse().subscribe();
+
           this.logService.newLogs(logitem[0]).subscribe();
           this.openGreenSnackBar('Neuer Skill wurde angelegt!', 'Schließen');
           this.onClose();
@@ -191,6 +198,11 @@ export class SkillverwaltungSkillItemComponent implements OnInit {
               cat_id: 5
             }
           ];
+
+          this.ueberschrittenService.updateStart().subscribe();
+          this.ueberschrittenService.updateEnd().subscribe();
+          this.ueberschrittenService.updateStartFalse().subscribe();
+          this.ueberschrittenService.updateEndFalse().subscribe();
 
           this.logService.newLogs(logitem[0]).subscribe();
 

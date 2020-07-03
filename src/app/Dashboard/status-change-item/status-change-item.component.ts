@@ -1,3 +1,4 @@
+import { UeberschrittenService } from './../../Shared/Services/ueberschritten.service';
 import { PostService } from './../../Shared/Services/post.service';
 import { DashboardService } from './../../Shared/Services/dashboard.service';
 import { StatusService } from './../../Shared/Services/status.service';
@@ -19,7 +20,8 @@ export class StatusChangeItemComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<StatusChangeItemComponent>, @Inject(MAT_DIALOG_DATA) public data,
               public statusService: StatusService, public skillstatusService: SkillstatusService,
-              public dashboardService: DashboardService, public postService: PostService, private snackbar: MatSnackBar) { }
+              public dashboardService: DashboardService, public postService: PostService, private snackbar: MatSnackBar,
+              public ueberschrittenService: UeberschrittenService) { }
 
   ngOnInit() {
     this.statusService.getAllStatus().subscribe(data => {
@@ -54,6 +56,11 @@ export class StatusChangeItemComponent implements OnInit {
         skillstatus_id: this.data.skillstatus_id
       }
     ];
+
+    this.ueberschrittenService.updateStart().subscribe();
+    this.ueberschrittenService.updateEnd().subscribe();
+    this.ueberschrittenService.updateStartFalse().subscribe();
+    this.ueberschrittenService.updateEndFalse().subscribe();
 
     this.postService.newPost(newItem[0]).subscribe();
 

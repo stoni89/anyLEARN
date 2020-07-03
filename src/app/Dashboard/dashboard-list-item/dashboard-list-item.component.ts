@@ -1,3 +1,4 @@
+import { UeberschrittenService } from './../../Shared/Services/ueberschritten.service';
 import { DashboardCloseDialogComponent } from './../dashboard-close-dialog/dashboard-close-dialog.component';
 import { UserService } from 'src/app/Shared/Services/user.service';
 import { BereichService } from 'src/app/Shared/Services/bereich.service';
@@ -37,6 +38,7 @@ export class DashboardListItemComponent implements OnInit {
               public userService: UserService,
               public logService: LogsService,
               public skillService: SkillService,
+              public ueberschrittenService: UeberschrittenService,
               public linksService: LinksService,
               public zeitpunktService: ZeitpunktService) {}
 
@@ -161,6 +163,11 @@ export class DashboardListItemComponent implements OnInit {
         cat_id: 5
       }
     ];
+
+    this.ueberschrittenService.updateStart().subscribe();
+    this.ueberschrittenService.updateEnd().subscribe();
+    this.ueberschrittenService.updateStartFalse().subscribe();
+    this.ueberschrittenService.updateEndFalse().subscribe();
 
     this.logService.newLogs(logitem[0]).subscribe();
     this.onClose();
