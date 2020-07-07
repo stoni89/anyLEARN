@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,6 @@ export class SkillService {
       // tslint:disable-next-line: only-arrow-functions
       kategorie_id: this.form.value.kategorie_id.split(',').map(function(item) {return parseInt(item, 10); })
     });
-
   }
 
   getAllSkills() {

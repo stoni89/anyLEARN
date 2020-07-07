@@ -1,8 +1,17 @@
 <div class="search-div">
-  <mat-form-field *ngIf="(userRole == 'Administrator' || userRole == 'Vermittler')">
+  <mat-form-field *ngIf="userRole == 'Vermittler'">
     <mat-label>User</mat-label>
     <mat-select (selectionChange)="onSelectUserChange()" [(ngModel)]="selectUser">
       <mat-option *ngFor="let user of users" [value]="user.user_id">
+        {{user.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="userRole == 'Administrator'">
+    <mat-label>User</mat-label>
+    <mat-select (selectionChange)="onSelectUserChange()" [(ngModel)]="selectUser">
+      <mat-option *ngFor="let user of allUser" [value]="user.user_id">
         {{user.name}}
       </mat-option>
     </mat-select>

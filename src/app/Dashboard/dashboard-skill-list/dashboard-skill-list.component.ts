@@ -26,6 +26,7 @@ import { FormControl } from '@angular/forms';
 export class DashboardSkillListComponent implements OnInit {
   datasource;
   users: any;
+  allUser: any;
   vermittler: any;
   userID = localStorage.getItem('userid');
   selectUser;
@@ -90,6 +91,10 @@ export class DashboardSkillListComponent implements OnInit {
 
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
+    });
+
+    this.userService.getAllUsersAktiv().subscribe(data => {
+      this.allUser = data;
     });
 
     this.userService.getAllUsersAzubi().subscribe(data => {

@@ -57,10 +57,13 @@ export class StatusChangeItemComponent implements OnInit {
       }
     ];
 
-    this.ueberschrittenService.updateStart().subscribe();
-    this.ueberschrittenService.updateEnd().subscribe();
-    this.ueberschrittenService.updateStartFalse().subscribe();
-    this.ueberschrittenService.updateEndFalse().subscribe();
+    this.ueberschrittenService.updateStart().subscribe( data => {
+      this.ueberschrittenService.updateEnd().subscribe( data => {
+        this.ueberschrittenService.updateStartFalse().subscribe( data => {
+          this.ueberschrittenService.updateEndFalse().subscribe();
+        });
+      });
+    });
 
     this.postService.newPost(newItem[0]).subscribe();
 
