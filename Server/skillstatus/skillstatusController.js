@@ -159,4 +159,56 @@ router.delete('/:skill_id', function (req, res) {
   });
 });
 
+router.get('/useralloffen/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusAllUsersOffen(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/userallbearbeitung/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusAllUsersBearbeitung(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/userallgenehmigung/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusAllUsersBearbeitungGen(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+router.get('/userallerledigt/:skill_id', function (req, res) {
+  const skill_id = req.params.skill_id;
+  sst.getSkillStatusAllUsersErledigt(skill_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 module.exports = router;

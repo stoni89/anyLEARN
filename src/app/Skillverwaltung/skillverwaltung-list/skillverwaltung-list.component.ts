@@ -199,24 +199,49 @@ export class SkillverwaltungListComponent implements OnInit {
   }
 
   onSkillStatusInfo(row) {
-    this.skillstatusService.getSkillStatusUserOffen(row.skill_id).subscribe(dataOffen => {
-      this.skillstatusService.getSkillStatusUserBearbeitung(row.skill_id).subscribe(dataBearbeitung => {
-        this.skillstatusService.getSkillStatusUserGenehmigung(row.skill_id).subscribe(dataGenehmigung => {
-          this.skillstatusService.getSkillStatusUserErledigt(row.skill_id).subscribe(dataErledigt => {
-            const dialogConfig = new MatDialogConfig();
-            dialogConfig.disableClose = true;
-            dialogConfig.autoFocus = true;
-            dialogConfig.width = '50%';
-            dialogConfig.data = {offen: dataOffen,
-                                 bearbeitung: dataBearbeitung,
-                                 genehmigung: dataGenehmigung,
-                                 erledigt: dataErledigt,
-                                 skill: row.skill};
-            this.dialog.open(SkillverwaltungSkillstatusDialogComponent, dialogConfig);
+    if (localStorage.getItem('role') === 'Vermittler')
+    {
+      this.skillstatusService.getSkillStatusUserOffen(row.skill_id).subscribe(dataOffen => {
+        this.skillstatusService.getSkillStatusUserBearbeitung(row.skill_id).subscribe(dataBearbeitung => {
+          this.skillstatusService.getSkillStatusUserGenehmigung(row.skill_id).subscribe(dataGenehmigung => {
+            this.skillstatusService.getSkillStatusUserErledigt(row.skill_id).subscribe(dataErledigt => {
+              const dialogConfig = new MatDialogConfig();
+              dialogConfig.disableClose = true;
+              dialogConfig.autoFocus = true;
+              dialogConfig.width = '50%';
+              dialogConfig.data = {offen: dataOffen,
+                                   bearbeitung: dataBearbeitung,
+                                   genehmigung: dataGenehmigung,
+                                   erledigt: dataErledigt,
+                                   skill: row.skill};
+              this.dialog.open(SkillverwaltungSkillstatusDialogComponent, dialogConfig);
+            });
           });
         });
       });
-    });
+    }
+
+    if (localStorage.getItem('role') === 'Administrator')
+    {
+      this.skillstatusService.getSkillStatusAllUserOffen(row.skill_id).subscribe(dataOffen => {
+        this.skillstatusService.getSkillStatusAllUserBearbeitung(row.skill_id).subscribe(dataBearbeitung => {
+          this.skillstatusService.getSkillStatusAllUserGenehmigung(row.skill_id).subscribe(dataGenehmigung => {
+            this.skillstatusService.getSkillStatusAllUserErledigt(row.skill_id).subscribe(dataErledigt => {
+              const dialogConfig = new MatDialogConfig();
+              dialogConfig.disableClose = true;
+              dialogConfig.autoFocus = true;
+              dialogConfig.width = '50%';
+              dialogConfig.data = {offen: dataOffen,
+                                   bearbeitung: dataBearbeitung,
+                                   genehmigung: dataGenehmigung,
+                                   erledigt: dataErledigt,
+                                   skill: row.skill};
+              this.dialog.open(SkillverwaltungSkillstatusDialogComponent, dialogConfig);
+            });
+          });
+        });
+      });
+    }
   }
 
   print() {

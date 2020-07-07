@@ -90,6 +90,34 @@ var sst = {
   {
     return db.query('DELETE FROM skillstatus WHERE skill_id = ' + id, callback)
   },
+  getSkillStatusAllUsersOffen: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 1 && sst.skill_id = ' + id, callback)
+  },
+  getSkillStatusAllUsersBearbeitung: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 2 && sst.skill_id = ' + id, callback)
+  },
+  getSkillStatusAllUsersBearbeitungGen: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 3 && sst.skill_id = ' + id, callback)
+  },
+  getSkillStatusAllUsersErledigt: function(id, callback)
+  {
+    return db.query('SELECT u.nachname ' +
+                    'FROM skillstatus sst ' +
+                    'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
+                    'WHERE sst.status_id = 4 && sst.skill_id = ' + id, callback)
+  },
 }
 
 module.exports = sst;

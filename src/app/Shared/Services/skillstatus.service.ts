@@ -68,7 +68,21 @@ export class SkillstatusService {
     return this.httpClient.delete(this.url + `skillstatus/` + id);
    }
 
+  getSkillStatusAllUserOffen(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/useralloffen/` + skillid);
+  }
 
+  getSkillStatusAllUserBearbeitung(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/userallbearbeitung/` + skillid);
+  }
+
+  getSkillStatusAllUserGenehmigung(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/userallgenehmigung/` + skillid);
+  }
+
+  getSkillStatusAllUserErledigt(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/userallerledigt/` + skillid);
+  }
 
 
   listen(): Observable<any>{
