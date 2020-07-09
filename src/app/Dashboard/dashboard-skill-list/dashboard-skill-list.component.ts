@@ -295,6 +295,10 @@ export class DashboardSkillListComponent implements OnInit {
     this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
       this.gesamt = data3[0]['gesamt'];
     });
+
+    this.skillstatusService.getSkillStatusUserErledigtAll(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+      this.erledigtDiff = data3[0]['erledigt'] - data3[1]['erledigt'];
+    });
   }
 
 
@@ -334,6 +338,10 @@ export class DashboardSkillListComponent implements OnInit {
 
       this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
         this.gesamt = data3[0]['gesamt'];
+      });
+
+      this.skillstatusService.getSkillStatusUserErledigtAll(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.erledigtDiff = data3[0]['erledigt'] - data3[1]['erledigt'];
       });
     });
   }

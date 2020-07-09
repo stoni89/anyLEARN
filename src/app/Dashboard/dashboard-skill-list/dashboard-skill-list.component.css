@@ -17,3 +17,7 @@ div {
   margin-left:auto;
   margin-right:auto;
 }
+
+.mat-badge-hidden .mat-badge-content:empty {
+  display: inline-block;
+}
