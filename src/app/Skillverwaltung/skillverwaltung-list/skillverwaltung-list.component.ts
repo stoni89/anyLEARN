@@ -16,6 +16,7 @@ import { SkillverwaltungSkillRemoveComponent } from '../skillverwaltung-skill-re
 import 'jspdf-autotable';
 import * as jsPDF from 'jspdf';
 import { FormControl } from '@angular/forms';
+import { KategorieService } from 'src/app/Shared/Services/kategorie.service';
 
 @Component({
   selector: 'app-skillverwaltung-list',
@@ -31,13 +32,16 @@ export class SkillverwaltungListComponent implements OnInit {
   skillFilter = new FormControl(sessionStorage.getItem('skillverwFilterSkill'));
   vermittlerFilter = new FormControl(sessionStorage.getItem('skillverwFilterVermittler'));
   bereichFilter = new FormControl(sessionStorage.getItem('skillverwFilterBereich'));
+  kategorieFilter = new FormControl(sessionStorage.getItem('skillverwFilterKategorie'));
   filterValues = {
     skill: sessionStorage.getItem('skillverwFilterSkill'),
     nachname: sessionStorage.getItem('skillverwFilterVermittler'),
-    bereich: sessionStorage.getItem('skillverwFilterBereich')
+    bereich: sessionStorage.getItem('skillverwFilterBereich'),
+    kategorie: sessionStorage.getItem('skillverwFilterKategorie'),
   };
   bereich: any;
   users: any;
+  kategorie: any;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,6 +52,7 @@ export class SkillverwaltungListComponent implements OnInit {
               private dialog: MatDialog,
               public bereichService: BereichService,
               public userService: UserService,
+              public kategorieService: KategorieService,
               public skillkategorieService: SkillkategorieService,
               public skillstatusService: SkillstatusService) {
     this.service.listen().subscribe(async data => {
@@ -71,6 +76,10 @@ export class SkillverwaltungListComponent implements OnInit {
     {
       this.filterValues.nachname = "";
     }
+    if (this.filterValues.kategorie === null)
+    {
+      this.filterValues.kategorie = "";
+    }
 
     this.bereichService.getAllBereich().subscribe(data => {
       this.bereich = data;
@@ -78,6 +87,10 @@ export class SkillverwaltungListComponent implements OnInit {
 
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
+    });
+
+    this.kategorieService.getAllKategorie().subscribe(data => {
+      this.kategorie = data;
     });
 
     this.service.getAllSkills().subscribe(data => {
@@ -123,6 +136,21 @@ export class SkillverwaltungListComponent implements OnInit {
           this.datasource.filter = JSON.stringify(this.filterValues);
         }
       });
+
+      this.kategorieFilter.valueChanges.subscribe(kategorie => {
+        sessionStorage.setItem('skillverwFilterKategorie', kategorie);
+        if (sessionStorage.getItem('skillverwFilterKategorie') === 'undefined')
+        {
+          sessionStorage.setItem('skillverwFilterKategorie', '');
+          this.filterValues.kategorie = sessionStorage.getItem('skillverwFilterKategorie');
+          this.datasource.filter = JSON.stringify(this.filterValues);
+        }
+        else
+        {
+          this.filterValues.kategorie = sessionStorage.getItem('skillverwFilterKategorie');
+          this.datasource.filter = JSON.stringify(this.filterValues);
+        }
+      });
     });
   }
 
@@ -131,6 +159,7 @@ export class SkillverwaltungListComponent implements OnInit {
       let searchTerms = JSON.parse(filter);
       return data.skill.toLowerCase().indexOf(searchTerms.skill.toLowerCase()) !== -1
       && data.nachname.toLowerCase().indexOf(searchTerms.nachname.toLowerCase()) !== -1
+      && data.kategorie.toLowerCase().indexOf(searchTerms.kategorie.toLowerCase()) !== -1
       && data.bereich.toLowerCase().indexOf(searchTerms.bereich.toLowerCase()) !== -1;
     };
     return filterFunction;

@@ -157,7 +157,6 @@
       <button mat-icon-button (click)="onEdit(row)" matTooltip="Details" matTooltipPosition="left"><mat-icon>launch</mat-icon></button>
       <button mat-icon-button (click)="onLink(row)" matTooltip="Links" matTooltipPosition="right">
         <mat-icon *ngIf="row.linkAnzahl > 0"  matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="small" matBadge="">link</mat-icon>
-        <mat-icon *ngIf="row.linkAnzahl === 0"  matBadgeColor="warn" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="small" matBadge="">link</mat-icon>
       </button>
     </td>
   </ng-container>
