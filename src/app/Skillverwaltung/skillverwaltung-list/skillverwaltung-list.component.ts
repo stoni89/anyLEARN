@@ -199,6 +199,7 @@ export class SkillverwaltungListComponent implements OnInit {
   }
 
   onSkillStatusInfo(row) {
+    /*
     if (localStorage.getItem('role') === 'Vermittler')
     {
       this.skillstatusService.getSkillStatusUserOffen(row.skill_id).subscribe(dataOffen => {
@@ -220,8 +221,9 @@ export class SkillverwaltungListComponent implements OnInit {
         });
       });
     }
+    */
 
-    if (localStorage.getItem('role') === 'Administrator')
+    if (localStorage.getItem('role') === 'Administrator' || localStorage.getItem('role') === 'Vermittler')
     {
       this.skillstatusService.getSkillStatusAllUserOffen(row.skill_id).subscribe(dataOffen => {
         this.skillstatusService.getSkillStatusAllUserBearbeitung(row.skill_id).subscribe(dataBearbeitung => {
