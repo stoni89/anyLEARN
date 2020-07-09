@@ -18,3 +18,14 @@ div {
   margin-right:auto;
 }
 
+.break-word {
+  word-break: break-all;
+}
+
+td , th {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 750px;
+}
+
+
