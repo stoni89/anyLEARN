@@ -34,6 +34,7 @@ export class DashboardSkillListComponent implements OnInit {
   offen;
   bearbeitung;
   erledigt;
+  erledigtDiff;
   displayedColumns = ['status', 'bereich', 'skill' , 'zeitpunkt', 'endzeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
 
   skillFilter = new FormControl(sessionStorage.getItem('dashboardFilterSkill'));
@@ -97,7 +98,7 @@ export class DashboardSkillListComponent implements OnInit {
       this.allUser = data;
     });
 
-    this.userService.getAllUsersAzubi().subscribe(data => {
+    this.userService.getAllUsersAzubi(parseInt(localStorage.getItem('userid'))).subscribe(data => {
       this.users = data;
 
       if(localStorage.getItem('role') === 'User')
@@ -209,6 +210,10 @@ export class DashboardSkillListComponent implements OnInit {
       this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
         this.gesamt = data3[0]['gesamt'];
       });
+
+      this.skillstatusService.getSkillStatusUserErledigtAll(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        this.erledigtDiff = data3[0]['erledigt'] - data3[1]['erledigt'];
+      });
     }
     else
     {
@@ -226,6 +231,10 @@ export class DashboardSkillListComponent implements OnInit {
 
       this.skillstatusService.getSkillStatusCountGesamt(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
         this.gesamt = data3[0]['gesamt'];
+      });
+
+      this.skillstatusService.getSkillStatusUserErledigtAll(parseInt(localStorage.getItem('key'))).subscribe(data3 => {
+        this.erledigtDiff = data3[0]['erledigt'] - data3[1]['erledigt'];
       });
     }
   }

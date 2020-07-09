@@ -69,6 +69,20 @@ router.get('/counterledigt/:user_id', function (req, res) {
   });
 });
 
+router.get('/countdiff/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  sst.getSkillStatusCountErledigtAll(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
+
 router.get('/countgesamt/:user_id', function (req, res) {
   const user_id = req.params.user_id;
   sst.getSkillStatusCountGesamt(user_id, function(err,rows){

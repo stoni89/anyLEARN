@@ -75,8 +75,7 @@ export class SelektierenListComponent implements OnInit {
       this.filterValues.status = "";
     }
 
-
-    this.userService.getAllUsersAzubi().subscribe(data => {
+    this.userService.getAllUsersAzubi(parseInt(localStorage.getItem('userid'))).subscribe(data => {
       this.users = data;
     });
 

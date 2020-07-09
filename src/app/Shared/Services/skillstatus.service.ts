@@ -52,6 +52,10 @@ export class SkillstatusService {
     return this.httpClient.get(this.url + `skillstatus/usererledigt/` + skillid);
   }
 
+  getSkillStatusUserErledigtAll(skillid: number) {
+    return this.httpClient.get(this.url + `skillstatus/countdiff/` + skillid);
+  }
+
   updateSkillStatus(skillstatus: any) {
     return this.httpClient.put(this.url + `skillstatus`, skillstatus);
   }
