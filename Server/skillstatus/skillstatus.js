@@ -53,28 +53,32 @@ var sst = {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 1 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id AND sst.status_id = 1 AND sst.skill_id = ' + id + ' AND u.rollen_id = 1', callback)
   },
   getSkillStatusUsersBearbeitung: function(id, callback)
   {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 2 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id AND sst.status_id = 2 AND sst.skill_id = ' + id + ' AND u.rollen_id = 1', callback)
   },
   getSkillStatusUsersBearbeitungGen: function(id, callback)
   {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 3 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id AND sst.status_id = 3 AND sst.skill_id = ' + id + ' AND u.rollen_id = 1', callback)
   },
   getSkillStatusUsersErledigt: function(id, callback)
   {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 4 && sst.skill_id = ' + id + ' && u.rollen_id = 1', callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE u.kategorie_id = sk.kategorie_id AND sst.status_id = 4 AND sst.skill_id = ' + id + ' AND u.rollen_id = 1', callback)
   },
   newSkillStatus: function(postdata, callback)
   {
@@ -95,28 +99,40 @@ var sst = {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 1 && sst.skill_id = ' + id, callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE sst.status_id = 1 AND ' +
+                    'u.kategorie_id = sk.kategorie_id AND ' +
+                    'sst.skill_id = ' + id, callback)
   },
   getSkillStatusAllUsersBearbeitung: function(id, callback)
   {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 2 && sst.skill_id = ' + id, callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE sst.status_id = 2 AND ' +
+                    'u.kategorie_id = sk.kategorie_id AND ' +
+                    'sst.skill_id = ' + id, callback)
   },
   getSkillStatusAllUsersBearbeitungGen: function(id, callback)
   {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 3 && sst.skill_id = ' + id, callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE sst.status_id = 3 AND ' +
+                    'u.kategorie_id = sk.kategorie_id AND ' +
+                    'sst.skill_id = ' + id, callback)
   },
   getSkillStatusAllUsersErledigt: function(id, callback)
   {
     return db.query('SELECT u.nachname ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
-                    'WHERE sst.status_id = 4 && sst.skill_id = ' + id, callback)
+                    'INNER JOIN skillkategorie sk ON (sk.skill_Id = sst.skill_Id) ' +
+                    'WHERE sst.status_id = 4 AND ' +
+                    'u.kategorie_id = sk.kategorie_id AND ' +
+                    'sst.skill_id = ' + id, callback)
   },
 }
 
