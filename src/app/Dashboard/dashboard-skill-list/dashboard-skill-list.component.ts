@@ -103,25 +103,22 @@ export class DashboardSkillListComponent implements OnInit {
 
       if (localStorage.getItem('role') === 'User')
       {
+        // tslint:disable-next-line: radix
         this.selectUser = parseInt(localStorage.getItem('userid'));
       }
       else
       {
-        console.log(parseInt(localStorage.getItem('key')))
         // tslint:disable-next-line: radix
         if (isNaN (parseInt(localStorage.getItem('key'))))
         {
           // tslint:disable-next-line: no-string-literal
           localStorage.setItem('key', data[0]['user_id']);
-          console.log(parseInt(localStorage.getItem('key')))
           // tslint:disable-next-line: radix
           this.selectUser = parseInt(localStorage.getItem('key'));
-          console.log(this.selectUser);
         }
         else
         {
           // tslint:disable-next-line: radix
-          console.log(parseInt(localStorage.getItem('key')))
           this.selectUser = parseInt(localStorage.getItem('key'));
         }
       }
@@ -197,13 +194,16 @@ export class DashboardSkillListComponent implements OnInit {
       this.status = data;
     });
 
-    if(localStorage.getItem('role') === 'User')
+    if (localStorage.getItem('role') === 'User')
     {
+      // tslint:disable-next-line: radix
       this.skillstatusService.getSkillStatusCountOffen(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        // tslint:disable-next-line: no-string-literal
         this.offen = data3[0]['offen'];
       });
 
       this.skillstatusService.getSkillStatusCountBearbeitung(parseInt(localStorage.getItem('userid'))).subscribe(data3 => {
+        // tslint:disable-next-line: no-string-literal
         this.bearbeitung = data3[0]['bearbeitung'];
       });
 
