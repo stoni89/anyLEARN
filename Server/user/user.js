@@ -16,12 +16,20 @@ var user = {
                         'WHERE istAktiv = true ' +
                         'ORDER BY u.name', callback);
     },
-    getAllUserAktivAzubi: function(user_id, callback)
+    getAllUserAktivAzubiAndMe: function(user_id, callback)
     {
         return db.query('SELECT u.user_id, u.vorname, u.nachname, u.eintritt, u.name, u.kuerzel, u.rollen_id, u.kategorie_id, u.mail, u.istAktiv, r.rolle, k.kategorie FROM users u ' +
                         'INNER JOIN rollen r ON u.rollen_id = r.rollen_id ' +
                         'INNER JOIN kategorie k ON k.kategorie_id = u.kategorie_id ' +
                         'WHERE istAktiv = true AND (u.rollen_id = 1 OR u.user_id = ' + user_id + ') ' +
+                        'ORDER BY u.name', callback);
+    },
+    getAllUserAktivAzubi: function(callback)
+    {
+        return db.query('SELECT u.user_id, u.vorname, u.nachname, u.eintritt, u.name, u.kuerzel, u.rollen_id, u.kategorie_id, u.mail, u.istAktiv, r.rolle, k.kategorie FROM users u ' +
+                        'INNER JOIN rollen r ON u.rollen_id = r.rollen_id ' +
+                        'INNER JOIN kategorie k ON k.kategorie_id = u.kategorie_id ' +
+                        'WHERE istAktiv = true AND u.rollen_id = 1 ' +
                         'ORDER BY u.name', callback);
     },
     getSpezificUser: function(id, callback)

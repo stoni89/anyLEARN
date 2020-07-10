@@ -59,8 +59,8 @@ export class UserService {
     return this.httpClient.get(this.url + `user/user/aktiv`);
   }
 
-  getAllUsersAzubi(user_id: any) {
-    return this.httpClient.get(this.url + `user/user/azubi/` + user_id);
+  getAllUsersAzubi() {
+    return this.httpClient.get(this.url + `user/user/azubi`);
   }
 
   getSpezificUsers(id: number) {

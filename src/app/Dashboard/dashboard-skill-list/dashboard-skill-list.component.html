@@ -1,5 +1,5 @@
 <div class="search-div">
-  <mat-form-field *ngIf="userRole == 'Vermittler'">
+  <mat-form-field *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'">
     <mat-label>User</mat-label>
     <mat-select (selectionChange)="onSelectUserChange()" [(ngModel)]="selectUser">
       <mat-option *ngFor="let user of users" [value]="user.user_id">
@@ -8,6 +8,7 @@
     </mat-select>
   </mat-form-field>
 
+  <!--
   <mat-form-field *ngIf="userRole == 'Administrator'">
     <mat-label>User</mat-label>
     <mat-select (selectionChange)="onSelectUserChange()" [(ngModel)]="selectUser">
@@ -16,6 +17,8 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  -->
+
 
   <mat-label *ngIf="userRole == 'User'" [ngStyle]="{'padding-left': '10px', 'font-weight': 'bold', 'font-size': '18px'}">{{ userName }}</mat-label>
 
