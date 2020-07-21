@@ -41,4 +41,16 @@ export class SkillverwaltungSkillRemoveComponent implements OnInit {
     this.snackbar.open(message, action, {duration: 2000, panelClass: ['red-snackbar']});
   }
 
+  holdHandler(e) {
+    if (e > 2000)
+    {
+      const skillID = this.data.skill_id;
+      this.skillService.removeSkill(skillID).subscribe();
+      this.skillkategorieService.removeSkillKategorie(skillID).subscribe();
+      this.skillstatusService.removeSkillStatus(skillID).subscribe();
+      this.openGreenSnackBar('Gelöscht!', 'Schließen');
+      this.onClose();
+    }
+  }
+
 }
