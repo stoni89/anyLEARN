@@ -105,6 +105,13 @@ export class DashboardListItemComponent implements OnInit {
     this.postService.newPost(newItem[0]).subscribe();
     this.postService.updateBadge();
 
+    this.postService.getMailData(this.dashboardService.form.value.verID).subscribe(data => {
+      const name = data[0].vorname + ' ' + data[0].nachname;
+      const mail = data[0].mail;
+      const anzahlPost = data[0].anzahlPost + 1;
+      this.postService.sendEmail(name, mail, anzahlPost);
+    });
+
     this.onClose();
   }
 
@@ -136,6 +143,13 @@ export class DashboardListItemComponent implements OnInit {
 
     this.postService.newPost(newItem[0]).subscribe();
     this.postService.updateBadge();
+
+    this.postService.getMailData(this.dashboardService.form.value.verID).subscribe(data => {
+      const name = data[0].vorname + ' ' + data[0].nachname;
+      const mail = data[0].mail;
+      const anzahlPost = data[0].anzahlPost + 1;
+      this.postService.sendEmail(name, mail, anzahlPost);
+    });
 
     this.onClose();
   }

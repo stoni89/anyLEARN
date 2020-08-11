@@ -18,9 +18,10 @@ var postController = require('./mitteilung/mitteilungController');
 var logsController = require('./logs/logsController');
 var selectController = require('./selektieren/selektierenController');
 var zeitpunktController = require('./zeitpunkt/zeitpunktController');
-var sendMailController = require('./sendMail/sendMail');
+var sendMailController = require('./sendMail/sendMailController');
 var linksController = require('./links/linksController');
 var ueberschrittenController = require('./ueberschritten/ueberschrittenController');
+var optionsController = require('./options/optionsController');
 app.use('/user', userController);
 app.use('/kategorie', kategorieController);
 app.use('/rollen', rollenController);
@@ -39,6 +40,7 @@ app.use('/zeitpunkt', zeitpunktController);
 app.use('/sendMail', sendMailController);
 app.use('/links', linksController);
 app.use('/ueberschritten', ueberschrittenController);
+app.use('/options', optionsController);
 
 module.exports = app;
 

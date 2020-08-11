@@ -11,6 +11,13 @@ var mit = {
                         'INNER JOIN users uu ON (uu.user_id = p.user_id) ' +
                         'WHERE p.user_id = ' + id + ' ORDER by p.date', callback);
     },
+    getMailData: function(id, callback)
+    {
+        return db.query('SELECT u.mail, u.name, u.vorname, u.nachname, COUNT(p.post_id) AS anzahlPost ' +
+                        'FROM users u ' +
+                        'INNER JOIN post p ON p.user_id = u.user_id ' +
+                        'WHERE u.user_id = ' + id, callback)
+    },
     getMitCount: function(id, callback)
     {
         return db.query('SELECT COUNT(*) AS anzahl FROM post WHERE user_id = ' + id, callback);

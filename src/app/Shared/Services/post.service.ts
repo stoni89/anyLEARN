@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
+import emailjs from 'emailjs-com';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,10 @@ export class PostService {
     return this.httpClient.get(this.url + `post/` + id);
   }
 
+  getMailData(id: number) {
+    return this.httpClient.get(this.url + `post/maildata/` + id);
+  }
+
   getPostIDCount(id: number) {
     return this.httpClient.get(this.url + `post/count/` + id);
   }
@@ -74,6 +79,22 @@ export class PostService {
 
   newPost(newPost: any) {
     return this.httpClient.post(this.url + `post`, newPost);
+  }
+
+
+  public sendEmail(nam: string, toEmail: string, openMails: number) {
+    const templateParams = {
+      name: nam,
+      open_mails: openMails,
+      reply_toEmail: toEmail
+    };
+
+    emailjs.send('anylearn', 'template_LrEJ2Cnx', templateParams, 'user_TiZKKsDMiqUCkLRrAGjZW')
+      .then((response) => {
+        console.log(response.text);
+      }, (error) => {
+        console.log(error.text);
+      });
   }
 
 
