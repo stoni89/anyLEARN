@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
           localStorage.setItem('name', data[0]['name']);
           localStorage.setItem('userid', data[0]['user_id']);
           sessionStorage.setItem('skillverwFilterSkill', '');
+          sessionStorage.setItem('skillverwFilterInhalt', '');
           sessionStorage.setItem('skillverwFilterVermittler', '');
           sessionStorage.setItem('skillverwFilterBereich', '');
           sessionStorage.setItem('skillverwFilterKategorie', '');

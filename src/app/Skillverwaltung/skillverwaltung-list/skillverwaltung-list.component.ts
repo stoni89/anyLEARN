@@ -30,11 +30,13 @@ export class SkillverwaltungListComponent implements OnInit {
   displayedColumns = ['bereich', 'skill' , 'zeitpunkt', 'endzeitpunkt', 'zeitaufwand', 'nachname', 'kategorie', 'actions'];
 
   skillFilter = new FormControl(sessionStorage.getItem('skillverwFilterSkill'));
+  inhaltFilter = new FormControl(sessionStorage.getItem('skillverwFilterInhalt'));
   vermittlerFilter = new FormControl(sessionStorage.getItem('skillverwFilterVermittler'));
   bereichFilter = new FormControl(sessionStorage.getItem('skillverwFilterBereich'));
   kategorieFilter = new FormControl(sessionStorage.getItem('skillverwFilterKategorie'));
   filterValues = {
     skill: sessionStorage.getItem('skillverwFilterSkill'),
+    inhalt: sessionStorage.getItem('skillverwFilterInhalt'),
     nachname: sessionStorage.getItem('skillverwFilterVermittler'),
     bereich: sessionStorage.getItem('skillverwFilterBereich'),
     kategorie: sessionStorage.getItem('skillverwFilterKategorie'),
@@ -72,6 +74,10 @@ export class SkillverwaltungListComponent implements OnInit {
     {
       this.filterValues.skill = "";
     }
+    if (this.filterValues.inhalt === null)
+    {
+      this.filterValues.inhalt = "";
+    }
     if (this.filterValues.nachname === null)
     {
       this.filterValues.nachname = "";
@@ -104,6 +110,12 @@ export class SkillverwaltungListComponent implements OnInit {
       this.skillFilter.valueChanges.subscribe(skill => {
         sessionStorage.setItem('skillverwFilterSkill', skill);
         this.filterValues.skill = sessionStorage.getItem('skillverwFilterSkill');
+        this.datasource.filter = JSON.stringify(this.filterValues);
+      });
+
+      this.inhaltFilter.valueChanges.subscribe(inhalt => {
+        sessionStorage.setItem('skillverwFilterInhalt', inhalt);
+        this.filterValues.inhalt = sessionStorage.getItem('skillverwFilterInhalt');
         this.datasource.filter = JSON.stringify(this.filterValues);
       });
 
@@ -158,6 +170,7 @@ export class SkillverwaltungListComponent implements OnInit {
     let filterFunction = function(data, filter): boolean {
       let searchTerms = JSON.parse(filter);
       return data.skill.toLowerCase().indexOf(searchTerms.skill.toLowerCase()) !== -1
+      && data.inhalt.toLowerCase().indexOf(searchTerms.inhalt.toLowerCase()) !== -1
       && data.nachname.toLowerCase().indexOf(searchTerms.nachname.toLowerCase()) !== -1
       && data.kategorie.toLowerCase().indexOf(searchTerms.kategorie.toLowerCase()) !== -1
       && data.bereich.toLowerCase().indexOf(searchTerms.bereich.toLowerCase()) !== -1;

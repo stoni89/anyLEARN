@@ -51,6 +51,13 @@ export class PostListItemComponent implements OnInit {
       }
     ];
 
+    this.postService.getMailData(data.fromuser_id).subscribe(d => {
+      const name = d[0].vorname + ' ' + d[0].nachname;
+      const mail = d[0].mail;
+      const anzahlPost = d[0].anzahlPost + 1;
+      this.postService.sendEmail(name, mail, anzahlPost);
+    });
+
     this.postService.newPost(newItem[0]).subscribe();
     this.postService.removePost(Item[0].post_id).subscribe();
     this.skillstatusService.updateSkillStatus(statusItem[0]).subscribe();
@@ -83,6 +90,13 @@ export class PostListItemComponent implements OnInit {
         skillstatus_id: data.skillstatus_id
       }
     ];
+
+    this.postService.getMailData(data.fromuser_id).subscribe(d => {
+      const name = d[0].vorname + ' ' + d[0].nachname;
+      const mail = d[0].mail;
+      const anzahlPost = d[0].anzahlPost + 1;
+      this.postService.sendEmail(name, mail, anzahlPost);
+    });
 
     this.postService.newPost(newItem[0]).subscribe();
     this.postService.removePost(Item[0].post_id).subscribe();
