@@ -8,6 +8,7 @@ import { AuthenticationGuard } from 'microsoft-adal-angular6';
 import { LogoutComponent } from './Logout/logout/logout.component';
 import { PostComponent } from './Mittelungen/post/post.component';
 import { LogsComponent } from './Logs/logs/logs.component';
+import { EinstellungenComponent } from './Einstellungen/einstellungen/einstellungen.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'post',
     component: PostComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'einstellungen',
+    component: EinstellungenComponent,
     canActivate: [AuthenticationGuard]
   },
   {

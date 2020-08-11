@@ -4,7 +4,15 @@
 
   <mat-label *ngIf="isAuthenticated" style="padding-right: 15px;">{{userName}}</mat-label>
 
-  <!--<button mat-raised-button class="green" (click)="onClick()">Send Mail</button>-->
+  <mat-icon
+  style="margin-right: 5px; margin-left: 5px;"
+  *ngIf="isAuthenticated"
+  routerLink="einstellungen"
+  (click)="changeNavBarTitle('Einstellungen')"
+  class="toolbar-icon"
+  matTooltip="Einstellungen"
+  matTooltipPosition="left"
+  >settings</mat-icon>
 
   <mat-icon
     style="margin-right: 30px; margin-left: 10px;"
@@ -16,6 +24,8 @@
     [matBadge]="this.postService.badgeCount"
     matBadgeColor="warn"
     matBadgeOverlap="true"
+    matTooltip="Mitteilungen"
+    matTooltipPosition="right"
   >notifications</mat-icon>
 
   <div class="v1"></div>

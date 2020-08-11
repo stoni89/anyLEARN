@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
@@ -65,6 +66,7 @@ import { SkillverwaltungCloseDialogComponent } from './Skillverwaltung/skillverw
 import { DashboardCloseDialogComponent } from './Dashboard/dashboard-close-dialog/dashboard-close-dialog.component';
 import { SkillverwaltungSkillstatusDialogComponent } from './Skillverwaltung/skillverwaltung-skillstatus-dialog/skillverwaltung-skillstatus-dialog.component';
 import { HoldableDirective } from './Shared/Directive/holdable.directive';
+import { EinstellungenComponent } from './Einstellungen/einstellungen/einstellungen.component';
 
 
 @NgModule({
@@ -99,7 +101,8 @@ import { HoldableDirective } from './Shared/Directive/holdable.directive';
     SkillverwaltungCloseDialogComponent,
     DashboardCloseDialogComponent,
     SkillverwaltungSkillstatusDialogComponent,
-    HoldableDirective
+    HoldableDirective,
+    EinstellungenComponent
   ],
   imports: [
     HttpClientModule,
@@ -120,6 +123,7 @@ import { HoldableDirective } from './Shared/Directive/holdable.directive';
     MatSortModule,
     MatTableExporterModule,
     MatSelectModule,
+    MatRadioModule,
     MatCheckboxModule,
     MatBadgeModule,
     MatInputModule,

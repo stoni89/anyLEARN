@@ -18,4 +18,16 @@ router.get('/:user_id', function (req, res) {
     });
 });
 
+router.put('/mailoption', function (req, res) {
+  options.setUserMailOptions(req.body, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 module.exports = router;

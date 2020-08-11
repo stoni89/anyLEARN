@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { PostService } from './Shared/Services/post.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { OptionsService } from './Shared/Services/options.service';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
 
   constructor(private adalService: MsAdalAngular6Service, public userService: UserService, public postService: PostService,
               private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar,
-              public sendMailService: SendMailService) {
+              public sendMailService: SendMailService, public optionsService: OptionsService) {
     // tslint:disable-next-line: no-shadowed-variable
   }
 
@@ -53,6 +54,10 @@ export class AppComponent implements OnInit {
           sessionStorage.setItem('selektierenFilterVermittler', '');
           sessionStorage.setItem('selektierenFilterBereich', '');
           sessionStorage.setItem('selektierenFilterStatus', '');
+
+          this.optionsService.getOptions(data[0]['user_id']).subscribe(d => {
+            localStorage.setItem('mailSetting', d[0]['mail_setting']);
+          });
 
           //localStorage.setItem('key', data[0]['user_id']);
           this.isAuthenticated = this.adalService.isAuthenticated;

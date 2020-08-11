@@ -1,3 +1,4 @@
+import { OptionsService } from './../../Shared/Services/options.service';
 import { UeberschrittenService } from './../../Shared/Services/ueberschritten.service';
 import { DashboardCloseDialogComponent } from './../dashboard-close-dialog/dashboard-close-dialog.component';
 import { UserService } from 'src/app/Shared/Services/user.service';
@@ -40,6 +41,7 @@ export class DashboardListItemComponent implements OnInit {
               public skillService: SkillService,
               public ueberschrittenService: UeberschrittenService,
               public linksService: LinksService,
+              public optionsService: OptionsService,
               public zeitpunktService: ZeitpunktService) {}
 
   ngOnInit() {
@@ -102,15 +104,22 @@ export class DashboardListItemComponent implements OnInit {
       }
     ];
 
+
+    this.optionsService.getOptions(this.dashboardService.form.value.verID).subscribe(d => {
+      console.log(d);
+      if (d[0]['mail_setting'] === 1) {
+        this.postService.getMailData(d[0]['user_id']).subscribe(data => {
+          console.log(data);
+          const name = data[0].vorname + ' ' + data[0].nachname;
+          const mail = data[0].mail;
+          const anzahlPost = data[0].anzahlPost + 1;
+          this.postService.sendEmail(name, mail, anzahlPost);
+        });
+      }
+    });
+
     this.postService.newPost(newItem[0]).subscribe();
     this.postService.updateBadge();
-
-    this.postService.getMailData(this.dashboardService.form.value.verID).subscribe(data => {
-      const name = data[0].vorname + ' ' + data[0].nachname;
-      const mail = data[0].mail;
-      const anzahlPost = data[0].anzahlPost + 1;
-      this.postService.sendEmail(name, mail, anzahlPost);
-    });
 
     this.onClose();
   }
@@ -141,15 +150,16 @@ export class DashboardListItemComponent implements OnInit {
       }
     ];
 
-    this.postService.newPost(newItem[0]).subscribe();
-    this.postService.updateBadge();
-
     this.postService.getMailData(this.dashboardService.form.value.verID).subscribe(data => {
+      console.log(data);
       const name = data[0].vorname + ' ' + data[0].nachname;
       const mail = data[0].mail;
       const anzahlPost = data[0].anzahlPost + 1;
       this.postService.sendEmail(name, mail, anzahlPost);
     });
+
+    this.postService.newPost(newItem[0]).subscribe();
+    this.postService.updateBadge();
 
     this.onClose();
   }

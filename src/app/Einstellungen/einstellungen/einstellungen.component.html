@@ -1,0 +1,12 @@
+<div style="margin-top: 20px;">
+  <h2>Persönliche Einstellungen</h2>
+
+  <section class="example-section">
+    <label class="example-margin">Mail Benachrichtigung:</label>
+    <mat-radio-group>
+      <mat-radio-button class="example-margin" value="true" [checked]="checked === true" (change)="onMailActivate()">Aktivieren</mat-radio-button>
+      <mat-radio-button class="example-margin" value="false" [checked]="checked === false" (change)="onMailDisable()">Deaktivieren</mat-radio-button>
+    </mat-radio-group>
+  </section>
+</div>
+
