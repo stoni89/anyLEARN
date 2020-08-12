@@ -14,10 +14,13 @@
         <mat-label>Der Skill wird anschließend bei jedem Benutzer entfernt!</mat-label>
         <br>
         <br>
-        <mat-label style="font-size: 11px;"><b>Zum löschen den "Löschen Button" gedrückt halten</b></mat-label>
+        <mat-label style="font-size: 11px;"><b>Zum löschen den "Löschen Button" 3 Sekunden gedrückt halten</b></mat-label>
         <br>
-        <button mat-raised-button class="red" style="margin-right: 10px" (click)="onClose()">Abbrechen</button>
-        <button mat-raised-button class="green" appHoldable (holdTime)="holdHandler($event)">Löschen</button>
+        <div>
+          <button mat-raised-button class="red" style="margin-right: 10px" (click)="onClose()">Abbrechen</button>
+          <button mat-raised-button class="green" appHoldable (holdTime)="holdHandler($event)">Löschen</button>
+          <span style="margin-left: 10px; font-size: medium;">{{counter}}</span>
+        </div>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
