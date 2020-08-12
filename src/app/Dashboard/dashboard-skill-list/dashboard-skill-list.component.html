@@ -8,28 +8,7 @@
     </mat-select>
   </mat-form-field>
 
-  <!--
-  <mat-form-field *ngIf="userRole == 'Administrator'">
-    <mat-label>User</mat-label>
-    <mat-select (selectionChange)="onSelectUserChange()" [(ngModel)]="selectUser">
-      <mat-option *ngFor="let user of allUser" [value]="user.user_id">
-        {{user.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  -->
-
-
   <mat-label *ngIf="userRole == 'User'" [ngStyle]="{'padding-left': '10px', 'font-weight': 'bold', 'font-size': '18px'}">{{ userName }}</mat-label>
-
-  <!--
-  <mat-form-field class="search-form-field" floatLabel="never">
-    <input matInput [(ngModel)]="searchKey" placeholder="Filtern" autocomplete="off" (keyup)="applyFilter()">
-    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  -->
 
   <mat-label style="margin-left: 40px;"><b>Filtern:</b></mat-label>
 

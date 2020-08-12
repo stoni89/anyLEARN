@@ -9,6 +9,10 @@ var options = {
     {
       return db.query('UPDATE options SET mail_setting=? WHERE user_id=?', [postdata.mail_setting, postdata.user_id], callback)
     },
+    removeOptions: function(id, callback)
+    {
+      return db.query('DELETE FROM options WHERE user_id = ' + id, callback)
+    },
 }
 
 module.exports = options;

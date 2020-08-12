@@ -18,4 +18,8 @@ export class OptionsService {
   updateMailOption(mailOption: any) {
     return this.httpClient.put(this.url + `options/mailoption`, mailOption);
   }
+
+  removeOptions(id: number) {
+    return this.httpClient.delete(this.url + `options/` + id);
+   }
 }

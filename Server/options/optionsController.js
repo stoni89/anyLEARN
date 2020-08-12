@@ -30,4 +30,17 @@ router.put('/mailoption', function (req, res) {
   });
 });
 
+router.delete('/:user_id', function (req, res) {
+  const user_id = req.params.user_id;
+  options.removeOptions(user_id, function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
+});
+
 module.exports = router;
