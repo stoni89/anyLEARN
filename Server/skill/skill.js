@@ -1,4 +1,4 @@
-var db = require('../db');
+ungvar db = require('../db');
 
 var skill = {
 
@@ -14,7 +14,7 @@ var skill = {
                         'INNER JOIN users u ON (u.user_id = s.vermittler_id) ' +
                         'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
                         'INNER JOIN endzeitpunkt ez ON (ez.endzeitpunkt_id = s.endzeitpunkt_id) ' +
-                        'GROUP BY s.skill_ID ORDER BY z.zeitpunkt, s.skill', callback);
+                        'GROUP BY s.skill_ID ORDER BY ez.endzeitpunkt, s.skill', callback);
     },
     getSpezificSkill: function(id, callback)
     {

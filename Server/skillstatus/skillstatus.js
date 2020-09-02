@@ -18,7 +18,7 @@ var sst = {
                     'INNER JOIN status sta ON (sta.status_id = sst.status_id) ' +
                     'INNER JOIN kategorie k ON (k.kategorie_id = sk.kategorie_id) ' +
                     'LEFT JOIN skilllinks sl ON (sl.skill_id = sst.skill_id) ' +
-                    'WHERE (u.kategorie_id = sk.kategorie_id OR sst.status_id = 4) && u.user_id = ' + id + ' GROUP BY sst.skill_id ORDER BY z.zeitpunkt, s.skill', callback);
+                    'WHERE (u.kategorie_id = sk.kategorie_id OR sst.status_id = 4) && u.user_id = ' + id + ' GROUP BY sst.skill_id ORDER BY ez.endzeitpunkt, s.skill', callback);
   },
   getSkillStatusCountGesamt: function(id, callback)
   {
