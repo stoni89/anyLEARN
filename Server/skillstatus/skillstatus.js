@@ -5,8 +5,8 @@ var sst = {
   {
     return db.query('SELECT sst.skillstatus_id, sst.skill_id, sst.status_id, sst.ueberschritten, sst.user_id, s.skill, s.skill, s.zeitpunkt_id, s.lernziel, s.inhalt, s.zeitaufwand, sst.vermittler_id AS verID, ' +
                     'FORMAT(z.zeitpunkt,1) AS zeitpunkt, s.vermittler_id, s.bereich_id, s.nachweis, b.bereich, group_concat(k.kategorie separator ", ") kategorie, sta.status, ' +
-                    'group_concat(sk.kategorie_id separator ", ") kategorie_id, u.nachname AS nachname, uu.nachname AS vermittler, COUNT(sl.skill_id) AS linkAnzahl, ' +
-                    's.endzeitpunkt_id, FORMAT(ez.endzeitpunkt,1) AS endzeitpunkt ' +
+                    'group_concat(sk.kategorie_id separator ", ") kategorie_id, u.nachname AS nachname, uu.nachname AS vermittler, ' +
+                    's.endzeitpunkt_id, FORMAT(ez.endzeitpunkt,1) AS endzeitpunkt, (SELECT Count(*) FROM skilllinks ssi WHERE ssi.skill_id = s.skill_id) AS linkAnzahl ' +
                     'FROM skillstatus sst ' +
                     'INNER JOIN skills s ON (s.skill_id = sst.skill_id) ' +
                     'INNER JOIN users u ON (u.user_id = sst.user_id) ' +
@@ -17,7 +17,6 @@ var sst = {
                     'INNER JOIN bereich b ON (b.bereich_ID = s.bereich_id) ' +
                     'INNER JOIN status sta ON (sta.status_id = sst.status_id) ' +
                     'INNER JOIN kategorie k ON (k.kategorie_id = sk.kategorie_id) ' +
-                    'LEFT JOIN skilllinks sl ON (sl.skill_id = sst.skill_id) ' +
                     'WHERE (u.kategorie_id = sk.kategorie_id OR sst.status_id = 4) && u.user_id = ' + id + ' GROUP BY sst.skill_id ORDER BY ez.endzeitpunkt, s.skill', callback);
   },
   getSkillStatusCountGesamt: function(id, callback)

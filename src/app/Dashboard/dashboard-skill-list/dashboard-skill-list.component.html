@@ -138,8 +138,8 @@
     <td mat-cell *matCellDef="let row">
       <button mat-icon-button *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" (click)="onEdit(row)" matTooltip="Bearbeiten" matTooltipPosition="left" style="color: darkorange;"><mat-icon>edit</mat-icon></button>
       <button mat-icon-button *ngIf="userRole == 'User'" (click)="onEdit(row)" matTooltip="Details" matTooltipPosition="left"><mat-icon>launch</mat-icon></button>
-      <button *ngIf="row.linkAnzahl > 0" mat-icon-button (click)="onLink(row)" matTooltip="Links" matTooltipPosition="right">
-        <mat-icon *ngIf="row.linkAnzahl > 0"  matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="small" matBadge="">link</mat-icon>
+Dashboard       <button mat-icon-button (click)="onLink(row)" matTooltip="Links" matTooltipPosition="right">
+        <mat-icon matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="small" matBadge="{{row.linkAnzahl}}">link</mat-icon>
       </button>
     </td>
   </ng-container>
