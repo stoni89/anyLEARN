@@ -1,4 +1,4 @@
-ungvar db = require('../db');
+var db = require('../db');
 
 var skill = {
 
@@ -6,7 +6,7 @@ var skill = {
     {
         return db.query('SELECT s.skill_id, s.skill, s.lernziel, s.inhalt, s.zeitaufwand, s.zeitpunkt_id, FORMAT(z.zeitpunkt,1) AS zeitpunkt, s.vermittler_id, s.bereich_id, ' +
                         's.nachweis, u.nachname, b.bereich , group_concat(k.kategorie separator ", ") kategorie, ' +
-                        'group_concat(sk.kategorie_id separator ", ") kategorie_id, s.endzeitpunkt_id, FORMAT(ez.endzeitpunkt,1) AS endzeitpunkt ' +
+                        'group_concat(sk.kategorie_id separator ", ") kategorie_id, s.endzeitpunkt_id, FORMAT(ez.endzeitpunkt,1) AS endzeitpunkt, (SELECT Count(*) FROM skilllinks ssi WHERE ssi.skill_id = s.skill_id) AS linkAnzahl ' +
                         'FROM skillkategorie sk ' +
                         'INNER JOIN skills s ON (s.skill_id = sk.skill_id) ' +
                         'INNER JOIN zeitpunkt z ON (z.zeitpunkt_id = s.zeitpunkt_id) ' +

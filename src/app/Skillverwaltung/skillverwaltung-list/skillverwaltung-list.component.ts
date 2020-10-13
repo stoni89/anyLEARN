@@ -100,6 +100,7 @@ export class SkillverwaltungListComponent implements OnInit {
     });
 
     this.service.getAllSkills().subscribe(data => {
+      console.log(data);
       this.datasource = new MatTableDataSource(data as any);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;

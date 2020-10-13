@@ -107,7 +107,9 @@
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let row">
       <button mat-icon-button (click)="onEdit(row)" matTooltip="Bearbeiten" matTooltipPosition="left" style="color: darkorange;"><mat-icon>edit</mat-icon></button>
-      <button mat-icon-button (click)="onLink(row)" matTooltip="Links" matTooltipPosition="right"><mat-icon>link</mat-icon></button>
+      <button mat-icon-button (click)="onLink(row)" matTooltip="Links" matTooltipPosition="right">
+        <mat-icon matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="small" matBadge="{{row.linkAnzahl}}">link</mat-icon>
+      </button>
       <button mat-icon-button (click)="onSkillStatusInfo(row)" style="color: blue" matTooltip="Skillstatus der User anzeigen" matTooltipPosition="right"><mat-icon>playlist_add_check</mat-icon></button>
       <button mat-icon-button (click)="onDelete(row)" color="warn" matTooltip="Löschen" matTooltipPosition="right"><mat-icon>delete_outline</mat-icon></button>
     </td>
