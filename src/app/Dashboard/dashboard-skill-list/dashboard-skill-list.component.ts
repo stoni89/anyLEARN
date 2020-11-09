@@ -39,14 +39,18 @@ export class DashboardSkillListComponent implements OnInit {
   displayedColumns = ['status', 'bereich', 'skill' , 'zeitpunkt', 'endzeitpunkt', 'zeitaufwand', 'vermittler', 'actions'];
 
   skillFilter = new FormControl(sessionStorage.getItem('dashboardFilterSkill'));
+  inhaltFilter = new FormControl(sessionStorage.getItem('skillverwFilterInhalt'));
   vermittlerFilter = new FormControl(sessionStorage.getItem('dashboardFilterVermittler'));
   bereichFilter = new FormControl(sessionStorage.getItem('dashboardFilterBereich'));
   statusFilter = new FormControl(sessionStorage.getItem('dashboardFilterStatus'));
+  ueberfaelligFilter = new FormControl(sessionStorage.getItem('dashboardFilterUeberfaellig'));
   filterValues = {
     skill: sessionStorage.getItem('dashboardFilterSkill'),
+    inhalt: sessionStorage.getItem('skillverwFilterInhalt'),
     vermittler: sessionStorage.getItem('dashboardFilterVermittler'),
     bereich: sessionStorage.getItem('dashboardFilterBereich'),
-    status: sessionStorage.getItem('dashboardFilterStatus')
+    status: sessionStorage.getItem('dashboardFilterStatus'),
+    ueberfaellig: sessionStorage.getItem('dashboardFilterUeberfaellig')
   };
   bereich: any;
   status: any;
@@ -86,9 +90,17 @@ export class DashboardSkillListComponent implements OnInit {
     {
       this.filterValues.vermittler = "";
     }
+    if (this.filterValues.inhalt === null)
+    {
+      this.filterValues.inhalt = "";
+    }
     if (this.filterValues.status === null)
     {
       this.filterValues.status = "";
+    }
+    if (this.filterValues.ueberfaellig === null)
+    {
+      this.filterValues.ueberfaellig = "";
     }
 
     this.bereichService.getAllBereich().subscribe(data => {
@@ -138,6 +150,28 @@ export class DashboardSkillListComponent implements OnInit {
           this.filterValues.skill = sessionStorage.getItem('dashboardFilterSkill');
           this.datasource.filter = JSON.stringify(this.filterValues);
         });
+
+        this.inhaltFilter.valueChanges.subscribe(inhalt => {
+          sessionStorage.setItem('skillverwFilterInhalt', inhalt);
+          this.filterValues.inhalt = sessionStorage.getItem('skillverwFilterInhalt');
+          this.datasource.filter = JSON.stringify(this.filterValues);
+        });
+
+        this.ueberfaelligFilter.valueChanges.subscribe(ueberfaellig => {
+          sessionStorage.setItem('dashboardFilterUerberfaellig', ueberfaellig);
+          if (sessionStorage.getItem('dashboardFilterUerberfaellig') === 'undefined')
+          {
+            sessionStorage.setItem('dashboardFilterUerberfaellig', '');
+            this.filterValues.ueberfaellig = sessionStorage.getItem('dashboardFilterUerberfaellig');
+            this.datasource.filter = JSON.stringify(this.filterValues);
+          }
+          else
+          {
+            this.filterValues.ueberfaellig = sessionStorage.getItem('dashboardFilterUerberfaellig');
+            this.datasource.filter = JSON.stringify(this.filterValues);
+          }
+        });
+
 
         this.vermittlerFilter.valueChanges.subscribe(vermittler => {
           sessionStorage.setItem('dashboardFilterVermittler', vermittler);
@@ -249,7 +283,9 @@ export class DashboardSkillListComponent implements OnInit {
       let searchTerms = JSON.parse(filter);
       return data.skill.toLowerCase().indexOf(searchTerms.skill.toLowerCase()) !== -1
       && data.vermittler.toLowerCase().indexOf(searchTerms.vermittler.toLowerCase()) !== -1
+      && data.inhalt.toLowerCase().indexOf(searchTerms.inhalt.toLowerCase()) !== -1
       && data.bereich.toLowerCase().indexOf(searchTerms.bereich.toLowerCase()) !== -1
+      && data.ueberschritten.toLowerCase().indexOf(searchTerms.ueberfaellig.toLowerCase()) !== -1
       && data.status.toLowerCase().indexOf(searchTerms.status.toLowerCase()) !== -1;
     };
     return filterFunction;

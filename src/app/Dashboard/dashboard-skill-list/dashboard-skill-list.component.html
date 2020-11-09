@@ -32,18 +32,34 @@
   </mat-form-field>
 
   <mat-form-field style="margin-left: 15px;">
+    <mat-label>Inhalt</mat-label>
+    <input matInput [formControl]="inhaltFilter">
+  </mat-form-field>
+
+  <mat-form-field style="margin-left: 15px;">
     <mat-select placeholder="Vermittler" [formControl]="vermittlerFilter">
       <mat-option>None</mat-option>
       <mat-option *ngFor="let ver of vermittler" [value]="ver.nachname">{{ver.nachname}}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-label style="margin-left: 80px; margin-right: 15px; color: black; font-size: 15px;"><b>Ziel: {{gesamt}} </b></mat-label>
-  <mat-label style="margin-left: 10px; margin-right: 15px; color: red; font-size: 15px;"><b>Offen: {{offen}} </b></mat-label>
-  <mat-label style="margin-left: 10px; margin-right: 15px; color: darkorange; font-size: 15px;"><b>Bearbeitung: {{bearbeitung}} </b></mat-label>
-  <mat-label style="margin-left: 10px; color: green; font-size: 15px;"><b>Erledigt: {{erledigt}}(+ {{erledigtDiff}} weitere Skills)</b></mat-label>
+  <mat-form-field style="margin-left: 15px;">
+    <mat-select placeholder="Nur überfällige Skills" [formControl]="ueberfaelligFilter">
+      <mat-option>None</mat-option>
+      <mat-option [value]="'end'">{{"Ja"}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <button mat-icon-button style="float: right; color: red" matTooltip="Export als PDF" matTooltipPosition="left" (click)="print()"><mat-icon>picture_as_pdf</mat-icon></button>
+
+  <br>
+  <mat-label style="float: right; margin-left: 10px; margin-right: 15px; color: green; font-size: 13px; margin-top: 10px;"><b>Erledigt: {{erledigt}}(+ {{erledigtDiff}} weitere Skills)</b></mat-label>
+  <mat-label style="float: right; margin-left: 10px; margin-right: 10px; color: darkorange; font-size: 13px; margin-top: 10px;"><b>Bearbeitung: {{bearbeitung}} </b></mat-label>
+  <mat-label style="float: right; margin-left: 10px; margin-right: 10px; color: red; font-size: 13px; margin-top: 10px;"><b>Offen: {{offen}} </b></mat-label>
+  <mat-label style="float: right; margin-right: 10px; color: black; font-size: 13px; margin-top: 10px;"><b>Ziel: {{gesamt}} </b></mat-label>
+
+
+
 
 
 </div>
@@ -158,7 +174,7 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{'row-color-false': row.status_id > 1 && row.ueberschritten == 'false','row-color-true' : row.status_id == 1 && row.ueberschritten == 'true', 'row-color-end' : row.status_id < 4 && row.ueberschritten == 'end'}">
+      [ngClass]="{'row-color-false': (row.status_id > 1 && row.ueberschritten == 'false') || (row.status_id == 4 && row.ueberschritten == 'erledigt'), 'row-color-true' : row.status_id == 1 && row.ueberschritten == 'true', 'row-color-end' : row.status_id < 4 && row.ueberschritten == 'end'}">
   </tr>
 
   <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':datasource != null}"></mat-footer-row>

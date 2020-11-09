@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
           sessionStorage.setItem('dashboardFilterVermittler', '');
           sessionStorage.setItem('dashboardFilterBereich', '');
           sessionStorage.setItem('dashboardFilterStatus', '');
+          sessionStorage.setItem('dashboardFilterUeberfaellig', '');
           sessionStorage.setItem('selektierenFilterSkill', '');
           sessionStorage.setItem('selektierenFilterVermittler', '');
           sessionStorage.setItem('selektierenFilterBereich', '');
