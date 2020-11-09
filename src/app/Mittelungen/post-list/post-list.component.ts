@@ -21,6 +21,7 @@ export class PostListComponent implements OnInit {
   datasource;
   displayedColumns = ['text', 'date' , 'kategorie', 'von', 'actions'];
   loggedUserID = parseInt(localStorage.getItem('userid'));
+  userRole: string = localStorage.getItem('role');
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

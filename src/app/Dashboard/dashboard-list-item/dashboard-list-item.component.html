@@ -47,7 +47,7 @@
             <mat-option *ngFor="let ver of vermittler" [value]="ver.user_id">{{ver.nachname}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field > 
           <textarea formControlName="lernziel" [readonly]="userRole == 'User'" matInput matInput rows="11"  placeholder="Lernziel"></textarea>
         </mat-form-field>
       </div>

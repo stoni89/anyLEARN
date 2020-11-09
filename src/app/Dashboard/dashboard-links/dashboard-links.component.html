@@ -14,16 +14,17 @@
 
     <ng-container matColumnDef="url">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> URL </th>
-      <td mat-cell *matCellDef="let element" [matTooltip]="element.url"> {{element.url}} </td>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.url"> <a target="_blank" rel="noopener noreferrer" href={{element.url}}>{{element.url}}</a></td>
     </ng-container>
 
-
+  <!--
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let row">
         <button mat-icon-button matTooltip="Öffnen" matTooltipPosition="right" (click)="onOpen(row)"><mat-icon style="color: red; margin-left: 100px;">public</mat-icon></button>
       </td>
     </ng-container>
+  -->
 
     <ng-container matColumnDef="loading">
       <mat-header-cell *matFooterCellDef colspan="6">

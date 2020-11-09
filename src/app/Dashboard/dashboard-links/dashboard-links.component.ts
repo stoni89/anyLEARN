@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DashboardLinksComponent implements OnInit {
 
   datasource;
-  displayedColumns = ['bezeichnung', 'url' , 'actions'];
+  displayedColumns = ['bezeichnung', 'url'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
