@@ -78,6 +78,13 @@ export class DashboardSkillListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log(this.ueberfaelligFilter);
+    console.log(sessionStorage.getItem('dashboardFilterUeberfaellig'));
+    console.log(this.vermittlerFilter);
+    console.log(sessionStorage.getItem('dashboardFilterVermittler'));
+
+
     if (this.filterValues.bereich === null)
     {
       this.filterValues.bereich = "";
@@ -158,16 +165,16 @@ export class DashboardSkillListComponent implements OnInit {
         });
 
         this.ueberfaelligFilter.valueChanges.subscribe(ueberfaellig => {
-          sessionStorage.setItem('dashboardFilterUerberfaellig', ueberfaellig);
-          if (sessionStorage.getItem('dashboardFilterUerberfaellig') === 'undefined')
+          sessionStorage.setItem('dashboardFilterUeberfaellig', ueberfaellig);
+          if (sessionStorage.getItem('dashboardFilterUeberfaellig') === 'undefined')
           {
-            sessionStorage.setItem('dashboardFilterUerberfaellig', '');
-            this.filterValues.ueberfaellig = sessionStorage.getItem('dashboardFilterUerberfaellig');
+            sessionStorage.setItem('dashboardFilterUeberfaellig', '');
+            this.filterValues.ueberfaellig = sessionStorage.getItem('dashboardFilterUeberfaellig');
             this.datasource.filter = JSON.stringify(this.filterValues);
           }
           else
           {
-            this.filterValues.ueberfaellig = sessionStorage.getItem('dashboardFilterUerberfaellig');
+            this.filterValues.ueberfaellig = sessionStorage.getItem('dashboardFilterUeberfaellig');
             this.datasource.filter = JSON.stringify(this.filterValues);
           }
         });

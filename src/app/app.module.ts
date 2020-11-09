@@ -140,7 +140,7 @@ import { EinstellungenComponent } from './Einstellungen/einstellungen/einstellun
       tenant: '0a9e2776-62d5-46c5-9650-ec0cc551babf',
       clientId: 'df4e9ceb-596c-4ff5-b344-db62b0aab33d',
       redirectUri: 'https://anylearn.anyware.ag/anylearn/',
-      //redirectUri: 'http://localhost:4200/',
+      // redirectUri: 'http://localhost:4200/',
       endpoints: {
         'https://graph.microsoft.com': 'df4e9ceb-596c-4ff5-b344-db62b0aab33d', // this is for feteching the access token
       },
