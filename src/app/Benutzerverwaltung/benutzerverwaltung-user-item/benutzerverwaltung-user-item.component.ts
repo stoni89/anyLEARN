@@ -77,8 +77,16 @@ export class BenutzerverwaltungUserItemComponent implements OnInit {
 
     if (this.userService.form.valid) {
       if (!this.userService.form.get('user_id').value) {
+
+        console.log(this.userService.form.value);
+
         this.userService.setUser(this.userService.form.value).subscribe(data => {
+
+          console.log('2');
+
           this.userService.getLastUserID().subscribe(da => {
+
+            console.log('3');
 
             // tslint:disable-next-line: no-shadowed-variable
             this.skillService.getAllSkills().subscribe(data => {

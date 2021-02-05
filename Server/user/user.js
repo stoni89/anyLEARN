@@ -47,7 +47,7 @@ var user = {
     newUser: function(postdata, callback)
     {
       return db.query('INSERT INTO users (vorname, nachname, eintritt, name, kategorie_id, rollen_id, kuerzel, mail, istAktiv) ' +
-                      'values(?, ?, ?, ?, ?, ?, ?, ?)', [postdata.vorname, postdata.nachname, postdata.name, postdata.kategorie_id, postdata.rollen_id, postdata.kuerzel, postdata.mail, postdata.istAktiv], callback)
+                      'values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [postdata.vorname, postdata.nachname, postdata.eintritt, postdata.name, postdata.kategorie_id, postdata.rollen_id, postdata.kuerzel, postdata.mail, postdata.istAktiv], callback)
     },
     updateUser: function(postdata, callback)
     {

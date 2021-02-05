@@ -44,16 +44,16 @@
   </mat-form-field>
 
   <mat-form-field style="margin-left: 15px;">
-    <mat-select placeholder="Nur überfällige Skills" [formControl]="ueberfaelligFilter">
-      <mat-option>None</mat-option>
-      <mat-option [value]="'end'">{{"Ja"}}</mat-option>
+    <mat-select placeholder="überfällige Skills" [formControl]="ueberfaelligFilter">
+      <mat-option>Alle Skills anzeigen</mat-option>
+      <mat-option [value]="'end'">{{"Nur überfällige Skills anzeigen"}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <button mat-icon-button style="float: right; color: red" matTooltip="Export als PDF" matTooltipPosition="left" (click)="print()"><mat-icon>picture_as_pdf</mat-icon></button>
 
   <br>
-  <mat-label style="float: right; margin-left: 10px; margin-right: 15px; color: green; font-size: 13px; margin-top: 10px;"><b>Erledigt: {{erledigt}}(+ {{erledigtDiff}} weitere Skills)</b></mat-label>
+  <mat-label style="float: right; margin-left: 10px; margin-right: 15px; color: green; font-size: 13px; margin-top: 10px;"><b>Erledigt: {{erledigt}} (+ {{erledigtDiff}} weitere Skills)</b></mat-label>
   <mat-label style="float: right; margin-left: 10px; margin-right: 10px; color: darkorange; font-size: 13px; margin-top: 10px;"><b>Bearbeitung: {{bearbeitung}} </b></mat-label>
   <mat-label style="float: right; margin-left: 10px; margin-right: 10px; color: red; font-size: 13px; margin-top: 10px;"><b>Offen: {{offen}} </b></mat-label>
   <mat-label style="float: right; margin-right: 10px; color: black; font-size: 13px; margin-top: 10px;"><b>Ziel: {{gesamt}} </b></mat-label>

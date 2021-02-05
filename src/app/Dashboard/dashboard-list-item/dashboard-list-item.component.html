@@ -47,7 +47,7 @@
             <mat-option *ngFor="let ver of vermittler" [value]="ver.user_id">{{ver.nachname}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field > 
+        <mat-form-field >
           <textarea formControlName="lernziel" [readonly]="userRole == 'User'" matInput matInput rows="11"  placeholder="Lernziel"></textarea>
         </mat-form-field>
       </div>
@@ -65,7 +65,7 @@
           <button *ngIf="this.dashboardService.form.value.status == 'In Bearbeitung' && (userRole == 'User')" mat-raised-button (click)="onErledigt()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Erledigt</button>
           <button *ngIf="this.dashboardService.form.value.status == 'Offen' && (userRole == 'User')" mat-raised-button (click)="onBearbeitung()" class="orange" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Starten</button>
           <button *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" mat-raised-button (click)="onSave()" class="green" [ngStyle]="{'float': 'right', 'margin-top': '0px'}">Speichern</button>
-          <button *ngIf="userRole == 'User'" mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
+          <button *ngIf="userRole == 'User'" mat-raised-button (click)="onClose()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Schließen</button>
           <button *ngIf="userRole == 'Vermittler' || userRole == 'Administrator'" mat-raised-button (click)="onExit()" class="red" [ngStyle]="{'float': 'right', 'margin-top': '0px', 'margin-right': '10px'}">Abbrechen</button>
         </div>
       </div>
